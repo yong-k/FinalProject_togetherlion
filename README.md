@@ -25,3 +25,6 @@
 | 이시우 | siwooeel@gmail.com |
 | 이아린 | linavely99@gmail.com |
 | 정은정 | kreunjung.jung@gmail.com |
+
+## 👀 WIKI 
+[같이사자 WIKI 보러가기](https://github.com/SISTTEAMF3/FinalProject_togetherlion/wiki)
