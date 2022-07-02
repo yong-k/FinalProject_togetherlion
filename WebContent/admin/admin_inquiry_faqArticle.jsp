@@ -115,7 +115,6 @@ button.swal2-cancel.swal2-styled:focus {
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
-								<a class="nav-link" href="admin_member_ban.jsp">일시정지회원</a> 
 								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
 								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
 								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>

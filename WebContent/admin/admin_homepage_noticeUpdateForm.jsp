@@ -18,8 +18,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
 
@@ -61,20 +59,6 @@ button.swal2-cancel.swal2-styled:focus {
 </style>	
 <script>
 
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  height: 350,
-			  toolbar: [
-				  ['style', ['style']],
-				  ['font', ['bold', 'underline', 'clear']],
-				  ['fontname', ['fontname']],
-				  ['color', ['color']],
-				  ['para', ['ul', 'ol', 'paragraph']],
-				  ['insert', ['picture']],
-				]
-		  });
-	});
-	
 	$(document).ready(function()
     {
     	$(".saveBtn").click(function()
@@ -148,7 +132,6 @@ button.swal2-cancel.swal2-styled:focus {
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
-								<a class="nav-link" href="admin_member_ban.jsp">일시정지회원</a> 
 								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
 								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
 								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>
@@ -271,33 +254,33 @@ button.swal2-cancel.swal2-styled:focus {
 
 						<div class="card-body">
 							<div class="inquiry-container">
-								<form method="post">
-									<div class="mb-3 row">
-										<label for="title" class="col-sm-1 col-form-label">제목</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext faq-title" id="title"
-											value="시스템 점검 안내">
-										</div>
-									</div>
-
-									<textarea id="summernote" name="editordata">
-									안녕하세요 고객님, 가치사자입니다. <br /><br />
-									보다 안정적인 서비스 제공을 위해 서버 점검을 시행할 예정입니다. <br />
-									점검 시간 동안은 서비스 이용이 중단되오니, <br />
-									고객님의 양해 부탁드립니다. <br /><br />
-									점검 일시 : 5월 15일 일요일 02시 ~ 05시 (약3시간) <br />
-									*점검 시간은 공지보다 다소 길어질 수 있습니다. <br /><br />
-									
-									감사합니다. <br />
-									가치사자 드림. <br />
-									</textarea>
-									<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
-									<button type="button" class="adminBtn saveBtn answerInsertBtn">수정</button>
-								</form>
 								
+								<div class="admin-textarea-box">
+									<form method="post">
+										<label for="title" class="col-form-label">제목</label>
+										<input type="text" class="form-control-plaintext faq-title" id="title"
+										value="시스템 점검 안내">
+									
+										<label for="content" class="col-form-label">내용</label>
+										<textarea class="form-control admin-textarea" id="content" rows="15">
+안녕하세요 고객님, 가치사자입니다. 
+보다 안정적인 서비스 제공을 위해 서버 점검을 시행할 예정입니다.
+점검 시간 동안은 서비스 이용이 중단되오니,
+고객님의 양해 부탁드립니다.
+점검 일시 : 5월 15일 일요일 02시 ~ 05시 (약3시간)
+*점검 시간은 공지보다 다소 길어질 수 있습니다.
+
+감사합니다.
+가치사자 드림							
+										</textarea>
+										<input type="file" class="admin-textarea-file"/>
+										
+										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
+										<button type="button" class="adminBtn saveBtn answerInsertBtn">수정</button>
+									</form>
+								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</main>
