@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IBuypostDAO">
+
+
+	<select id="list" resultType="com.test.mybatis.BuypostDTO">	
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DAY, HOUR, MINUTE, COUNT, PERSON_PRICE
+		FROM VIEW_BUYPOST_MAIN
+	</select>
+	
+	<select id="search" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, URL, MAIN_CATE, SUB_CATE, TITLE, WRITE_DATETIME
+				, PERSON_PRICE, MEMBER_CODE, DEADLINE, COUNT, TRADE_DATE
+		FROM VIEW_BUYPOST_DETAILS
+		WHERE CODE = #{code}
+	</select>
+
+</mapper>

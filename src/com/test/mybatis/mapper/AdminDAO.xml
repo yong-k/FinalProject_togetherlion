@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IAdminDAO">
+
+	<select id="loginAdmin" resultType="java.lang.String">
+		SELECT MEMBER_CODE 
+		FROM ADMIN_INFO
+		WHERE ID=#{id} AND PW=#{pw}
+	</select>
+	
+	<select id="search" resultType="com.test.mybatis.AdminDTO">
+		SELECT CODE, ID, PW, NAME, TEL, ADMIN_GRADE_CODE, MEMBER_CODE, PROFILE_PATH
+		FROM ADMIN_INFO
+		WHERE MEMBER_CODE=#{member_code}
+	</select>
+
+</mapper>
