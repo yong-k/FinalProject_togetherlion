@@ -26,8 +26,8 @@
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-/* sweetalert */
 
+/* sweetalert */
 h2#swal2-title {
     font-size: 23px;
     padding-top: 40px;
@@ -63,7 +63,6 @@ button.swal2-cancel.swal2-styled:focus {
     {
     	$(".saveBtn").click(function()
     	{
-    		
     		Swal.fire({
     			  title: '답변을 등록하시겠습니까?',
     			  showCancelButton: true,
@@ -272,7 +271,7 @@ button.swal2-cancel.swal2-styled:focus {
 									</div>
 									<div class="mb-3">
 										<label class="col-sm-1 col-form-label">질문</label>
-										<textarea class="form-control" id="content" 
+										<textarea class="form-control inquiry-textarea" id="content" 
 										readonly class="form-control-plaintext" rows="7">제곧내..취소하고싶슴니다...</textarea>
 									</div>
 								</div>
@@ -287,10 +286,8 @@ button.swal2-cancel.swal2-styled:focus {
 										<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>
 									</form>
 								</div>
-								
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</main>

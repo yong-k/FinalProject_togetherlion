@@ -18,8 +18,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
 
@@ -59,20 +57,6 @@ button.swal2-cancel.swal2-styled:focus {
 }
 </style>	
 <script>
-
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  height: 350,
-			  toolbar: [
-				  ['style', ['style']],
-				  ['font', ['bold', 'underline', 'clear']],
-				  ['fontname', ['fontname']],
-				  ['color', ['color']],
-				  ['para', ['ul', 'ol', 'paragraph']],
-				  ['insert', ['picture']],
-				]
-		  });
-	});
 	
 	$(document).ready(function()
     {
@@ -260,40 +244,34 @@ button.swal2-cancel.swal2-styled:focus {
 					<div class="card mb-4">
 
 						<!--  Breadcrumb -->
-						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+						<nav style="-bs-breadcrumb-divider: url(&amp; #34; data: image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&amp;#34;);"
+							aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">문의관리</li>
-								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">FAQ</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="#">FAQ</a></li>
 							</ol>
 						</nav>
 
 						<div class="card-body">
-							<div class="inquiry-container">
+							<div class="admin-textarea-box">
 								<form method="post">
-									<div class="mb-3 row">
-										<label for="title" class="col-sm-1 col-form-label">제목</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control-plaintext faq-title" id="title">
-										</div>
-									</div>
+									<label for="title" class="col-form-label">제목</label> 
+									<input type="text" class="form-control-plaintext faq-title" id="title"> 
+									<label for="content" class="col-form-label">내용</label>
+									<textarea class="form-control admin-textarea" id="content" rows="15"></textarea>
+									<input type="file" class="admin-textarea-file" />
 
-									<textarea id="summernote" name="editordata">
-									</textarea>
 									<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
 									<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>
 								</form>
-								
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</main>
 
 			<!-- import FOOTER -->
 			<c:import url="admin_footer.jsp"></c:import>
-
 		</div>
 	</div>
 </body>
