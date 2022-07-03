@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="search" resultType="com.test.mybatis.MemberDTO">
-		SELECT CODE, ID, PW, NAME, NICKNAME, TEL, PROFILE_PATH, MEMBER_CODE
+		SELECT CODE, ID, PW, NAME, NICKNAME, TEL, MEMBER_CODE
 		FROM MEMBER_INFO
 		WHERE MEMBER_CODE=#{member_code}
 	</select>

@@ -14,4 +14,7 @@ public interface IBuypostDAO
 	
 	// 특정 공동구매 게시물 상세보기
 	public BuypostDTO search(String code);
+	
+	// 특정 공동구매 게시물 상태
+	public BuypostDTO checkState(String code);
 }

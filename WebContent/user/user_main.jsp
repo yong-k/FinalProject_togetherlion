@@ -4,6 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,12 +40,17 @@
 		{
 			location.href = "buypostarticle.lion?code=" + $(this).val();	
 		});
+		
+		
 	});
 	
 	function map()
 	{
 		window.open("user_map.jsp", "_blank", "top=150,left=550,width=1000,height=600");
 	}
+	
+	
+	
 </script>
 </head>
 <body>
@@ -122,6 +128,7 @@
                         			${buypost.hour }시간 ${buypost.minute }분 남음
                         		</c:otherwise>
                         	</c:choose>
+                        		
 							</span>
                         	<span class="featured__item__pic__hover">
                         		<i class="bi bi-cart4"></i>

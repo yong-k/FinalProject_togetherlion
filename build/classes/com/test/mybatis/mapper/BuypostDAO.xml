@@ -6,14 +6,20 @@
 
 
 	<select id="list" resultType="com.test.mybatis.BuypostDTO">	
-		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DAY, HOUR, MINUTE, COUNT, PERSON_PRICE
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y
 		FROM VIEW_BUYPOST_MAIN
 	</select>
 	
 	<select id="search" resultType="com.test.mybatis.BuypostDTO">
 		SELECT CODE, GOODS_PHOTO_PATH, URL, MAIN_CATE, SUB_CATE, TITLE, WRITE_DATETIME
-				, PERSON_PRICE, MEMBER_CODE, DEADLINE, COUNT, TRADE_DATE
+		        , PERSON_PRICE, MEMBER_CODE, DEADLINE, COUNT, TRADE_DATETIME, EXPIRATION_DATETIME, CONTENT
 		FROM VIEW_BUYPOST_DETAILS
+		WHERE CODE = #{code}
+	</select>
+	
+	<select id="checkState" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, BUY_DATETIME, STATE
+		FROM view_buypost_state
 		WHERE CODE = #{code}
 	</select>
 
