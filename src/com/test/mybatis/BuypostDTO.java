@@ -2,11 +2,43 @@ package com.test.mybatis;
 
 public class BuypostDTO
 {
-	private String code, expiration_date, title, goods_photo_path, url
-		, content, total_price, min_goods, max_goods, deadline, trade_date
+	private String code, expiration_datetime, title, goods_photo_path, url
+		, content, total_price, min_goods, max_goods, deadline, trade_datetime
 		, location_x, location_y, write_datetime, buy_datetime, buy_photo_path
 		, member_code, sub_cate_code, day, hour, minute, count, person_price
-		, main_cate_code, main_cate, sub_cate;
+		, main_cate_code, main_cate, sub_cate, state;
+
+	
+	
+	public String getState()
+	{
+		return state;
+	}
+
+	public void setState(String state)
+	{
+		this.state = state;
+	}
+
+	public String getExpiration_datetime()
+	{
+		return expiration_datetime;
+	}
+
+	public void setExpiration_datetime(String expiration_datetime)
+	{
+		this.expiration_datetime = expiration_datetime;
+	}
+
+	public String getTrade_datetime()
+	{
+		return trade_datetime;
+	}
+
+	public void setTrade_datetime(String trade_datetime)
+	{
+		this.trade_datetime = trade_datetime;
+	}
 
 	public String getMain_cate()
 	{
@@ -36,16 +68,6 @@ public class BuypostDTO
 	public void setCode(String code)
 	{
 		this.code = code;
-	}
-
-	public String getExpiration_date()
-	{
-		return expiration_date;
-	}
-
-	public void setExpiration_date(String expiration_date)
-	{
-		this.expiration_date = expiration_date;
 	}
 
 	public String getTitle()
@@ -126,16 +148,6 @@ public class BuypostDTO
 	public void setDeadline(String deadline)
 	{
 		this.deadline = deadline;
-	}
-
-	public String getTrade_date()
-	{
-		return trade_date;
-	}
-
-	public void setTrade_date(String trade_date)
-	{
-		this.trade_date = trade_date;
 	}
 
 	public String getLocation_x()

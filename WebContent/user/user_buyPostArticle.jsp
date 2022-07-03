@@ -172,7 +172,7 @@ button.swal2-close:focus {
 						</div>
 						<div class="product__details__box">
 							<div class="product__details__label">유통기한</div>
-							<div class="product__details__value">${buypost.deadline }</div>
+							<div class="product__details__value">${buypost.expiration_datetime }</div>
 						</div>
 						<div class="product__details__box">
 							<div class="product__details__label totalBuyNum_label">
@@ -190,11 +190,11 @@ button.swal2-close:focus {
 						</div>
 						<div class="product__details__box">
 							<div class="product__details__label">거래희망일</div>
-							<div class="product__details__value">${buypost.trade_date }</div>
+							<div class="product__details__value">${buypost.trade_datetime }</div>
 						</div>
 						<div class="product__details__box">
 							<div class="product__details__label">마감까지 남은 시간</div>
-							<div class="product__details__value">1일 0시간 27분 남음</div>
+							<div class="product__details__value">${buypost.day }일 ${buypost.hour }시간 ${buypost.minute }분 남음</div>
 						</div>
 
 						<div class="product__details__quantity">
@@ -223,6 +223,8 @@ button.swal2-close:focus {
                         <button type="button" class="primary-btn two-btn">참여하기</button>
                         <button type="button" class="primary-btn two-btn">참여취소</button>
                         -->
+                        
+                        
 						<!-- 1-5) 진행자 -->
 						<!-- 
                         <button type="button" class="primary-btn two-btn">수정</button>
@@ -281,8 +283,7 @@ button.swal2-close:focus {
 								<div class="col-lg-12">
 									<hr />
 									<div class="buypost-detail-content">
-										햇반 한 박스 공구요~ <br /> 이천산 햅쌀로 지은 맛있고 신선한 이천쌀밥 햇반 같이 사실 분~~~ <br />
-										참여신청 ㄱㄱ~~~~ <br /> <br /> 상세내용은 링크 들어가서 봐주세영 ㅎㅅㅎ
+										${buypost.content }
 									</div>
 								</div>
 							</div>
