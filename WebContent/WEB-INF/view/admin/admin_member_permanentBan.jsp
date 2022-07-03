@@ -13,96 +13,17 @@
 <title>admin같이사자</title>
 
 <link href="<%=cp %>/css/adminStyle.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
-
+	
 <style type="text/css">
 .sb-sidenav-menu a.current-menu {
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-
-/* sweetalert */
-h2#swal2-title {
-    font-size: 23px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
-input.swal2-input {
-    margin-bottom: 10px;
-}
-input.swal2-input:focus {
-    box-shadow: none;
-    border: 2px solid #fca652;
-}
-button.swal2-confirm.swal2-styled {
-    background-color: #fca652;
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-cancel.swal2-styled {
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-confirm.swal2-styled:focus {
-    box-shadow: none;
-}
-button.swal2-cancel.swal2-styled:focus {
-    box-shadow: none;
-}
-
 </style>	
-<script>
-	
-	$(document).ready(function()
-    {
-    	$(".saveBtn").click(function()
-    	{
-    		Swal.fire({
-    			  title: '답변을 등록하시겠습니까?',
-    			  showCancelButton: true,
-    			  confirmButtonText: '등록',
-    			  cancelButtonText: '취소',
-    			  reverseButtons: true
-    			}).then((result) => {
-    			  if (result.isConfirmed) {
-        			    Swal.fire({
-        			    	title: '등록 완료!',
-        			    	icon: 'success',
-        			    	confirmButtonText: '확인'
-        			    }).then(() => {
-        			    	/* 답변 등록한 해당 글 상세페이지로 이동 */
-        			    	location.href = 'admin_inquiry_inquiryAnswerArticle.jsp';
-        			    });
-        			  }
-    			})
-        });
-    	
-    	$(".cancelBtn").click(function()
-		{
-    		Swal.fire({
-    			  title: '그만하고 목록으로 돌아가시겠습니까?',
-    			  text: "입력사항이 저장되지 않습니다.",
-    			  icon: 'warning',
-    			  iconColor: '#f27474',
-    			  showCancelButton: true,
-    			  confirmButtonText: '목록으로',
-    			  cancelButtonText: '취소'
-    			}).then((result) => {
-    			  if (result.isConfirmed) {
-    				  location.href='admin_inquiry_inquiryList.jsp';
-    			  }
-    			})
-		});
 
-    });
-	
-</script>
 </head>
 <body class="sb-nav-fixed">
 
@@ -128,11 +49,11 @@ button.swal2-cancel.swal2-styled:focus {
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="member" aria-labelledby="headingOne"
+						<div class="collapse show" id="member" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
-								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
+								<a class="nav-link current-menu" href="admin_member_permanentBan.jsp">영구정지회원</a> 
 								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
 								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>
 							</nav>
@@ -220,10 +141,10 @@ button.swal2-cancel.swal2-styled:focus {
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse show" id="inquiry" aria-labelledby="headingSix"
+						<div class="collapse" id="inquiry" aria-labelledby="headingSix"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link current-menu" href="admin_inquiry_inquiryList.jsp">1:1문의</a> 
+								<a class="nav-link" href="admin_inquiry_inquiryList.jsp">1:1문의</a> 
 								<a class="nav-link" href="admin_inquiry_faqList.jsp">FAQ</a>
 							</nav>
 						</div>
@@ -241,53 +162,173 @@ button.swal2-cancel.swal2-styled:focus {
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<div class="card mb-4">
+					<div class="card mb-4 admin-table-body">
 
 						<!--  Breadcrumb -->
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">문의관리</li>
+								<li class="breadcrumb-item">회원조회</li>
 								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">1:1문의</a></li>
+									href="#">영구정지회원</a></li>
 							</ol>
 						</nav>
 
-						<div class="card-body">
-							<div class="inquiry-container">
-								<div class="user-inquiry-box">
-									<div class="mb-3 row">
-										<label for="id" class="col-sm-1 col-form-label">작성자</label>
-										<div class="col-sm-10">
-											<input type="email" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-												id="id" value="email@example.com">
-										</div>
-									</div>
-									<div class="mb-3 row">
-										<label for="title" class="col-sm-1 col-form-label">제목</label>
-										<div class="col-sm-10">
-											<input type="text" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-												id="title" value="진행잔데 취소 가능한가요?">
-										</div>
-									</div>
-									<div class="mb-3">
-										<label class="col-sm-1 col-form-label">질문</label>
-										<textarea class="form-control inquiry-textarea" id="content" 
-										readonly class="form-control-plaintext" rows="7">제곧내..취소하고싶슴니다...</textarea>
-									</div>
-								</div>
-
-								<div class="admin-textarea-box">
-									<form method="post">
-										<label class="col-form-label">답변</label>
-										<textarea class="form-control admin-textarea" rows="15"></textarea>
-										<input type="file" class="admin-textarea-file"/>
-										
-										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
-										<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>
-									</form>
-								</div>
-							</div>
+						<div>
+							<!-- searchBar -->
+							<form class="search-form" action="#">
+								<select class="form-select" aria-label="Default select example">
+									<option value="1" selected>이메일(ID)</option>
+									<option value="2">이름</option>
+								</select> 
+								<input class="form-control" type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+							</form>
 						</div>
+
+						<div class="card-body">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>이메일(ID)</th>
+										<th>이름</th>
+										<th>닉네임</th>
+										<th>영구정지일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>211</td>
+										<td>aabc1234@naver.com</td>
+										<td>정희영</td>
+										<td>애옹</td>
+										<td>2022-03-11</td>
+									</tr>
+									<tr>
+										<td>210</td>
+										<td>hbp@naver.com</td>
+										<td>무강한</td>
+										<td>호로록</td>
+										<td>2022-02-14</td>
+									</tr>
+									<tr>
+										<td>209</td>
+										<td>kimkim232@naver.com</td>
+										<td>김성진</td>
+										<td>또롱</td>
+										<td>2022-02-11</td>
+									</tr>
+									<tr>
+										<td>211</td>
+										<td>aabc1234@naver.com</td>
+										<td>정희영</td>
+										<td>애옹</td>
+										<td>2022-03-11</td>
+									</tr>
+									<tr>
+										<td>210</td>
+										<td>hbp@naver.com</td>
+										<td>무강한</td>
+										<td>호로록</td>
+										<td>2022-02-14</td>
+									</tr>
+									<tr>
+										<td>209</td>
+										<td>kimkim232@naver.com</td>
+										<td>김성진</td>
+										<td>또롱</td>
+										<td>2022-02-11</td>
+									</tr>
+									<tr>
+										<td>211</td>
+										<td>aabc1234@naver.com</td>
+										<td>정희영</td>
+										<td>애옹</td>
+										<td>2022-03-11</td>
+									</tr>
+									<tr>
+										<td>210</td>
+										<td>hbp@naver.com</td>
+										<td>무강한</td>
+										<td>호로록</td>
+										<td>2022-02-14</td>
+									</tr>
+									<tr>
+										<td>209</td>
+										<td>kimkim232@naver.com</td>
+										<td>김성진</td>
+										<td>또롱</td>
+										<td>2022-02-11</td>
+									</tr>
+									<tr>
+										<td>211</td>
+										<td>aabc1234@naver.com</td>
+										<td>정희영</td>
+										<td>애옹</td>
+										<td>2022-03-11</td>
+									</tr>
+									<tr>
+										<td>210</td>
+										<td>hbp@naver.com</td>
+										<td>무강한</td>
+										<td>호로록</td>
+										<td>2022-02-14</td>
+									</tr>
+									<tr>
+										<td>209</td>
+										<td>kimkim232@naver.com</td>
+										<td>김성진</td>
+										<td>또롱</td>
+										<td>2022-02-11</td>
+									</tr>
+									<tr>
+										<td>211</td>
+										<td>aabc1234@naver.com</td>
+										<td>정희영</td>
+										<td>애옹</td>
+										<td>2022-03-11</td>
+									</tr>
+									<tr>
+										<td>210</td>
+										<td>hbp@naver.com</td>
+										<td>무강한</td>
+										<td>호로록</td>
+										<td>2022-02-14</td>
+									</tr>
+									<tr>
+										<td>209</td>
+										<td>kimkim232@naver.com</td>
+										<td>김성진</td>
+										<td>또롱</td>
+										<td>2022-02-11</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- page navigation -->
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);" aria-label="Previous"> <span
+										aria-hidden="true">&laquo;</span>
+								</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);">1</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);">2</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);">3</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);">4</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);">5</a></li>
+								<li class="page-item"><a class="page-link"
+									href="javascript:void(0);" aria-label="Next"> <span
+										aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</main>

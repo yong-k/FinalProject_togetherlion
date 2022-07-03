@@ -18,8 +18,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
 
@@ -28,8 +26,8 @@
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-/* sweetalert */
 
+/* sweetalert */
 h2#swal2-title {
     font-size: 23px;
     padding-top: 40px;
@@ -60,26 +58,11 @@ button.swal2-cancel.swal2-styled:focus {
 
 </style>	
 <script>
-
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  height: 350,
-			  toolbar: [
-				  ['style', ['style']],
-				  ['font', ['bold', 'underline', 'clear']],
-				  ['fontname', ['fontname']],
-				  ['color', ['color']],
-				  ['para', ['ul', 'ol', 'paragraph']],
-				  ['insert', ['picture']],
-				]
-		  });
-	});
 	
 	$(document).ready(function()
     {
     	$(".saveBtn").click(function()
     	{
-    		
     		Swal.fire({
     			  title: '답변을 수정하시겠습니까?',
     			  showCancelButton: true,
@@ -270,33 +253,38 @@ button.swal2-cancel.swal2-styled:focus {
 
 						<div class="card-body">
 							<div class="inquiry-container">
-								<div class="mb-3 row">
-									<label for="id" class="col-sm-1 col-form-label">작성자</label>
-									<div class="col-sm-10">
-										<input type="email" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-											id="id" value="email@example.com">
+								<div class="user-inquiry-box">
+									<div class="mb-3 row">
+										<label for="id" class="col-sm-1 col-form-label">작성자</label>
+										<div class="col-sm-10">
+											<input type="email" readonly class="form-control-plaintext inquiryInsertUpdate-text"
+												id="id" value="email@example.com">
+										</div>
 									</div>
-								</div>
-								<div class="mb-3 row">
-									<label for="title" class="col-sm-1 col-form-label">제목</label>
-									<div class="col-sm-10">
-										<input type="text" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-											id="title" value="진행잔데 취소 가능한가요?">
+									<div class="mb-3 row">
+										<label for="title" class="col-sm-1 col-form-label">제목</label>
+										<div class="col-sm-10">
+											<input type="text" readonly class="form-control-plaintext inquiryInsertUpdate-text"
+												id="title" value="진행잔데 취소 가능한가요?">
+										</div>
 									</div>
-								</div>
-								<div class="mb-3">
-									<textarea class="form-control" id="content" 
-									readonly class="form-control-plaintext" rows="7">제곧내..취소하고싶슴니다...</textarea>
+									<div class="mb-3">
+										<label class="col-sm-1 col-form-label">질문</label>
+										<textarea class="form-control inquiry-textarea" id="content" 
+										readonly class="form-control-plaintext" rows="7">제곧내..취소하고싶슴니다...</textarea>
+									</div>
 								</div>
 
-								<form method="post">
-									<textarea id="summernote" name="editordata">
-									모집마감일이 24시간 이하로 남지 않은 경우에는 취소 가능하지만, 매너지수는 하락할 수 있습니다.
-									</textarea>
-									<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
-									<button type="button" class="adminBtn saveBtn answerInsertBtn">수정</button>
-								</form>
-								
+								<div class="admin-textarea-box">
+									<form method="post">
+										<label class="col-form-label">답변</label>
+										<textarea class="form-control admin-textarea" rows="15">모집마감일이 24시간 이하로 남지 않은 경우에는 취소 가능하지만, 매너지수는 하락할 수 있습니다.</textarea>
+										<input type="file" class="admin-textarea-file"/>
+										
+										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
+										<button type="button" class="adminBtn saveBtn answerInsertBtn">수정</button>
+									</form>
+								</div>
 							</div>
 						</div>
 

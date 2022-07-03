@@ -248,8 +248,7 @@ button.swal2-cancel.swal2-styled:focus {
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">홈페이지관리</li>
-								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">공지사항</a></li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="#">공지사항</a></li>
 							</ol>
 						</nav>
 
@@ -259,7 +258,6 @@ button.swal2-cancel.swal2-styled:focus {
 									<form method="post">
 										<label for="title" class="col-form-label">제목</label>
 										<input type="text" class="form-control-plaintext faq-title" id="title">
-									
 										<label for="content" class="col-form-label">내용</label>
 										<textarea class="form-control admin-textarea" id="content" rows="15"></textarea>
 										<input type="file" class="admin-textarea-file"/>

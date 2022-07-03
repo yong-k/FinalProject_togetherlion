@@ -46,7 +46,7 @@
 					<i class="bi bi-question-circle mypage-manner-icon"></i>
 				</div>
 			</div>
-			<a href="#!">
+			<a href="user_mypage_point.jsp">
 				<div class="mypage-header-box">
 					<h4 class="header-title-point">포인트<i class="bi bi-chevron-right mypage-header-icon"></i></h4>
 					<h2 class="pointAmount">229000 원</h2>

@@ -4275,6 +4275,25 @@ input.buypost-expiration-date {
 input.buypost-date {
     width: 240px;
 }
+input.timepicker {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 34%;
+    text-align: center;
+    height: 45px;
+    margin-left: 10px;
+    color: #252525;
+}
+a.ui-corner-all {
+    font-weight: 400;
+    color: #252525;
+    font-family: 'Cafe24SsurroundAir';
+}
+.quantity.buypost-quantity {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 2%;
+}
 
 
 
@@ -4454,6 +4473,22 @@ i.fa.fa-heart-o.buypost-wish.mypage-wish {
 }
 i.fa.fa-heart-o.buypost-wish.mypage-wish:hover {
     color: #f5627b;
+}
+
+/* 마이페이지>포인트 */
+h4.header-title-point.myPoint-title {
+    margin-top: 30px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+h2.myPointAmount {
+    font-size: 25px;
+    font-weight: 900;
+    color: #f58a22;
+}
+.mypage-header-userBox.myPoint-box {
+    width: 100%;
+    padding-left: 27%;
 }
 
 

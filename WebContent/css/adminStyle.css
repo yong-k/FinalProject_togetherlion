@@ -12289,3 +12289,13 @@ textarea.admin-textarea {
     width: 70%;
     margin: 0 auto;
 }
+textarea.inquiry-textarea {
+    display: inline-block;
+    margin-left: -2.4% !important;
+    width: 87.2% !important;
+    vertical-align: top;
+}
+.inquiry-container input.inquiryInsertUpdate-text {
+    margin-left: -2.7% !important;
+    width: 105% !important;
+}

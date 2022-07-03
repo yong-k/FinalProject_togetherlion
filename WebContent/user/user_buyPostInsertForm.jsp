@@ -22,15 +22,12 @@
 	<link rel="stylesheet" href="<%=cp %>/css/userStyle.css" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	<!-- timepicker -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/flatly/bootstrap.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<link href="<%=cp %>/css/picktim.css" rel="stylesheet" type="text/css">
-	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-	<!-- sweetalert -->	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style type="text/css">
 /* sweetalert */
 h2#swal2-title {
@@ -38,25 +35,31 @@ h2#swal2-title {
 	padding-top: 40px;
 	padding-bottom: 10px;
 }
+
 input.swal2-input {
 	margin-bottom: 10px;
 }
+
 input.swal2-input:focus {
 	box-shadow: none;
 	border: 2px solid #fca652;
 }
+
 button.swal2-confirm.swal2-styled {
 	background-color: #fca652;
 	width: 100px;
 	margin-right: 20px;
 }
+
 button.swal2-cancel.swal2-styled {
 	width: 100px;
 	margin-right: 20px;
 }
+
 button.swal2-confirm.swal2-styled:focus {
 	box-shadow: none;
 }
+
 button.swal2-cancel.swal2-styled:focus {
 	box-shadow: none;
 }
@@ -102,25 +105,39 @@ button.swal2-cancel.swal2-styled:focus {
 			$(".testDatepicker").datepicker({});
 		});
 		
-		/* 
-		$(".saveBtn").click(function()
-		{
-			//alert($(".deadline-timepicker").picktim('value'));
-			alert('g');
-		});
-		 */
-	});
 		
+		/* timepicker */
+		/* https://timepicker.co/# */
+		$('.timepicker').timepicker({
+		    timeFormat: 'h:mm p',
+		    interval: 30,
+		    minTime: '0',
+		    maxTime: '11:00pm',
+		    defaultTime: '11',
+		    startTime: '9:00',
+		    dynamic: false,
+		    dropdown: true,
+		    scrollbar: true
+		});
+		
+		$(function()
+		{
+			 $('input.timepicker').timepicker({});
+		})
+
+	});
+
 	function map()
 	{
-		window.open("user_map.jsp", "_blank", "top=150,left=550,width=1000,height=600");
+		window.open("user_map.jsp", "_blank",
+				"top=150,left=550,width=1000,height=600");
 	}
 </script>
 </head>
 <body>
 	<!-- import HEADER -->
 	<c:import url="user_header.jsp"></c:import>
-	
+
 	<!-- Product Details Section Begin -->
 	<section class="product-details spad buypostForm-section">
 		<div class="container">
@@ -208,15 +225,14 @@ button.swal2-cancel.swal2-styled:focus {
 								<input type="text" id="deadline"
 									class="testDatepicker buypost-text buypost-date"
 									placeholder="모집마감날짜를 선택해주세요." readonly/>
-								<!-- $(".deadline-timepicker").picktim('value');  로 값 가져올 수 있음 -->
-								<div class="deadline-timepicker"></div>
-								
+								<input type="text" class="timepicker" readonly/>	
 							</div>
 							<div class="buypostForm-text">
 								<input type="text" id="trade_date"
 									class="testDatepicker buypost-text buypost-date"
 									placeholder="거래희망날짜를 선택해주세요." readonly/>
-								<div class="trade-timepicker"></div>
+								<input type="text" class="timepicker" readonly/>
+
 							</div>
 							<div class="buypostForm-text">
 								<a href="javascript:map()">
@@ -227,7 +243,8 @@ button.swal2-cancel.swal2-styled:focus {
 							</div>
 	
 							<div class="product__details__quantity">
-								<div class="quantity">
+								<span>구매 개수</span>
+								<div class="quantity buypost-quantity">
 									<div class="pro-qty">
 										<input type="text" value="1">
 									</div>
@@ -246,6 +263,17 @@ button.swal2-cancel.swal2-styled:focus {
 						<div class="btn-box">
 							<button type="button" class="btn btn-primary lion-primary-btn saveBtn">등록</button>
 						</div>
+						
+						<!--  
+							글 등록 → 포인트 결제창 (아래에 따라서 뜨는 멘트가 다름)
+							> [결제]  if 상품금액 <= 잔여포인트 
+									 → 비밀번호입력창 → 결제완료창 → 공동구매상세보기페이지(user_buyPostArticle.jsp)로 이동
+									 else 상품금액 > 잔여포인트
+							> [충전] 마이페이지>포인트충전에서도 쓸 충전창 뜸
+							
+							포인트 쪽 뷰,팝업 먼저 작업하고 다시하기,,						
+						-->
+						
 					</div>
 				</div>
 			</form>
@@ -262,7 +290,6 @@ button.swal2-cancel.swal2-styled:focus {
 	<!-- import FOOTER -->
 	<c:import url="user_footer.jsp"></c:import>
 
-	<!-- Js Plugins -->
 	<script src="<%=cp %>/js/jquery-3.3.1.min.js"></script>
 	<script src="<%=cp %>/js/bootstrap.min.js"></script>
 	<script src="<%=cp %>/js/jquery.nice-select.min.js"></script>
@@ -270,20 +297,10 @@ button.swal2-cancel.swal2-styled:focus {
 	<script src="<%=cp %>/js/jquery.slicknav.js"></script>
 	<script src="<%=cp %>/js/owl.carousel.min.js"></script>
 	<script src="<%=cp %>/js/main.js"></script>
-	<!-- timepicker -->
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-	<script src="<%=cp %>/js/picktim.js"></script>
-	<script>
-		$(".deadline-timepicker").picktim(
-		{
-			mode : 'h12'
-		});
-		$(".trade-timepicker").picktim(
-		{
-			mode : 'h12'
-		});
-	</script>
 	
+	<!-- timepicker -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 	<!-- map API -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1cf593d625e664e728990121f9c38ac7&libraries=services"></script>
