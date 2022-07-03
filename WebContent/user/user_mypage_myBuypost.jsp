@@ -129,7 +129,7 @@ button.swal2-close:focus {
 				<c:import url="user_mypage_menubar.jsp"></c:import>
 
 				<div class="col-lg-9 col-md-7">
-					<div class="product__discount">
+					<div class="product__discount mypage-title-box">
 						<div class="section-title myBuypost-title">
 							<h2>MY 공구</h2>
 						</div>

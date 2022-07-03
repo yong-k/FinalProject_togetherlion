@@ -4348,7 +4348,7 @@ h2.pointAmount {
 }
 .mypage-info-box {
     display: inline-block;
-    width: 73%;
+    width: 73.1%;
     height: 85.5%;
     margin-left: 3%;
     padding-top: 35px;
@@ -4404,6 +4404,9 @@ span.manner-explain {
 }
 
 /* 마이페이지>MY공구 */
+.mypage-title-box {
+    margin-top: -17px;
+}
 .section-title.myBuypost-title {
     text-align: left;
     display: inline-block;
@@ -4476,6 +4479,34 @@ i.fa.fa-heart-o.buypost-wish.mypage-wish:hover {
 }
 
 /* 마이페이지>포인트 */
+.mypage-info-box.myPoint-info-box {
+    width: 300px;
+}
+.myPoint-title-box {
+    margin-top: -26px;
+}
+.section-title.myPoint-title {
+    display: inline-block;
+}
+.myPoint-title h2 {
+    vertical-align: super;
+}
+.myPoint-form-box {
+    display: inline-block;
+}
+.nice-select.point-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+    margin-left: -6px;
+    width: 100px;
+    padding-left: 30%;
+}
+.nice-select.point-select ul {
+    width: 96px;
+}
+.nice-select.point-select ul li {
+    text-align: center;
+}
 h4.header-title-point.myPoint-title {
     margin-top: 30px;
     margin-bottom: 6px;
@@ -4488,8 +4519,74 @@ h2.myPointAmount {
 }
 .mypage-header-userBox.myPoint-box {
     width: 100%;
-    padding-left: 27%;
+    padding-left: 21%;
 }
+.myPoint-btn-box {
+    display: inline-block;
+    width: 200px;
+    margin-left: 1.5%;
+}
+button.pointBtn, button.pointBtn:focus {
+    display: inline-block;
+    background-color: #a8a8a8;
+    width: 150px;
+    height: 50px;
+    margin: 2.5% 0;
+    font-weight: 900;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+table.pointTable {
+    margin-left: -15px;
+}
+.pointTable tbody td {
+    padding: 4% 0;
+   	vertical-align: sub;	
+}
+.pointTable tbody td:first-child {
+    text-align: left;
+    padding-left: 6%;
+}
+.pointTable tbody tr td:nth-child(2) {
+    text-align: left;
+}
+button.pointBtn:hover, button.pointBtn:active {
+	background-color: #828181 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+h4#proposal {
+    font-size: 19px;
+}
+.point-detail {
+    display: inline-block;
+    vertical-align: top;
+}
+span.point-date {
+    font-size: 14px;
+    color: #818181;
+    display: inline-block;
+    padding-top: 5px;
+}
+span.buypost-title {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 15px;
+    color: #545454;
+}
+span.point {
+    font-size: 24px;
+    padding-right: 40%;
+}
+span.point.minusPoint {
+	color: #fa4646;
+}
+span.point.plusPoint {
+    color: #3e57fa;
+}
+
 
 
 /* 마이페이지>개인정보수정 */
