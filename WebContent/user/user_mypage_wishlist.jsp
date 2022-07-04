@@ -82,6 +82,11 @@ button.swal2-cancel.swal2-styled:focus {
     			  reverseButtons: true
     			}).then((result) => {
     				if (result.isConfirmed) {
+      				  
+       				  // Delete 작업 처리 코드 작성하기!
+       					
+       					
+       				  // Delete 완료 후, 띄울 알림창
       				  Swal.fire({
         			    	title: '삭제 완료!',
         			    	icon: 'success',

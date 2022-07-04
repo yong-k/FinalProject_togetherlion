@@ -60,31 +60,36 @@ button.swal2-cancel.swal2-styled:focus {
 </style>	
 <script>
 	$(document).ready(function()
-		    {
-		    	$(".cancelBtn").click(function()
-				{
-		    		Swal.fire({
-		    			  title: 'FAQ를 삭제하시겠습니까?',
-		    			  icon: 'warning',
-		    			  iconColor: '#f27474',
-		    			  showCancelButton: true,
-		    			  confirmButtonText: '삭제',
-		    			  cancelButtonText: '취소',
-		    			  reverseButtons: true
-		    			}).then((result) => {
-		    				if (result.isConfirmed) {
-		      				  Swal.fire({
-		        			    	title: '삭제 완료!',
-		        			    	icon: 'success',
-		        			    	confirmButtonText: '확인'
-		        			    }).then(() => {
-		        			    	location.href='admin_inquiry_faqList.jsp';
-		        			    });
-		  		    	  }
-		    			})
-				});
+    {
+    	$(".cancelBtn").click(function()
+		{
+    		Swal.fire({
+   			  title: 'FAQ를 삭제하시겠습니까?',
+   			  icon: 'warning',
+   			  iconColor: '#f27474',
+   			  showCancelButton: true,
+   			  confirmButtonText: '삭제',
+   			  cancelButtonText: '취소',
+   			  reverseButtons: true
+   			}).then((result) => {
+   				if (result.isConfirmed) {
+   					
+   					// Delete 작업 처리 코드 작성하기!
+   					
+   					
+   					// Delete 완료 후, 띄울 알림창
+   					Swal.fire({
+   						title: '삭제 완료!',
+      			    	icon: 'success',
+      			    	confirmButtonText: '확인'
+      			    }).then(() => {
+      			    	location.href='admin_inquiry_faqList.jsp';
+      			    });
+		    	}
+   			})
+		});
 
-		    });	
+    });	
 </script>
 </head>
 <body class="sb-nav-fixed">

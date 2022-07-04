@@ -124,7 +124,7 @@ button.swal2-close:focus {
 	/* 신고 */
 	function report()
 	{	
-		window.open("user_report_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+		window.open("user_report_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
 	}
 </script>
 </head>

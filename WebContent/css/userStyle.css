@@ -4537,6 +4537,12 @@ button.pointBtn, button.pointBtn:focus {
     box-shadow: none;
     outline: none;
 }
+button.pointBtn:hover, button.pointBtn:active {
+	background-color: #828181 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
 table.pointTable {
     margin-left: -15px;
 }
@@ -4550,12 +4556,6 @@ table.pointTable {
 }
 .pointTable tbody tr td:nth-child(2) {
     text-align: left;
-}
-button.pointBtn:hover, button.pointBtn:active {
-	background-color: #828181 !important;
-	border: none !important;
-	box-shadow: none !important;
-	outline: none !important;
 }
 h4#proposal {
     font-size: 19px;
@@ -4585,6 +4585,57 @@ span.point.minusPoint {
 }
 span.point.plusPoint {
     color: #3e57fa;
+}
+/* 포인트>충전팝업 */
+p.account-text {
+    font-size: 13px;
+    text-align: left;
+    margin-top: 5px;
+}
+.accountTable td {
+    padding-top: 4%;
+}
+.accountTable tr:first-child td {
+    border-top: none;
+    padding-top: 4px;
+}
+button.accountManage-btn, button.accountManage-btn:focus {
+    background-color: #fff;
+    color: #646465;
+    border-color: #646465;
+    box-shadow: none !important;
+    border-radius: 0px;
+    font-size: 14px;
+}
+button.accountManage-btn:hover, button.accountManage-btn:active {
+	background-color: #fff;
+    color: #646465;
+    border-color: #646465;
+    box-shadow: none !important;
+    text-decoration: underline;
+}
+button.accountManage-btn:disabled {
+    text-decoration: none;
+    cursor: initial;
+}
+.bankName {
+    text-align: left;
+    font-size: 17px;
+    padding-bottom: 2px;
+}
+.accountNum {
+    text-align: left;
+}
+button.accountInsertBtn {
+    width: 103.3% !important;
+    margin-left: -3.5%;
+    margin-top: 0 !important;
+}
+i.bi.bi-plus.account-plus {
+    margin-right: 5px;
+    font-size: 30px;
+    vertical-align: -webkit-baseline-middle;
+    -webkit-text-stroke: 1.1px;
 }
 
 
@@ -4717,6 +4768,9 @@ span.inquity-alert-text {
 }
 
 /* 신고팝업 */
+body.popup {
+    overflow: hidden;
+}
 .report-container {
     width: 520px;
     height: 685px;

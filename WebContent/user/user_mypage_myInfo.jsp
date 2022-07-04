@@ -36,64 +36,9 @@
 .sidebar__item ul li:last-child a i {
 	color: #fc9942;
 }
-
-/* sweetalert */
-h2#swal2-title {
-    font-size: 23px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
-input.swal2-input {
-    margin-bottom: 10px;
-}
-input.swal2-input:focus {
-    box-shadow: none;
-    border: 2px solid #fca652;
-}
-button.swal2-confirm.swal2-styled {
-    background-color: #fca652;
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-cancel.swal2-styled {
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-confirm.swal2-styled:focus {
-    box-shadow: none;
-}
-button.swal2-cancel.swal2-styled:focus {
-    box-shadow: none;
-}
 </style>
 <script type="text/javascript">
 
-	$(document).ready(function()
-    {
-    	$(".article-deleteBtn").click(function()
-		{
-    		Swal.fire({
-    			  title: '댓글을 삭제하시겠습니까?',
-    			  icon: 'warning',
-    			  iconColor: '#f27474',
-    			  showCancelButton: true,
-    			  confirmButtonText: '삭제',
-    			  cancelButtonText: '취소',
-    			  reverseButtons: true
-    			}).then((result) => {
-    				if (result.isConfirmed) {
-      				  Swal.fire({
-        			    	title: '삭제 완료!',
-        			    	icon: 'success',
-        			    	confirmButtonText: '확인'
-        			    }).then(() => {
-        			    	location.href='#!';
-        			    });
-  		    	  }
-    			})
-		});
-
-    });	
 </script>
 </head>
 <body>

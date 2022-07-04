@@ -22,9 +22,7 @@
     <link rel="stylesheet" href="<%=cp %>/css/userStyle.css" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 	
 <style type="text/css">
 .sidebar__item ul li:nth-child(4) {
@@ -36,64 +34,25 @@
 .sidebar__item ul li:nth-child(4) a i {
 	color: #fc9942;
 }
-
-/* sweetalert */
-h2#swal2-title {
-    font-size: 23px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
-input.swal2-input {
-    margin-bottom: 10px;
-}
-input.swal2-input:focus {
-    box-shadow: none;
-    border: 2px solid #fca652;
-}
-button.swal2-confirm.swal2-styled {
-    background-color: #fca652;
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-cancel.swal2-styled {
-    width: 100px;
-    margin-right: 20px;
-}
-button.swal2-confirm.swal2-styled:focus {
-    box-shadow: none;
-}
-button.swal2-cancel.swal2-styled:focus {
-    box-shadow: none;
-}
 </style>
 <script type="text/javascript">
-
-	$(document).ready(function()
-    {
-    	$(".wish-deleteBtn").click(function()
-		{
-    		Swal.fire({
-    			  title: '찜을 삭제하시겠습니까?',
-    			  icon: 'warning',
-    			  iconColor: '#f27474',
-    			  showCancelButton: true,
-    			  confirmButtonText: '삭제',
-    			  cancelButtonText: '취소',
-    			  reverseButtons: true
-    			}).then((result) => {
-    				if (result.isConfirmed) {
-      				  Swal.fire({
-        			    	title: '삭제 완료!',
-        			    	icon: 'success',
-        			    	confirmButtonText: '확인'
-        			    }).then(() => {
-        			    	location.href='#!';
-        			    });
-  		    	  }
-    			})
-		});
-
-    });	
+	
+	// 팝업창
+	// ① 충전
+	function charge()
+	{	
+		window.open("user_mypage_point_charge_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+	}
+	// ② 인출
+	function withdrawal()
+	{	
+		window.open("user_mypage_point_withdrawal_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+	}
+	// ③ 계좌관리
+	function accountManage()
+	{	
+		window.open("user_mypage_point_accountManage_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+	}
 </script>		 
 </head>
 <body>
@@ -114,9 +73,12 @@ button.swal2-cancel.swal2-styled:focus {
 					<h2 class="myPointAmount">229000 원</h2>
 				</div>
 				<div class="myPoint-btn-box">
-					<button type="button" class="btn btn-primary pointBtn charge-btn">충전하기</button>
-					<button type="button" class="btn btn-primary pointBtn withdraw-btn">인출하기</button>
-					<button type="button" class="btn btn-primary pointBtn accountManage-btn">계좌관리</button>
+					<button type="button" class="btn btn-primary pointBtn charge-btn"
+					onclick="javascript:charge()">충전하기</button>
+					<button type="button" class="btn btn-primary pointBtn withdraw-btn"
+					onclick="javascript:withdrawal()">인출하기</button>
+					<button type="button" class="btn btn-primary pointBtn accountManage-btn"
+					onclick="javascript:accountManage()">계좌관리</button>
 				</div>
 			</div>
 		</div>
