@@ -82,7 +82,7 @@ button.swal2-cancel.swal2-styled:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	location.href = 'admin_homepage_noticeArticle.jsp';
+      			    	location.href = 'ad_noticeArticle.lion';
       			    });
       			  }
     			})
@@ -100,7 +100,7 @@ button.swal2-cancel.swal2-styled:focus {
     			  cancelButtonText: '취소'
     			}).then((result) => {
     			  if (result.isConfirmed) {
-    				  location.href='admin_homepage_noticeList.jsp';
+    				  location.href='ad_notice_list.lion';
     			  }
     			})
 		});

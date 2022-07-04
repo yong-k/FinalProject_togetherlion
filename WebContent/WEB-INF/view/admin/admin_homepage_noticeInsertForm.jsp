@@ -83,7 +83,7 @@ button.swal2-cancel.swal2-styled:focus {
       			    	confirmButtonText: '확인'
       			    }).then(() => {
       			    	/* 해당게시물 상세보기로 이동 */
-      			    	location.href='admin_homepage_noticeArticle.jsp';
+      			    	location.href='ad_noticeArticle.lion';
       			    });
       			  }
     			})
@@ -101,7 +101,7 @@ button.swal2-cancel.swal2-styled:focus {
     			  cancelButtonText: '취소'
     			}).then((result) => {
     			  if (result.isConfirmed) {
-    				  location.href='admin_homepage_noticeList.jsp';
+    				  location.href='ad_notice_list.lion';
     			  }
     			})
 		});
@@ -265,7 +265,7 @@ button.swal2-cancel.swal2-styled:focus {
 										<input type="text" class="form-control-plaintext faq-title" id="title">
 										<label for="content" class="col-form-label">내용</label>
 										<textarea class="form-control admin-textarea" id="content" rows="15"></textarea>
-										<input type="file" class="admin-textarea-file"/>
+										<input type="file" class="admin-textarea-file" multiple="multiple"/>
 										
 										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
 										<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>

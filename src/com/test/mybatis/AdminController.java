@@ -1,5 +1,7 @@
 package com.test.mybatis;
 
+import java.sql.SQLException;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.taglibs.standard.lang.jstl.test.beans.Factory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -184,7 +185,7 @@
 								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
 							</form>
 							
-							<button type="button" class="btn btn-secondary writeBtn" onclick="location.href='admin_homepage_noticeInsertForm.jsp'">글쓰기</button>
+							<button type="button" class="btn btn-secondary writeBtn" onclick="location.href='ad_noticeInsertForm.lion'">글쓰기</button>
 						</div>
 
 						<div class="card-body">
@@ -198,67 +199,15 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="noticeList" items="${list }">
 									<tr>
-										<td>16</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">시스템 점검 안내</a></td>
-										<td>admin01</td>
-										<td>2022-05-04</td> 
+										<td>${noticeList.code }</td>
+										<td><a href="ad_noticeArticle.lion">${noticeList.title }</a></td>
+										<td>${noticeList.admin_code }</td>
+										<td>${noticeList.write_datetime }</td> 
 									</tr>
-									<tr>
-										<td>15</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">개인정보처리방침 개정 내용 사전 안내(6/1~)</a></td>
-										<td>admin02</td>
-										<td>2022-05-02</td>
-									</tr>
-									<tr>
-										<td>14</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">5년이상 미 사용 포인트 소멸 관련 공지사항입니다.</a></td>
-										<td>admin04</td>
-										<td>2022-04-28</td>
-									</tr>
-									<tr>
-										<td>13</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">시스템 점검 안내</a></td>
-										<td>admin01</td>
-										<td>2022-05-04</td> 
-									</tr>
-									
-									<tr>
-										<td>12</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">개인정보처리방침 개정 내용 사전 안내(6/1~)</a></td>
-										<td>admin02</td>
-										<td>2022-05-02</td>
-									</tr>
-									<tr>
-										<td>11</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">5년이상 미 사용 포인트 소멸 관련 공지사항입니다.</a></td>
-										<td>admin04</td>
-										<td>2022-04-28</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">시스템 점검 안내</a></td>
-										<td>admin01</td>
-										<td>2022-05-04</td> 
-									</tr>
-									<tr>
-										<td>9</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">개인정보처리방침 개정 내용 사전 안내(6/1~)</a></td>
-										<td>admin02</td>
-										<td>2022-05-02</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">5년이상 미 사용 포인트 소멸 관련 공지사항입니다.</a></td>
-										<td>admin04</td>
-										<td>2022-04-28</td>
-									</tr>
-						 			<tr>
-										<td>7</td>
-										<td><a href="admin_homepage_noticeArticle.jsp">5년이상 미 사용 포인트 소멸 관련 공지사항입니다.</a></td>
-										<td>admin04</td>
-										<td>2022-04-28</td>
-									</tr>
+									</c:forEach>
+								 
 								</tbody>
 							</table>
 						</div>
@@ -297,3 +246,5 @@
 	</div>
 </body>
 </html>
+
+

@@ -13,7 +13,7 @@
 	
 	<!-- 관리자 검색 -->
 	<select id="search" resultType="com.test.mybatis.AdminDTO">
-		SELECT CODE, ID, PW, NAME, TEL, ADMIN_GRADE_CODE, MEMBER_CODE, PROFILE_PATH
+		SELECT CODE, ID, PW, NAME, TEL, ADMIN_GRADE_CODE, MEMBER_CODE 
 		FROM ADMIN_INFO
 		WHERE MEMBER_CODE=#{member_code}
 	</select>

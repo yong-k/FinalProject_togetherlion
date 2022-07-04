@@ -82,7 +82,7 @@ button.swal2-cancel.swal2-styled:focus {
         			    	icon: 'success',
         			    	confirmButtonText: '확인'
         			    }).then(() => {
-        			    	location.href='admin_homepage_noticeList.jsp';
+        			    	location.href='ad_notice_list.lion';
         			    });
   		    	  }
     			})
@@ -263,12 +263,12 @@ button.swal2-cancel.swal2-styled:focus {
 							<div class="btn-container notice-btn">
 								<button type="button" class="adminBtn cancelBtn answerCancelBtn">삭제</button>
 								<button type="button" class="adminBtn saveBtn answerInsertBtn"
-								onclick="location.href='admin_homepage_noticeUpdateForm.jsp'">수정</button>
+								onclick="location.href='ad_noticeUpdateForm.lion'">수정</button>
 							</div>
 							<div>
 								<div class="noticeArticle-helper"></div>
 								<button type="button" class="adminBtn listBtn"
-								onclick="location.href='admin_homepage_noticeList.jsp'">목록</button>
+								onclick="location.href='ad_notice_list.lion'">목록</button>
 							</div>
 						</div>
 
