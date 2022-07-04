@@ -4,6 +4,62 @@ public class MemberDTO
 {
 	private String code, id, pw, name, nickname, tel
 				 , profile_path, member_code, regist_datetime;
+	
+	// 전체회원목록 관련변수 추가
+	private String rownum, reported_count, dormant;			//행, 신고횟수, 휴면여부
+	
+	// 페이징 관련변수 추가
+	private String start, end;	
+	
+	public String getStart()
+	{
+		return start;
+	}
+
+	public void setStart(String start)
+	{
+		this.start = start;
+	}
+
+	public String getEnd()
+	{
+		return end;
+	}
+
+	public void setEnd(String end)
+	{
+		this.end = end;
+	}
+
+	public String getRownum()
+	{
+		return rownum;
+	}
+
+	public void setRownum(String rownum)
+	{
+		this.rownum = rownum;
+	}
+
+	public String getReported_count()
+	{
+		return reported_count;
+	}
+
+	public void setReported_count(String reported_count)
+	{
+		this.reported_count = reported_count;
+	}
+
+	public String getDormant()
+	{
+		return dormant;
+	}
+
+	public void setDormant(String dormant)
+	{
+		this.dormant = dormant;
+	}
 
 	public String getCode()
 	{

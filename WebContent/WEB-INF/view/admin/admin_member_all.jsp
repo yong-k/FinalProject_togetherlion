@@ -200,6 +200,7 @@
 									</tr>
 								</thead>
 								<tbody>
+									<!-- 
 									<tr>
 										<td>754</td>
 										<td>abc1240@naver.com</td>
@@ -210,152 +211,26 @@
 										<td>x</td>
 										<td>2022-02-03</td>
 									</tr>
+									 -->
+									<c:forEach var="member" items="${list }">
 									<tr>
-										<td>753</td>
-										<td>abc1239@naver.com</td>
-										<td>홍길서</td>
-										<td>123412</td>
-										<td>010-1111-1112</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-01</td>
+										<td>${member.rownum }</td>
+										<td>${member.id }</td>
+										<td>${member.name }</td>
+										<td>${member.nickname }</td>
+										<td>${member.tel }</td>
+										<td>${member.reported_count }</td>
+										<td>${member.dormant }</td>
+										<td>${member.regist_datetime }</td>
+									
 									</tr>
-									<tr>
-										<td>752</td>
-										<td>abc1237@naver.com</td>
-										<td>홍길남</td>
-										<td>재형짱123</td>
-										<td>010-1111-1113</td>
-										<td>3</td>
-										<td>x</td>
-										<td>2022-02-23</td>
-									</tr>
-									<tr>
-										<td>751</td>
-										<td>abc1236@naver.com</td>
-										<td>홍길북</td>
-										<td>포도맛하마</td>
-										<td>010-1111-1114</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-11</td>
-									</tr>
-									<tr>
-										<td>750</td>
-										<td>abc1235@naver.com</td>
-										<td>박길동</td>
-										<td>yousay</td>
-										<td>010-1111-1115</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2021-12-03</td>
-									</tr>
-									<tr>
-										<td>749</td>
-										<td>abc1234@naver.com</td>
-										<td>박길서</td>
-										<td>백화진</td>
-										<td>010-1111-1116</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2021-12-04</td>
-									</tr>
-									<tr>
-										<td>748</td>
-										<td>abc1233@naver.com</td>
-										<td>박길남</td>
-										<td>대전토마토</td>
-										<td>010-1111-1117</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-03-03</td>
-									</tr>
-									<tr>
-										<td>747</td>
-										<td>abc1232@naver.com</td>
-										<td>박길북</td>
-										<td>가람06</td>
-										<td>010-1111-1118</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-05-03</td>
-									</tr>
-									<tr>
-										<td>746</td>
-										<td>abc1231@naver.com</td>
-										<td>최길동</td>
-										<td>토마토00</td>
-										<td>010-1111-1119</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
+									</c:forEach> 
 								</tbody>
 							</table>
 						</div>
 
 						<!-- page navigation -->
-						<nav aria-label="Page navigation example">
+						<!-- <nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 								<li class="page-item"><a class="page-link"
 									href="javascript:void(0);" aria-label="Previous"> <span
@@ -376,7 +251,25 @@
 										aria-hidden="true">&raquo;</span>
 								</a></li>
 							</ul>
-						</nav>
+						</nav> -->
+						
+						<c:if test="${paging.startPage != 1 }">
+							<a href="/togetherlion/admin_member_all.lion?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="/togetherlion/admin_member_all.lion?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a href="/togetherlion/admin_member_all.lion?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
+						
 					</div>
 				</div>
 			</main>
