@@ -65,8 +65,8 @@ button.swal2-cancel.swal2-styled:focus {
 	$(document).ready(function()
     {
 		
-		// <등록> 버튼 클릭 시, 
-		$(".accountInsertBtn").click(function()
+		// <인출> 버튼 클릭 시, 
+		$(".point-withdrawBtn").click(function()
 	   	{
 			(async () => {
 			    const { value: password } = await Swal.fire({
@@ -78,19 +78,20 @@ button.swal2-cancel.swal2-styled:focus {
 			        confirmButtonText: '확인',
 			        cancelButtonText: '취소'
 			    })
-			    // 비밀번호가 맞다면, 등록진행
+			    // 비밀번호가 맞다면, 인출 진행
 			    if (password) {
 			    	if (password=='1234') {
 			    		
-			    		// 계좌등록 작업 처리 코드 작성!
+			    		// 인출 처리 코드 작성! (지금은 그냥 인출되게)
 			    		
 			    		
-			    		// 계좌등록 완료 후, 띄울 알림창
+			    		// 인출 완료 후, 띄울 알림창
 			    		Swal.fire({
 			    			icon: 'success',
-			    			text: '계좌가 등록되었습니다.',
+			    			text: '인출이 완료되었습니다.',
 			    			confirmButtonText: '확인'
 			    		}).then(() => {
+			    			opener.parent.location.reload();
 	      			    	window.close();
 	      			    });
 			    	}else {
@@ -106,50 +107,56 @@ button.swal2-cancel.swal2-styled:focus {
 			})()
 	    });
     });
+	
+	// <계좌등록> 버튼 클릭 시, 
+	function accountInsertForm() 
+	{
+		location.href="user_mypage_point_accountInsertForm_popup.jsp";
+	}	
 
 </script>
 </head>
 <body class="popup">
 	<div class="report-container">
 		<div class="report-title">
-			<h2>계좌 등록</h2>
-			<p class="account-text">처음 계좌 등록 시, 자동으로 대표계좌로 등록됩니다. (대표계좌는 삭제 불가)</p> 
+			<h2>포인트 인출</h2>
 			<hr class="report-line"/>
 		</div>
 		
 		<form action="">
-			<table class="table accountTable accountInsertTable">
+			<table class="table accountTable accountInsertTable pointWithdrawTable">
 				<thead></thead>
 				<tbody>
 					<tr>
-						<th>은행 선택</th>
-						<td>   
-							<select class="form-select bank-select" aria-label="Default select example">
-								<option value="0" selected>--선택--</option>
-								<option value="1">KB국민</option>
-								<option value="2">NH농협</option>
-								<option value="3">한국씨티</option>
-								<option value="4">IBK기업</option>
-								<option value="5">신한</option>
-								<option value="6">하나</option>
-								<option value="7">우리</option>
-								<option value="8">카카오뱅크</option>
-								<option value="9">SC제일</option>
-								<option value="10">토스</option>
-							</select>
+						<th>인출 가능 포인트</th>
+						<td><span class="userPoint">80,540</span>원</td>
+					</tr>
+					<tr>
+						<th>인출할 포인트</th>
+						<td>
+							<!-- 본인 보유 포인트보다 큰 금액 입력하면, 자동으로 본인 보유 포인트로 입력되게 -->
+							<input type="text" class="withdrawPoint" placeholder="본인 명의 계좌만 인출가능"/>
 						</td>
 					</tr>
 					<tr>
-						<th>계좌번호</th>
-						<td>
-							<input type="text" class="accountNum" placeholder="'-' 없이 입력하세요."/>
-							<div class="accountInsert-notice">본인 명의 계좌만 등록 가능합니다.</div>
+						<th>인출 계좌</th>
+						<td>   
+							<select class="form-select bank-select withdrawAccount-select" aria-label="Default select example">
+								<option value="0" selected>------- 계좌를 선택해주세요 -------</option>
+								<option value="1">KB국민 593***0396</option>
+								<option value="2">신한 392***5410</option>
+								<option value="3">하나 394***6665</option>
+							</select>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
-			<button type="button" class="btn btn-primary lion-primary-btn accountInsertBtn">계좌 등록</button>
+			<button type="button" class="btn accountManage-btn charge-accountInsertBtn"
+			onclick="javascript:accountInsertForm()">
+				<i class="bi bi-plus account-plus"></i>계좌 등록
+			</button>
+			<button type="button" class="btn btn-primary lion-primary-btn point-withdrawBtn">인출하기</button>
 		</form>
 		<hr class="report-line"/>
 	</div>
