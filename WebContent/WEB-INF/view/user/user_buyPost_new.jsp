@@ -82,7 +82,7 @@
 							<div class="col-lg-8 col-md-7">
 								<div class="filter__found">
 									<h6>
-										<span>24</span> Products found
+										<span>${count }</span> Products found
 									</h6>
 								</div>
 							</div>

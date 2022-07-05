@@ -23,6 +23,14 @@ public class BuyPostController
 	private SqlSession sqlSession;
 	
 	
+	// 헤더 페이지
+	@RequestMapping(value="/header.lion")
+	public String header(Model model)
+	{
+		return "/WEB-INF/view/user/user_header.jsp";
+	}
+	
+	
 	// 메인 페이지
 	@RequestMapping(value="/main.lion")	
 	public String userMain(Model model)
@@ -31,10 +39,10 @@ public class BuyPostController
 		
 		ArrayList<BuypostDTO> list = dao.list();
 		
+		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
 		for (BuypostDTO dto : list)
 		{
-			// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
-			
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
 			
 			Date deadDate = null;
@@ -62,12 +70,11 @@ public class BuyPostController
 			}
 			
 		}
-		
 		// --------------------------------------------------------------------------------------- 남은 일, 시, 분 구하기 
 		
 		model.addAttribute("list", list);
 		
-		return "/user/user_main.jsp";
+		return "/WEB-INF/view/user/user_main.jsp";
 	}
 	
 	
@@ -85,7 +92,7 @@ public class BuyPostController
 		model.addAttribute("buypost", dto); 
 		model.addAttribute("member",member.search(member_code));		
 				
-		return "/user/user_buyPostArticle.jsp";
+		return "/WEB-INF/view/user/user_buyPostArticle.jsp";
 	}
 	
 	
@@ -95,19 +102,16 @@ public class BuyPostController
 		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
 		
 		ArrayList<BuypostDTO> list = dao.newList();
+		String count = dao.newListNum();
 		
-		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
 		for (BuypostDTO dto : list)
 		{
-			// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
-			
-			System.out.println("냠");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
 			
 			Date deadDate = null;
 			Date sysDate = null;
 			String dead = dto.getDeadline();
-			
 			
 			try
 			{
@@ -132,8 +136,54 @@ public class BuyPostController
 		}
 		
 		model.addAttribute("list", list);
+		model.addAttribute("count", count);
 		
 		return "/WEB-INF/view/user/user_buyPost_new.jsp";
+	}
+	
+	
+	@RequestMapping(value="/buypostcate.lion", method=RequestMethod.GET)
+	public String buypostCate(String code, Model model)
+	{
+		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
+		ArrayList<BuypostDTO> list = dao.mainCateList(code);
+		String count = dao.mainCateListNum(code);
+		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
+		for (BuypostDTO dto : list)
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+			
+			Date deadDate = null;
+			Date sysDate = null;
+			String dead = dto.getDeadline();
+			
+			try
+			{
+				deadDate = format.parse(dead);
+				sysDate = new Date();
+				String sys = format.format(sysDate);
+				sysDate = format.parse(sys);
+				
+				long day = (deadDate.getTime() - sysDate.getTime()) / (1000*24*60*60); // 일
+				long hour = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) / 3600000; // 시
+				long minute = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) % 3600000 / 60000; // 분
+				
+				dto.setDay(Long.toString(day));
+				dto.setHour(Long.toString(hour));
+				dto.setMinute(Long.toString(minute));
+				
+			} catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}			
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		
+		
+		return "/WEB-INF/view/user/user_buyPost_category.jsp";
 	}
 	
 }
