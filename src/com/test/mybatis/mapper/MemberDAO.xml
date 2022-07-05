@@ -16,4 +16,10 @@
 		WHERE MEMBER_CODE=#{member_code}
 	</select>
 
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM PERMANENT_BAN
+		WHERE MEMBER_CODE=#{member_code}
+	</select>
+	
 </mapper>
