@@ -99,14 +99,21 @@ button.swal2-cancel.swal2-styled:focus {
     		        confirmButtonText: '삭제',
     		        cancelButtonText: '취소'
     		    })
-    		    // 비밀번호가 맞다면, 계정삭제
+    		    // 비밀번호가 맞다면, 계정삭제진행
     		    if (password) {
     		    	if (password=='1234') {
+
+    		    		// Delete 작업 처리 코드 작성하기!
+    		    		
+    		    		
+    		    		// Delete 완료 후, 띄울 알림창
     		    		Swal.fire({
     		    			icon: 'success',
     		    			text: '계정이 삭제되었습니다.',
     		    			confirmButtonText: '확인'
-    		    		})
+    		    		}).then(() => {
+	      			    	location.href='#!';
+	      			    });
     		    	}else {
     		    		Swal.fire({
     		    			icon: 'error',

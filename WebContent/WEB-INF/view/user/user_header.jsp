@@ -4,6 +4,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+	String member_code = (String)session.getAttribute("member_code");
+	String nickName = (String)session.getAttribute("nickName");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,9 +32,10 @@
         <div class="header__top lion_header_top"></div>
         
         <%
-        MemberDTO dto = null;
+        /* MemberDTO dto = null;
         dto = (MemberDTO)request.getAttribute("result");
-        if (dto == null)
+        if (dto == null) */
+        if (member_code == null)
         {
         %>
 
@@ -63,11 +67,12 @@
         <div class="header__top">
         	<div class="header__top__right">
                 <div class="header__top__right__language header__nickname">
-                	<div><span id="nickname"><%=dto.getNickname() %></span> 님</div>
+                	<%-- <div><span id="nickname"><%=dto.getNickname() %></span> 님</div> --%>
+                	<div><span id="nickname"><%=nickName != null ? nickName : "관리자" %></span> 님</div>
                     <span class="arrow_carrot-down"></span>
                     <ul>
                     	<li><a href="<%=cp %>/user/user_mypageMain.jsp">마이페이지</a></li>
-                    	<li><a href="<%=cp %>/main.lion">로그아웃</a></li>
+                    	<li><a href="<%=cp %>/logout.lion">로그아웃</a></li>
                     </ul>
                  </div>
                 <div class="header__top__right__language">
@@ -121,7 +126,7 @@
 				<div class="col-lg-4">
 					<nav class="header__menu">
 						<ul>
-							<li class="active recent"><a href="<%=cp %>/user/user_buyPost_new.jsp">최근공구</a></li>
+							<li class="active recent"><a href="<%=cp %>/buypostnew.lion">최근공구</a></li>
 							<li class="final"><a href="<%=cp %>/user/user_buyPost_final.jsp">마감임박</a></li>
 							<%-- <li><a href="<%=cp %>/user/user_communityMain.jsp">커뮤니티</a></li> --%>
 						</ul>

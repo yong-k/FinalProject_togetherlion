@@ -26,8 +26,8 @@
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-
 /* sweetalert */
+
 h2#swal2-title {
     font-size: 23px;
     padding-top: 40px;
@@ -63,8 +63,9 @@ button.swal2-cancel.swal2-styled:focus {
     {
     	$(".saveBtn").click(function()
     	{
+    		
     		Swal.fire({
-    			  title: '답변을 등록하시겠습니까?',
+    			  title: '공지사항을 등록하시겠습니까?',
     			  showCancelButton: true,
     			  confirmButtonText: '등록',
     			  cancelButtonText: '취소',
@@ -72,19 +73,19 @@ button.swal2-cancel.swal2-styled:focus {
     			}).then((result) => {
     			  if (result.isConfirmed) {
     				  
-     					// Insert 작업 처리 코드 작성하기!
-     					
-     					
-     					// Insert 완료 후, 띄울 알림창
-        			    Swal.fire({
-        			    	title: '등록 완료!',
-        			    	icon: 'success',
-        			    	confirmButtonText: '확인'
-        			    }).then(() => {
-        			    	/* 답변 등록한 해당 글 상세페이지로 이동 */
-        			    	location.href = 'admin_inquiry_inquiryAnswerArticle.jsp';
-        			    });
-        			  }
+      				// Insert 작업 처리 코드 작성하기!
+    		    		
+    		    		
+    		    	// Insert 완료 후, 띄울 알림창
+      			    Swal.fire({
+      			    	title: '등록 완료!',
+      			    	icon: 'success',
+      			    	confirmButtonText: '확인'
+      			    }).then(() => {
+      			    	/* 해당게시물 상세보기로 이동 */
+      			    	location.href='ad_noticeArticle.lion';
+      			    });
+      			  }
     			})
         });
     	
@@ -100,7 +101,7 @@ button.swal2-cancel.swal2-styled:focus {
     			  cancelButtonText: '취소'
     			}).then((result) => {
     			  if (result.isConfirmed) {
-    				  location.href='admin_inquiry_inquiryList.jsp';
+    				  location.href='ad_notice_list.lion';
     			  }
     			})
 		});
@@ -172,10 +173,10 @@ button.swal2-cancel.swal2-styled:focus {
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="homepage" aria-labelledby="headingThree"
+						<div class="collapse show" id="homepage" aria-labelledby="headingThree"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin_homepage_noticeList.jsp">공지사항</a> 
+								<a class="nav-link current-menu" href="admin_homepage_noticeList.jsp">공지사항</a> 
 								<a class="nav-link" href="admin_homepage_categoryList.jsp">카테고리</a> 
 								<a class="nav-link" href="admin_homepage_mannerLevelList.jsp">매너지수</a>
 							</nav>
@@ -225,10 +226,10 @@ button.swal2-cancel.swal2-styled:focus {
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse show" id="inquiry" aria-labelledby="headingSix"
+						<div class="collapse" id="inquiry" aria-labelledby="headingSix"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link current-menu" href="admin_inquiry_inquiryList.jsp">1:1문의</a> 
+								<a class="nav-link" href="admin_inquiry_inquiryList.jsp">1:1문의</a> 
 								<a class="nav-link" href="admin_inquiry_faqList.jsp">FAQ</a>
 							</nav>
 						</div>
@@ -251,41 +252,20 @@ button.swal2-cancel.swal2-styled:focus {
 						<!--  Breadcrumb -->
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">문의관리</li>
-								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">1:1문의</a></li>
+								<li class="breadcrumb-item">홈페이지관리</li>
+								<li class="breadcrumb-item active" aria-current="page"><a href="#">공지사항</a></li>
 							</ol>
 						</nav>
 
 						<div class="card-body">
 							<div class="inquiry-container">
-								<div class="user-inquiry-box">
-									<div class="mb-3 row">
-										<label for="id" class="col-sm-1 col-form-label">작성자</label>
-										<div class="col-sm-10">
-											<input type="email" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-												id="id" value="email@example.com">
-										</div>
-									</div>
-									<div class="mb-3 row">
-										<label for="title" class="col-sm-1 col-form-label">제목</label>
-										<div class="col-sm-10">
-											<input type="text" readonly class="form-control-plaintext inquiryInsertUpdate-text"
-												id="title" value="진행잔데 취소 가능한가요?">
-										</div>
-									</div>
-									<div class="mb-3">
-										<label class="col-sm-1 col-form-label">질문</label>
-										<textarea class="form-control inquiry-textarea" id="content" 
-										readonly class="form-control-plaintext" rows="7">제곧내..취소하고싶슴니다...</textarea>
-									</div>
-								</div>
-
 								<div class="admin-textarea-box">
 									<form method="post">
-										<label class="col-form-label">답변</label>
-										<textarea class="form-control admin-textarea" rows="15"></textarea>
-										<input type="file" class="admin-textarea-file"/>
+										<label for="title" class="col-form-label">제목</label>
+										<input type="text" class="form-control-plaintext faq-title" id="title">
+										<label for="content" class="col-form-label">내용</label>
+										<textarea class="form-control admin-textarea" id="content" rows="15"></textarea>
+										<input type="file" class="admin-textarea-file" multiple="multiple"/>
 										
 										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
 										<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>

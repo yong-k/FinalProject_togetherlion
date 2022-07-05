@@ -25,6 +25,10 @@ String cp = request.getContextPath();
 			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
 <style type="text/css">
 .sidebar__item ul li:nth-child(2){
 	background-color: #f5f3ed;
@@ -35,9 +39,72 @@ String cp = request.getContextPath();
 .sidebar__item ul li:nth-child(2) a i {
 	color: #fc9942;
 }
+
+/* sweetalert */
+h2#swal2-title {
+    font-size: 23px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+input.swal2-input {
+    margin-bottom: 10px;
+}
+input.swal2-input:focus {
+    box-shadow: none;
+    border: 2px solid #fca652;
+}
+button.swal2-confirm.swal2-styled {
+    background-color: #fca652;
+    width: 100px;
+    margin-right: 20px;
+}
+button.swal2-cancel.swal2-styled {
+    width: 100px;
+    margin-right: 20px;
+}
+button.swal2-confirm.swal2-styled:focus {
+    box-shadow: none;
+}
+button.swal2-cancel.swal2-styled:focus {
+    box-shadow: none;
+}
 </style>
+<script>
+	
+	$(document).ready(function()
+    {
+		$(".reportBtn").click(function()
+    	{
+    		Swal.fire({
+    			  title: '신고하시겠습니까?',
+    			  text: '신고 후, 취소 불가합니다.',
+    			  icon: 'warning',
+    			  iconColor: '#f27474',
+    			  showCancelButton: true,
+    			  confirmButtonText: '신고',
+    			  cancelButtonText: '취소',
+    			  reverseButtons: true
+    			}).then((result) => {
+    			  if (result.isConfirmed) {
+    				  
+     				  // 신고접수 작업 처리 코드 작성하기!
+     					
+     					
+     				  // 신고접수 완료 후, 띄울 알림창
+    				  Swal.fire({
+      			    	title: '신고가 접수되었습니다.',
+      			    	icon: 'success',
+      			    	confirmButtonText: '확인'
+      			    }).then(() => {
+      			    	window.close();
+      			    });
+		    	  }
+    			})
+        });
+    });
+</script>
 </head>
-<body>
+<body class="popup">
 	<div class="report-container">
 		<div class="report-title">
 			<h2>신고하기</h2>
@@ -172,7 +239,7 @@ String cp = request.getContextPath();
 				</div>
 			</div>
 			
-			<button type="submit" class="btn btn-primary lion-primary-btn reportBtn">신고하기</button>
+			<button type="button" class="btn btn-primary lion-primary-btn reportBtn">신고하기</button>
 		</form>
 	</div>
 

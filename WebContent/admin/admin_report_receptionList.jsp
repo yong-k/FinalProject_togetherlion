@@ -24,7 +24,6 @@
     color: #fca652 !important;
 }
 </style>	
-
 </head>
 <body class="sb-nav-fixed">
 

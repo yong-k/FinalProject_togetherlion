@@ -6,10 +6,20 @@ public class BuypostDTO
 		, content, total_price, min_goods, max_goods, deadline, trade_datetime
 		, location_x, location_y, write_datetime, buy_datetime, buy_photo_path
 		, member_code, sub_cate_code, day, hour, minute, count, person_price
-		, main_cate_code, main_cate, sub_cate, state;
+		, main_cate_code, main_cate, sub_cate, state, region;
 
 	
 	
+	public String getRegion()
+	{
+		return region;
+	}
+
+	public void setRegion(String region)
+	{
+		this.region = region;
+	}
+
 	public String getState()
 	{
 		return state;

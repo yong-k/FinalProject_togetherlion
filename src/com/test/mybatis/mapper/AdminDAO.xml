@@ -3,17 +3,108 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mybatis.IAdminDAO">
-
+	
+	<!-- 로그인 -->
 	<select id="loginAdmin" resultType="java.lang.String">
 		SELECT MEMBER_CODE 
 		FROM ADMIN_INFO
 		WHERE ID=#{id} AND PW=#{pw}
 	</select>
 	
+	<!-- 관리자 검색 -->
 	<select id="search" resultType="com.test.mybatis.AdminDTO">
-		SELECT CODE, ID, PW, NAME, TEL, ADMIN_GRADE_CODE, MEMBER_CODE, PROFILE_PATH
+		SELECT CODE, ID, PW, NAME, TEL, ADMIN_GRADE_CODE, MEMBER_CODE 
 		FROM ADMIN_INFO
 		WHERE MEMBER_CODE=#{member_code}
 	</select>
+	
+    <!-- 전체회원 수 (검색 포함)-->
+    <select id="listAllMemberCount" resultType="java.lang.Integer">
+    	SELECT COUNT(*) AS COUNT
+		FROM VIEW_MEMBERLIST
+		<choose>
+			<when test="searchType neq ''">
+			WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>	
+    </select>
+    
+    <!-- 전체회원 목록 (검색 포함)-->
+    <select id="listAllMember" resultType="com.test.mybatis.MemberDTO">
+		SELECT NUM, ID, NAME, NICKNAME, TEL, REPORTED_COUNT, DORMANT, REGIST_DATETIME
+		FROM
+		(
+			SELECT ROWNUM AS RNUM, T.*
+			FROM
+			(
+				SELECT ROWNUM AS NUM, VM.*
+				FROM VIEW_MEMBERLIST VM
+				<choose>
+			        <when test="searchType neq ''">
+			        WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+			        </when>
+		        </choose>
+				ORDER BY ROWNUM DESC
+			) T
+			WHERE ROWNUM <![CDATA[<]]> #{startList} + #{listSize}
+		) 
+		WHERE RNUM <![CDATA[>=]]> #{startList}	    
+    </select>
+    
+    <!-- 영구정지회원목록 -->
+    <select id="listBanMember" resultType="com.test.mybatis.MemberDTO">
+        SELECT ROWNUM, ID, NAME, NICKNAME, START_DATETIME
+        FROM VIEW_PERMANENT_BAN_LIST
+        ORDER BY ROWNUM DESC
+    </select>
 
+    <!-- 휴면회원목록 -->
+    <select id="listSleepMember" resultType="com.test.mybatis.MemberDTO">
+        SELECT ROWNUM, ID, NAME, NICKNAME, CHANGE_SLEEP, SLEEP_DATE
+        FROM VIEW_SLEEP_LIST
+        ORDER BY ROWNUM DESC
+    </select>
+
+    <!-- 탈퇴회원목록 -->
+    <select id="listWithdrawalMember" resultType="com.test.mybatis.MemberDTO">
+        SELECT RNUM, ID, NAME, TEL, DATETIME
+        FROM VIEW_WITHDRAWAL_LIST
+        ORDER BY RNUM DESC
+    </select>
+
+    <!-- 포인트충전조회 -->
+    <select id="listPointCharge" resultType="com.test.mybatis.MemberDTO">
+        SELECT RNUM, ID, NAME, NICKNAME, AMOUNT, DATETIME
+        FROM VIEW_POINT_CHARGE_LIST
+        ORDER BY RNUM DESC
+    </select>
+
+    <!-- 포인트결제조회 -->
+    <select id="listPointPayment" resultType="com.test.mybatis.MemberDTO">
+        SELECT RNUM, ID, NAME, NICKNAME, AMOUNT, DATETIME, BUYPOST_CODE
+        FROM VIEW_POINT_PAYMENT_LIST
+        ORDER BY RNUM DESC
+    </select>
+
+    <!-- 포인트환불조회 -->
+    <select id="listPointRefund" resultType="com.test.mybatis.MemberDTO">
+        SELECT RNUM, ID, NAME, NICKNAME, AMOUNT, DATETIME, BUYPOST_CODE, REASON
+        FROM VIEW_POINT_REFUND_LIST
+        ORDER BY RNUM DESC
+    </select>
+
+    <!-- 포인트인출조회 -->
+    <select id="listPointWithdrawal" resultType="com.test.mybatis.MemberDTO">
+        SELECT RNUM, ID, NAME, NICKNAME, AMOUNT, DATETIME, BUYPOST_CODE, REASON
+        FROM VIEW_POINT_REFUND_LIST
+        ORDER BY RNUM DESC
+    </select>
+    
+	<!-- 공지사항 목록 -->
+    <select id="listNotice" resultType="com.test.mybatis.AdNoticeListDTO">
+        SELECT ROW_NUMBER() OVER(ORDER BY N.WRITE_DATETIME DESC) AS NUM
+        , N.TITLE, AI.ID AS ADMIN_CODE, N.WRITE_DATETIME
+         FROM NOTICE N LEFT JOIN ADMIN_INFO AI
+        ON N.ADMIN_CODE = AI.MEMBER_CODE
+    </select>
 </mapper>

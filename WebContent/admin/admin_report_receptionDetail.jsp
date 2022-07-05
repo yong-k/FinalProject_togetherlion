@@ -26,8 +26,8 @@
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-/* sweetalert */
 
+/* sweetalert */
 h2#swal2-title {
     font-size: 23px;
     padding-top: 40px;
@@ -55,7 +55,6 @@ button.swal2-confirm.swal2-styled:focus {
 button.swal2-cancel.swal2-styled:focus {
     box-shadow: none;
 }
-
 </style>	
 <script>
 	
@@ -63,7 +62,6 @@ button.swal2-cancel.swal2-styled:focus {
     {
 		$(".saveBtn").click(function()
     	{
-    		
     		Swal.fire({
     			  title: '승인 처리하시겠습니까?',
     			  icon: 'warning',
@@ -74,6 +72,11 @@ button.swal2-cancel.swal2-styled:focus {
     			  reverseButtons: true
     			}).then((result) => {
     			  if (result.isConfirmed) {
+    				  
+     				  // 승인처리 작업 처리 코드 작성하기!
+     					
+     					
+     				  // 승인처리 완료 후, 띄울 알림창
     				  Swal.fire({
       			    	title: '승인 처리 완료!',
       			    	icon: 'success',
@@ -97,6 +100,11 @@ button.swal2-cancel.swal2-styled:focus {
     			  reverseButtons: true
     			}).then((result) => {
     				if (result.isConfirmed) {
+      				  
+       				  // 반려처리 작업 처리 코드 작성하기!
+       					
+       					
+       				  // 반려처리 완료 후, 띄울 알림창
       				  Swal.fire({
         			    	title: '반려 처리 완료!',
         			    	icon: 'success',

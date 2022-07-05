@@ -82,6 +82,10 @@ div#swal2-html-container {
     			  title: '회원가입이 완료되었습니다.',
     			  confirmButtonText: '확인'
     			}).then(() => {
+     				
+    				// 회원가입 작업 처리 코드 작성하기!
+   					
+   					
     				// 로그아웃 상태로 로그인창으로 이동
 			    	location.href='user_loginForm.jsp';
 			    });

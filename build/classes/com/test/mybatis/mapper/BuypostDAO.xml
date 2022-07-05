@@ -4,11 +4,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mybatis.IBuypostDAO">
 
-
+	
 	<select id="list" resultType="com.test.mybatis.BuypostDTO">	
 		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y
 		FROM VIEW_BUYPOST_MAIN
 	</select>
+	
+	
+	<select id="newList" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, WRITE_DATETIME
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]>
+	</select>
+	
 	
 	<select id="search" resultType="com.test.mybatis.BuypostDTO">
 		SELECT CODE, GOODS_PHOTO_PATH, URL, MAIN_CATE, SUB_CATE, TITLE, WRITE_DATETIME
@@ -17,10 +25,5 @@
 		WHERE CODE = #{code}
 	</select>
 	
-	<select id="checkState" resultType="com.test.mybatis.BuypostDTO">
-		SELECT CODE, BUY_DATETIME, STATE
-		FROM view_buypost_state
-		WHERE CODE = #{code}
-	</select>
-
+	
 </mapper>

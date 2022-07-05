@@ -136,7 +136,7 @@
                         	</span>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="user_buyPostArticle.jsp">${buypost.title }</a></h6>
+                            <h6><a href="user_buyPostArticle.jsp">[${buypost.region }] ${buypost.title }</a></h6>
                             <h5>￦${buypost.person_price }</h5>
                         </div>
                     </div>

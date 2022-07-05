@@ -62,6 +62,10 @@ button.swal2-confirm.swal2-styled:focus {
 	    			  html: '회원탈퇴가 정상적으로 처리되었습니다.<br><br>그동안 이용해주셔서 감사합니다.',
 	    			  confirmButtonText: '확인',
 	    			}).then((result) => {
+	    				
+	    				// 회원탈퇴 처리 진행 코드 작성하기!!
+	    				
+	    				
 	    				// 로그아웃 상태로 메인으로 이동
 	    				location.href='user_main.jsp';
 	    			});

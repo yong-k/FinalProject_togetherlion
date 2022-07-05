@@ -55,7 +55,6 @@ button.swal2-confirm.swal2-styled:focus {
 button.swal2-cancel.swal2-styled:focus {
     box-shadow: none;
 }
-
 </style>	
 <script>
 	
@@ -71,6 +70,11 @@ button.swal2-cancel.swal2-styled:focus {
     			  reverseButtons: true
     			}).then((result) => {
     			  if (result.isConfirmed) {
+    				  
+     				  // Update 작업 처리 코드 작성하기!
+     					
+     					
+     				  // Update 완료 후, 띄울 알림창
     				  Swal.fire({
       			    	title: '답변 수정 완료!',
       			    	icon: 'success',

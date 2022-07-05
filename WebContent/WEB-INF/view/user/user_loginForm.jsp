@@ -24,10 +24,12 @@
 	
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
+		
 
 $(document).ready(function()		
 {
-	$(".btn").click(function()
+	
+	$("#loginBtn").click(function()
 	{
 		if ($("#id").val() == "" || $("#pw").val() == "")
 		{
@@ -64,7 +66,7 @@ $(document).ready(function()
 
 				<form action="" class="login-form" id="loginForm" method="post">
 					<div class="form-group">
-						<input type="email" id="id" name="id" class="form-control login-form-control" placeholder="이메일 입력">
+						<input type="email" id="id" name="id" class="form-control login-form-control" placeholder="아이디 입력">
 					</div>
 					<div class="form-group">
 						<input type="password" id="pw" name="pw" class="form-control login-form-control" placeholder="비밀번호 입력">
@@ -74,10 +76,10 @@ $(document).ready(function()
 							<a href="#!">아이디/비밀번호 찾기</a>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary login-form-btn">로그인</button>
+					<button type="button" class="btn btn-primary login-form-btn" id="loginBtn">로그인</button>
 				</form>
 				<button type="button" class="btn btn-outline-primary login-form-btn"
-				onclick="location.href='user_joinInsertForm.jsp'">회원가입</button>
+				onclick="location.href='<%=cp %>/user/user_joinInsertForm.jsp'">회원가입</button>
 			</div>
         </div>
     </section>

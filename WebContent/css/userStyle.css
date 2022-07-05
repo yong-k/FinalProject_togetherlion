@@ -4348,7 +4348,7 @@ h2.pointAmount {
 }
 .mypage-info-box {
     display: inline-block;
-    width: 73%;
+    width: 73.1%;
     height: 85.5%;
     margin-left: 3%;
     padding-top: 35px;
@@ -4404,6 +4404,9 @@ span.manner-explain {
 }
 
 /* 마이페이지>MY공구 */
+.mypage-title-box {
+    margin-top: -17px;
+}
 .section-title.myBuypost-title {
     text-align: left;
     display: inline-block;
@@ -4476,6 +4479,34 @@ i.fa.fa-heart-o.buypost-wish.mypage-wish:hover {
 }
 
 /* 마이페이지>포인트 */
+.mypage-info-box.myPoint-info-box {
+    width: 300px;
+}
+.myPoint-title-box {
+    margin-top: -26px;
+}
+.section-title.myPoint-title {
+    display: inline-block;
+}
+.myPoint-title h2 {
+    vertical-align: super;
+}
+.myPoint-form-box {
+    display: inline-block;
+}
+.nice-select.point-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+    margin-left: -6px;
+    width: 100px;
+    padding-left: 30%;
+}
+.nice-select.point-select ul {
+    width: 96px;
+}
+.nice-select.point-select ul li {
+    text-align: center;
+}
 h4.header-title-point.myPoint-title {
     margin-top: 30px;
     margin-bottom: 6px;
@@ -4488,8 +4519,155 @@ h2.myPointAmount {
 }
 .mypage-header-userBox.myPoint-box {
     width: 100%;
-    padding-left: 27%;
+    padding-left: 21%;
 }
+.myPoint-btn-box {
+    display: inline-block;
+    width: 200px;
+    margin-left: 1.5%;
+}
+button.pointBtn, button.pointBtn:focus {
+    display: inline-block;
+    background-color: #a8a8a8;
+    width: 150px;
+    height: 50px;
+    margin: 2.5% 0;
+    font-weight: 900;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+button.pointBtn:hover, button.pointBtn:active {
+	background-color: #828181 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+table.pointTable {
+    margin-left: -15px;
+}
+.pointTable tbody td {
+    padding: 4% 0;
+   	vertical-align: sub;	
+}
+.pointTable tbody td:first-child {
+    text-align: left;
+    padding-left: 6%;
+}
+.pointTable tbody tr td:nth-child(2) {
+    text-align: left;
+}
+h4#proposal {
+    font-size: 19px;
+}
+.point-detail {
+    display: inline-block;
+    vertical-align: top;
+}
+span.point-date {
+    font-size: 14px;
+    color: #818181;
+    display: inline-block;
+    padding-top: 5px;
+}
+span.buypost-title {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 15px;
+    color: #545454;
+}
+span.point {
+    font-size: 24px;
+    padding-right: 40%;
+}
+span.point.minusPoint {
+	color: #fa4646;
+}
+span.point.plusPoint {
+    color: #3e57fa;
+}
+/* 포인트>계좌관리팝업 */
+p.account-text {
+    font-size: 13px;
+    text-align: left;
+    margin-top: 5px;
+}
+.accountTable td {
+    padding-top: 4%;
+}
+.accountTable tr:first-child td, .accountTable tbody tr:first-child th {
+    border-top: none;
+    padding-top: 4px;
+}
+button.accountManage-btn, button.accountManage-btn:focus {
+    background-color: #fff;
+    color: #646465;
+    border-color: #646465;
+    box-shadow: none !important;
+    border-radius: 0px;
+    font-size: 14px;
+}
+button.accountManage-btn:hover, button.accountManage-btn:active {
+	background-color: #fff;
+    color: #646465;
+    border-color: #646465;
+    box-shadow: none !important;
+    text-decoration: underline;
+}
+button.accountManage-btn:disabled {
+    text-decoration: none;
+    cursor: initial;
+}
+.bankName {
+    text-align: left;
+    font-size: 17px;
+    padding-bottom: 2px;
+}
+.accountNum {
+    text-align: left;
+}
+button.accountInsertBtn {
+    width: 103.3% !important;
+    margin-left: -3.5%;
+    margin-top: 0 !important;
+}
+i.bi.bi-plus.account-plus {
+    margin-right: 5px;
+    font-size: 30px;
+    vertical-align: -webkit-baseline-middle;
+    -webkit-text-stroke: 1.1px;
+}
+/* 포인트>계좌등록팝업 */
+.nice-select.bank-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+}
+.accountInsertTable tbody tr th {
+    width: 20%;
+    vertical-align: middle;
+}
+.nice-select.bank-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+    margin-left: -54%;
+}
+input.accountNum {
+    border: 1px solid #6e6d6d;
+    border-radius: 5px;
+    width: 250px;
+    height: 36px;
+    padding: 3%;
+    margin-left: -86px;
+    margin-bottom: 7px;
+}
+.accountInsert-notice {
+    text-align: left;
+    padding-left: 10px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #757474;
+}
+
 
 
 /* 마이페이지>개인정보수정 */
@@ -4620,6 +4798,9 @@ span.inquity-alert-text {
 }
 
 /* 신고팝업 */
+body.popup {
+    overflow: hidden;
+}
 .report-container {
     width: 520px;
     height: 685px;

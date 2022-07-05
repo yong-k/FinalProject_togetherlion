@@ -71,6 +71,11 @@ button.swal2-cancel.swal2-styled:focus {
     			  reverseButtons: true
     			}).then((result) => {
     			  if (result.isConfirmed) {
+    				  
+    				  // Insert 작업 처리 코드 작성하기!
+  		    		
+  		    		
+  		    		  // Insert 완료 후, 띄울 알림창
     				  Swal.fire({
       			    	title: '계정 생성 완료!',
       			    	icon: 'success',

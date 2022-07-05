@@ -78,12 +78,18 @@ button.swal2-close:focus {
     			  html: '1. 아래 버튼은 진행자가 누르는 버튼입니다.<br>2. 구매확정 전 상품 상태를 확인해주세요.<br>3. 구매확정 후에는 청약철회가 불가합니다.'
     			}).then((result) => {
     			  if (result.isConfirmed) {
+    				  
+    				  
+     				  // 구매확정 작업 처리 코드 작성하기!
+     					
+     					
+     				  // 구매확정 완료 후, 띄울 알림창
     				  Swal.fire({
       			    	title: '구매확정 완료',
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	
+      			    	location.href='#!';
       			    });
 		    	  }
     			})
@@ -103,7 +109,7 @@ button.swal2-close:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	
+      			    	location.href='#!';
       			    });
 		    	  }
     			})
@@ -129,7 +135,7 @@ button.swal2-close:focus {
 				<c:import url="user_mypage_menubar.jsp"></c:import>
 
 				<div class="col-lg-9 col-md-7">
-					<div class="product__discount">
+					<div class="product__discount mypage-title-box">
 						<div class="section-title myBuypost-title">
 							<h2>MY 공구</h2>
 						</div>
