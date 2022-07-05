@@ -8,5 +8,11 @@
 		SELECT CODE, NAME
 		FROM MAIN_CATE
 	</select>
+	
+	<select id="search" resultType="com.test.mybatis.MainCateDTO">
+		SELECT CODE, NAME
+		FROM MAIN_CATE
+		WHERE CODE = #{code }
+	</select>
 
 </mapper>

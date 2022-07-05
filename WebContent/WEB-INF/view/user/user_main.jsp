@@ -125,7 +125,17 @@
                         			${buypost.day }일 남음
                         		</c:when>
                         		<c:otherwise>
-                        			${buypost.hour }시간 ${buypost.minute }분 남음
+		                        	<c:choose>
+		                        		<c:when test="${buypost.hour != '0' }">
+		                        			${buypost.hour }시간 
+		                        		</c:when>
+		                        	</c:choose>
+		                        	<c:choose>
+		                        		<c:when test="${buypost.minute != '0' }">
+		                        			${buypost.minute }분                   
+		                        		</c:when>
+		                        	</c:choose>
+		                        	 남음
                         		</c:otherwise>
                         	</c:choose>
                         		

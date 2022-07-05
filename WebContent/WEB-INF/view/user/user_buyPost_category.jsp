@@ -21,11 +21,25 @@
     <link rel="stylesheet" href="<%=cp %>/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%=cp %>/css/userStyle.css" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"> 
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function()	
+	{	
+		// 해당 공동구매 게시물 상세보기
+		$(".buypost_go").click(function()		
+		{
+			location.href = "buypostarticle.lion?code=" + $(this).val();	
+		});
+		
+	});
+	
+</script>
 </head>
 <body>
 
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
 	 		
 	<section class="breadcrumb-section set-bg searchBuyPost-banner"
 		data-setbg="<%=cp %>/img/hero/banner3.jpg">
@@ -50,12 +64,11 @@
 						<div class="row">
 							<div class="col-lg-7 col-md-8">
 								<div class="category-box">
-									<span class="mainCate">쌀/면/빵/떡</span>
+									<span class="mainCate">${mainCate.name }</span>
 									<a href="#!"><span class="subCate" style="color:#fca652; -webkit-text-stroke:0.8px;">전체보기<i class="bi bi-chevron-right buypost-category" style="color:#fca652;"></i></span></a>
-									<a href="#!"><span class="subCate">쌀<i class="bi bi-chevron-right buypost-category"></i></span></a>
-									<a href="#!"><span class="subCate">면<i class="bi bi-chevron-right buypost-category"></i></span></a>
-									<a href="#!"><span class="subCate">빵<i class="bi bi-chevron-right buypost-category"></i></span></a>
-									<a href="#!"><span class="subCate">떡<i class="bi bi-chevron-right buypost-category"></i></span></a>
+									<c:forEach var="subCate" items="${subList }">
+										<a href="#!"><span class="subCate">${subCate.name }<i class="bi bi-chevron-right buypost-category"></i></span></a>
+									</c:forEach>
 								</div>
 							</div>
 							<div class="col-lg-5 col-md-4">
@@ -68,25 +81,6 @@
 						</div>
 					</div>
 				</div>
-
-				<%-- <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-					<div class="featured__item">
-						<div class="featured__item__pic set-bg"
-							data-setbg="<%=cp%>/img/featured/feature-1.jpg"
-							onClick="location.href='<%=cp %>/user/user_buyPostArticle.jsp'">
-							<span class="timeLeft">3시간 2분 42초</span> <span
-								class="featured__item__pic__hover"> <i
-								class="bi bi-cart4"></i> <span class="item_number">2/3</span>
-							</span>
-						</div>
-						<div class="featured__item__text">
-							<h6>
-								<a href="#">[강남구] 고기 같이 사요~~~</a>
-							</h6>
-							<h5>￦20,000</h5>
-						</div>
-					</div>
-				</div> --%>
 				<c:forEach var="buypost" items="${list }">
 				<div class="col-lg-3 col-md-4 col-sm-6">
 					<div class="featured__item">
@@ -99,7 +93,17 @@
                         			${buypost.day }일 남음
                         		</c:when>
                         		<c:otherwise>
-                        			${buypost.hour }시간 ${buypost.minute }분 남음
+		                        	<c:choose>
+		                        		<c:when test="${buypost.hour != '0' }">
+		                        			${buypost.hour }시간 
+		                        		</c:when>
+		                        	</c:choose>
+		                        	<c:choose>
+		                        		<c:when test="${buypost.minute != '0' }">
+		                        			${buypost.minute }분                   
+		                        		</c:when>
+		                        	</c:choose>
+		                        	 남음
                         		</c:otherwise>
                         	</c:choose>
 							</span> 
