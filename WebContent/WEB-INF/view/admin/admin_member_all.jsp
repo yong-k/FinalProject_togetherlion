@@ -16,14 +16,73 @@
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	
 <style type="text/css">
 .sb-sidenav-menu a.current-menu {
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-</style>	
+</style>
+<script type="text/javascript">
+	
+	// 검색
+	$(function()
+	{
+		$('#btnNavbarSearch').click(function(e)
+		{
+			e.preventDefault();
+			var url = "/togetherlion/admin_member_all.lion";
+			url += "?searchType=" + $('#searchType').val();
+			url += "&keyword=" + $('#keyword').val();
+			
+			location.href = url;
+		});	
+	});
 
+	// 이전 버튼
+	function fn_prev(page, range, rangeSize)
+	{
+		var page = (range - 1) * rangeSize;
+		var range = range - 1;
+		
+		var url = "/togetherlion/admin_member_all.lion";
+		url += "?page=" + page;
+		url += "&range=" + range;
+		url += "&searchType=" + $('#searchType').val();
+		url += "&keyword=" + $('#keyword').val();
+		
+		location.href = url;
+	}
+	
+	// 페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize, searchType, keyword)
+	{
+		var url = "/togetherlion/admin_member_all.lion";
+		url += "?page=" + page;
+		url += "&range=" + range;
+		url += "&searchType=" + $('#searchType').val();
+		url += "&keyword=" + $('#keyword').val();
+		
+		location.href = url;	
+	}
+	
+	// 다음 버튼
+	function fn_next(page, range, rangeSize)
+	{
+		var page = parseInt((range * rangeSize)) + 1;
+		var range = parseInt(range) + 1;
+		
+		var url = "/togetherlion/admin_member_all.lion";
+		url += "?page=" + page;
+		url += "&range=" + range;
+		url += "&searchType=" + $('#searchType').val();
+		url += "&keyword=" + $('#keyword').val();
+		
+		location.href = url;
+	}
+	
+</script>	
 </head>
 <body class="sb-nav-fixed">
 
@@ -175,16 +234,16 @@
 
 						<div>
 							<!-- searchBar -->
-							<form class="search-form" action="#">
-								<select class="form-select" aria-label="Default select example">
-									<option value="1" selected>이메일(ID)</option>
-									<option value="2">이름</option>
-								</select> 
-								<input class="form-control" type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-							</form>
+							<select class="form-select" name="searchType" id="searchType" 
+							aria-label="Default select example" >
+								<option value="ID" ${pagination.searchType == 'ID' ? 'selected="selected"' : '' }>이메일(ID)</option>
+								<option value="NAME" ${pagination.searchType == 'NAME' ? 'selected="selected"' : '' }>이름</option>
+							</select> 
+							<input class="form-control" type="text" name="keyword" id="keyword" 
+							value="${pagination.keyword}" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+							<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+							
 						</div>
-
 						<div class="card-body">
 							<table class="table table-bordered table-hover">
 								<thead>
@@ -200,21 +259,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<!-- 
-									<tr>
-										<td>754</td>
-										<td>abc1240@naver.com</td>
-										<td>홍길동</td>
-										<td>가나다</td>
-										<td>010-1111-1111</td>
-										<td>3</td>
-										<td>x</td>
-										<td>2022-02-03</td>
-									</tr>
-									 -->
 									<c:forEach var="member" items="${list }">
 									<tr>
-										<td>${member.rownum }</td>
+										<td>${member.num }</td>
 										<td>${member.id }</td>
 										<td>${member.name }</td>
 										<td>${member.nickname }</td>
@@ -222,7 +269,6 @@
 										<td>${member.reported_count }</td>
 										<td>${member.dormant }</td>
 										<td>${member.regist_datetime }</td>
-									
 									</tr>
 									</c:forEach> 
 								</tbody>
@@ -230,46 +276,30 @@
 						</div>
 
 						<!-- page navigation -->
-						<!-- <nav aria-label="Page navigation example">
+					
+						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">1</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">2</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">3</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">4</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">5</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
+								<c:if test="${pagination.prev }">
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous"
+										onclick="fn_prev('${pagination.page}', '${pagination.range }', '${pagination.rangeSize }')"> 
+										<span aria-hidden="true">&laquo;</span></a>
+									</li>
+								</c:if>
+								<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">				
+									<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+										<a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a>
+									</li>			
+								</c:forEach>
+								<c:if test="${pagination.next}">				
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next"
+										onclick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')" >
+										<span aria-hidden="true">&raquo;</span></a>
+									</li>			
+								</c:if>
 							</ul>
-						</nav> -->
-						
-						<c:if test="${paging.startPage != 1 }">
-							<a href="/togetherlion/admin_member_all.lion?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-							<c:choose>
-								<c:when test="${p == paging.nowPage }">
-									<b>${p }</b>
-								</c:when>
-								<c:when test="${p != paging.nowPage }">
-									<a href="/togetherlion/admin_member_all.lion?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-								</c:when>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${paging.endPage != paging.lastPage}">
-							<a href="/togetherlion/admin_member_all.lion?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-						</c:if>
-						
+						</nav> 
 					</div>
 				</div>
 			</main>

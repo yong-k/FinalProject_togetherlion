@@ -4,43 +4,62 @@ public class MemberDTO
 {
 	private String code, id, pw, name, nickname, tel
 				 , profile_path, member_code, regist_datetime;
+	// 목록 변수 
+	private String num;
 	
-	// 전체회원목록 관련변수 추가
-	private String rownum, reported_count, dormant;			//행, 신고횟수, 휴면여부
+	// 관리자 회원 목록 관련변수 추가
+    // 신고횟수, 휴면여부, 영구정지시작일, 휴면전환일, 휴면경과일, 탈퇴일
+    private String reported_count, dormant, start_datetime, change_sleep, sleep_date, datetime;
 	
-	// 페이징 관련변수 추가
-	private String start, end;	
-	
-	public String getStart()
+	public String getStart_datetime()
 	{
-		return start;
+		return start_datetime;
 	}
 
-	public void setStart(String start)
+	public void setStart_datetime(String start_datetime)
 	{
-		this.start = start;
+		this.start_datetime = start_datetime;
 	}
 
-	public String getEnd()
+	public String getChange_sleep()
 	{
-		return end;
+		return change_sleep;
 	}
 
-	public void setEnd(String end)
+	public void setChange_sleep(String change_sleep)
 	{
-		this.end = end;
+		this.change_sleep = change_sleep;
 	}
 
-	public String getRownum()
+	public String getSleep_date()
 	{
-		return rownum;
+		return sleep_date;
 	}
 
-	public void setRownum(String rownum)
+	public void setSleep_date(String sleep_date)
 	{
-		this.rownum = rownum;
+		this.sleep_date = sleep_date;
 	}
 
+	public String getDatetime()
+	{
+		return datetime;
+	}
+
+	public void setDatetime(String datetime)
+	{
+		this.datetime = datetime;
+	}
+
+	public String getNum()
+	{
+		return num;
+	}
+
+	public void setNum(String num)
+	{
+		this.num = num;
+	}
 	public String getReported_count()
 	{
 		return reported_count;

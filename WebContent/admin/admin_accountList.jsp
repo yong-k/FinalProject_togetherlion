@@ -111,7 +111,9 @@ button.swal2-cancel.swal2-styled:focus {
     		    			icon: 'success',
     		    			text: '계정이 삭제되었습니다.',
     		    			confirmButtonText: '확인'
-    		    		})
+    		    		}).then(() => {
+	      			    	location.href='#!';
+	      			    });
     		    	}else {
     		    		Swal.fire({
     		    			icon: 'error',

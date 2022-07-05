@@ -96,7 +96,7 @@ button.swal2-cancel.swal2-styled:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	//location.href='admin_report_receptionList.jsp';
+      			    	window.close();
       			    });
 		    	  }
     			})

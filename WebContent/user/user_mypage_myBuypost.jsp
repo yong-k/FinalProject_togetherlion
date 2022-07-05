@@ -89,7 +89,7 @@ button.swal2-close:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	
+      			    	location.href='#!';
       			    });
 		    	  }
     			})
@@ -109,7 +109,7 @@ button.swal2-close:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	
+      			    	location.href='#!';
       			    });
 		    	  }
     			})

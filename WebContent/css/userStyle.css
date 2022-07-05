@@ -4586,7 +4586,7 @@ span.point.minusPoint {
 span.point.plusPoint {
     color: #3e57fa;
 }
-/* 포인트>충전팝업 */
+/* 포인트>계좌관리팝업 */
 p.account-text {
     font-size: 13px;
     text-align: left;
@@ -4595,7 +4595,7 @@ p.account-text {
 .accountTable td {
     padding-top: 4%;
 }
-.accountTable tr:first-child td {
+.accountTable tr:first-child td, .accountTable tbody tr:first-child th {
     border-top: none;
     padding-top: 4px;
 }
@@ -4636,6 +4636,36 @@ i.bi.bi-plus.account-plus {
     font-size: 30px;
     vertical-align: -webkit-baseline-middle;
     -webkit-text-stroke: 1.1px;
+}
+/* 포인트>계좌등록팝업 */
+.nice-select.bank-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+}
+.accountInsertTable tbody tr th {
+    width: 20%;
+    vertical-align: middle;
+}
+.nice-select.bank-select {
+    border-radius: 5px;
+    border: 2px solid #6e6d6d;
+    margin-left: -54%;
+}
+input.accountNum {
+    border: 1px solid #6e6d6d;
+    border-radius: 5px;
+    width: 250px;
+    height: 36px;
+    padding: 3%;
+    margin-left: -86px;
+    margin-bottom: 7px;
+}
+.accountInsert-notice {
+    text-align: left;
+    padding-left: 10px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #757474;
 }
 
 

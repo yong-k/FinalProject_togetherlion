@@ -65,8 +65,8 @@ button.swal2-cancel.swal2-styled:focus {
 	$(document).ready(function()
     {
 		
-		// <대표계좌로 설정> 버튼 클릭 시, 
-		$(".mainAccount-insertBtn").click(function()
+		// <등록> 버튼 클릭 시, 
+		$(".accountInsertBtn").click(function()
 	   	{
 			(async () => {
 			    const { value: password } = await Swal.fire({
@@ -78,17 +78,17 @@ button.swal2-cancel.swal2-styled:focus {
 			        confirmButtonText: '확인',
 			        cancelButtonText: '취소'
 			    })
-			    // 비밀번호가 맞다면, 삭제진행
+			    // 비밀번호가 맞다면, 등록진행
 			    if (password) {
 			    	if (password=='1234') {
 			    		
-			    		// 대표계좌 설정 작업 처리 코드 작성!
+			    		// 계좌등록 작업 처리 코드 작성!
 			    		
 			    		
-			    		// 대표계좌 설정 완료 후, 띄울 알림창
+			    		// 계좌등록 완료 후, 띄울 알림창
 			    		Swal.fire({
 			    			icon: 'success',
-			    			text: '대표계좌 설정이 완료되었습니다.',
+			    			text: '계좌가 등록되었습니다.',
 			    			confirmButtonText: '확인'
 			    		}).then(() => {
 	      			    	location.href='#!';
@@ -105,115 +105,52 @@ button.swal2-cancel.swal2-styled:focus {
 			    }
 			})()
 	    });
-		
-		// <삭제> 버튼 클릭 시, 
-    	$(".account-deleteBtn").click(function()
-    	{
-    		(async () => {
-    		    const { value: password } = await Swal.fire({
-    		        title: '삭제를 진행하려면 비밀번호를 입력하세요.',
-    		        input: 'password',
-    		        inputPlaceholder: '비밀번호 입력',
-    		        showCancelButton: true,
-    		        reverseButtons: true,
-    		        confirmButtonText: '삭제',
-    		        cancelButtonText: '취소'
-    		    })
-    		    // 비밀번호가 맞다면, 삭제진행
-    		    if (password) {
-    		    	if (password=='1234') {
-    		    		
-    		    		// Delete 작업 처리 코드 작성!
-    		    		
-    		    		
-    		    		// Delete 완료 후, 띄울 알림창
-    		    		Swal.fire({
-    		    			icon: 'success',
-    		    			text: '계좌가 삭제되었습니다.',
-    		    			confirmButtonText: '확인'
-    		    		}).then(() => {
-	      			    	location.href='#!';
-	      			    });
-    		    	}else {
-    		    		Swal.fire({
-    		    			icon: 'error',
-    		    			text: '비밀번호가 일치하지 않습니다.',
-    		    			showConfirmButton: false,
-    		    			showCancelButton: true,
-    		    			cancelButtonText: '확인'
-    		    		})
-    		    	}
-    		    }
-    		})()
-        });
     });
-	
-	// <계좌등록> 버튼 클릭 시, 
-	function accountInsertForm() 
-	{
-		//window.open("user_mypage_point_accountInsertForm_popup.jsp", "_self", "top=150,left=550,width=520,height=685");
-		location.href="user_mypage_point_accountInsertForm_popup.jsp";
-	}
+
 </script>
 </head>
 <body class="popup">
 	<div class="report-container">
 		<div class="report-title">
-			<h2>계좌 관리</h2>
-			<p class="account-text">처음 계좌 등록 시, 자동으로 대표계좌로 등록됩니다. (대표계좌는 삭제 불가)<br />
-			대표계좌는 해제할 수 없으며, 다른 계좌를 대표계좌로 설정 시 자동으로 변경됩니다.</p> 
+			<h2>계좌 등록</h2>
+			<p class="account-text">처음 계좌 등록 시, 자동으로 대표계좌로 등록됩니다. (대표계좌는 삭제 불가)</p> 
 			<hr class="report-line"/>
 		</div>
 		
-		<!-- 회원 계좌테이블에 있는 것 중에, 삭제계좌테이블에는 없는 것들만 가져오기 -->
-		<table class="table accountTable">
-			<thead></thead>
-			<tbody>
-				<tr>
-					<td>
-						<div class="bankName">KB국민</div>
-						<!-- 계좌번호는 앞에 3글자 + *4개 + 뒤에 4글자만 보여줌 -->
-						<div class="accountNum">043****1234</div>
-					</td>
-					<td>
-						<!-- if, 대표계좌 -->
-						<button type="button" class="btn accountManage-btn" disabled>대표계좌</button>
-						<!-- else 대표계좌아닌것들 -->
-						<!-- 
-						<button type="button" class="btn accountManage-btn">대표계좌로 설정</button>
-						<button type="button" class="btn accountManage-btn">삭제</button>
-						 -->
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="bankName">하나</div>
-						<!-- 계좌번호는 앞에 3글자 + *4개 + 뒤에 4글자만 보여줌 -->
-						<div class="accountNum">043****1234</div>
-					</td>
-					<td>
-						<button type="button" class="btn accountManage-btn mainAccount-insertBtn">대표계좌로 설정</button>
-						<button type="button" class="btn accountManage-btn account-deleteBtn">삭제</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="bankName">신한</div>
-						<!-- 계좌번호는 앞에 3글자 + *4개 + 뒤에 4글자만 보여줌 -->
-						<div class="accountNum">043****1234</div>
-					</td>
-					<td>
-						<button type="button" class="btn accountManage-btn">대표계좌로 설정</button>
-						<button type="button" class="btn accountManage-btn account-deleteBtn">삭제</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<form action="">
+			<table class="table accountTable accountInsertTable">
+				<thead></thead>
+				<tbody>
+					<tr>
+						<th>은행 선택</th>
+						<td>   
+							<select class="form-select bank-select" aria-label="Default select example">
+								<option value="0" selected>--선택--</option>
+								<option value="1">KB국민</option>
+								<option value="2">NH농협</option>
+								<option value="3">한국씨티</option>
+								<option value="4">IBK기업</option>
+								<option value="5">신한</option>
+								<option value="6">하나</option>
+								<option value="7">우리</option>
+								<option value="8">카카오뱅크</option>
+								<option value="9">SC제일</option>
+								<option value="10">토스</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>계좌번호</th>
+						<td>
+							<input type="text" class="accountNum" placeholder="'-' 없이 입력하세요."/>
+							<div class="accountInsert-notice">본인 명의 계좌만 등록 가능합니다.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			
-		<button type="button" class="btn btn-primary lion-primary-btn accountInsertBtn"
-		onclick="javascript:accountInsertForm()">
-			<i class="bi bi-plus account-plus"></i>계좌 등록
-		</button>
+			<button type="button" class="btn btn-primary lion-primary-btn accountInsertBtn">계좌 등록</button>
+		</form>
 		<hr class="report-line"/>
 	</div>
 

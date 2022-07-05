@@ -71,7 +71,7 @@ button.swal2-cancel.swal2-styled:focus {
     			}).then((result) => {
     			  if (result.isConfirmed) {
     				  
-   					// Updaet 작업 처리 코드 작성하기!
+   					// Update 작업 처리 코드 작성하기!
    					
    					
    					// Update 완료 후, 띄울 알림창
