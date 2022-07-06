@@ -33,7 +33,20 @@
 			location.href = "buypostarticle.lion?code=" + $(this).val();	
 		});
 		
+		
+		$("#mainCateCode").change(function()
+		{
+			location.href = "buypostnewcate.lion?code=" + $(this).val();
+		});
+		
+		// 나중에 해보기
+		/* $("#mainCateCode").change(function()
+		{
+			ajaxRequest();
+		}); */
+		
 	});
+	
 	
 </script>
 </head>
@@ -65,20 +78,18 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-5">
 								<div class="filter__sort">
-									<span>카테고리 선택</span> <select>
+									<span>카테고리 선택</span> 
+									<select id="mainCateCode" name="mainCateCode">
 										<c:forEach var="mainCate" items="${mainList }">
-											<option value="${mainCate.code }">${mainCate.name }</option>
+										<c:choose>
+											<c:when test="${mainCate.code == code }">
+												<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${mainCate.code }">${mainCate.name }</option>
+											</c:otherwise>
+										</c:choose>											
 										</c:forEach>
-										<!-- <option value="0">전체</option>
-										<option value="1">쌀/면/빵/떡</option>
-										<option value="2">과일/채소</option>
-										<option value="3">수산/정육/계란</option>
-										<option value="4">밀키트/간편식/냉동</option>
-										<option value="5">국/반찬</option>
-										<option value="6">간식/과자</option>
-										<option value="7">우유/유제품</option>
-										<option value="8">물/음료/커피/차</option>
-										<option value="9">양념/소스</option> -->
 									</select>
 								</div>
 							</div>

@@ -22,6 +22,18 @@
 		FROM VIEW_BUYPOST_MAIN
 		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]>
 	</select>
+	
+	<select id="newListCate" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, WRITE_DATETIME
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
+	
+	<select id="newListCateNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
 
 	
 	<select id="mainCateList" resultType="com.test.mybatis.BuypostDTO">
