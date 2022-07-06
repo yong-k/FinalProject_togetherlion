@@ -6,10 +6,30 @@ public class BuypostDTO
 		, content, total_price, min_goods, max_goods, deadline, trade_datetime
 		, location_x, location_y, write_datetime, buy_datetime, buy_photo_path
 		, member_code, sub_cate_code, day, hour, minute, count, person_price
-		, main_cate_code, main_cate, sub_cate, state, region;
+		, main_cate_code, main_cate_name, sub_cate_name, state, region;
 
 	
 	
+	public String getMain_cate_name()
+	{
+		return main_cate_name;
+	}
+
+	public void setMain_cate_name(String main_cate_name)
+	{
+		this.main_cate_name = main_cate_name;
+	}
+
+	public String getSub_cate_name()
+	{
+		return sub_cate_name;
+	}
+
+	public void setSub_cate_name(String sub_cate_name)
+	{
+		this.sub_cate_name = sub_cate_name;
+	}
+
 	public String getRegion()
 	{
 		return region;
@@ -50,25 +70,6 @@ public class BuypostDTO
 		this.trade_datetime = trade_datetime;
 	}
 
-	public String getMain_cate()
-	{
-		return main_cate;
-	}
-
-	public void setMain_cate(String main_cate)
-	{
-		this.main_cate = main_cate;
-	}
-
-	public String getSub_cate()
-	{
-		return sub_cate;
-	}
-
-	public void setSub_cate(String sub_cate)
-	{
-		this.sub_cate = sub_cate;
-	}
 
 	public String getCode()
 	{

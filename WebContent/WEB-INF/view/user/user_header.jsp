@@ -111,15 +111,9 @@
                             <span>전체 카테고리</span>
                         </div>
                         <ul style="display: none;">
-                            <li><a href="<%=cp %>/user/user_buyPost_category.jsp">쌀/면/빵/떡</a></li>
-                            <li><a href="#">과일/채소</a></li>
-                            <li><a href="#">수산/정육/계란</a></li>
-                            <li><a href="#">밀키트/간편식/냉동</a></li>
-                            <li><a href="#">국/반찬</a></li>
-                             <li><a href="#">간식/과자</a></li>
-                            <li><a href="#">우유/유제품</a></li>
-                            <li><a href="#">물/음료/커피/차</a></li>
-                            <li><a href="#">양념/소스</a></li>
+                        	<c:forEach var="mainCate" items="${list }">
+                        		<li><a href="<%=cp %>/buypostmaincate.lion?code=${mainCate.code }">${mainCate.name }</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
