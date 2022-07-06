@@ -119,8 +119,10 @@ public class BuypostController
 	public String buypostNew(Model model)
 	{
 		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
+		IMainCateDAO mainDao = sqlSession.getMapper(IMainCateDAO.class);	
 		
 		ArrayList<BuypostDTO> list = dao.newList();
+		ArrayList<MainCateDTO> mainList = mainDao.list();
 		String count = dao.newListNum();
 		
 		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
@@ -156,6 +158,7 @@ public class BuypostController
 		
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
+		model.addAttribute("mainList", mainList);
 		
 		return "/WEB-INF/view/user/user_buyPost_new.jsp";
 	}
