@@ -112,7 +112,7 @@
                         </div>
                         <ul style="display: none;">
                         	<c:forEach var="mainCate" items="${list }">
-                        		<li><a href="<%=cp %>/buypostcate.lion?code=${mainCate.code }">${mainCate.name }</a></li>
+                        		<li><a href="<%=cp %>/buypostmaincate.lion?code=${mainCate.code }">${mainCate.name }</a></li>
                             </c:forEach>
                         </ul>
                     </div>

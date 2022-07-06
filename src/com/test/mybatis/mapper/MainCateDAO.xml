@@ -12,7 +12,15 @@
 	<select id="search" resultType="com.test.mybatis.MainCateDTO">
 		SELECT CODE, NAME
 		FROM MAIN_CATE
-		WHERE CODE = #{code }
+		WHERE CODE = #{code}
+	</select>
+	
+	<select id="searchBySubCate" resultType="com.test.mybatis.MainCateDTO">
+		SELECT CODE, NAME
+		FROM MAIN_CATE
+		WHERE CODE = (SELECT MAIN_CATE_CODE
+		              FROM SUB_CATE
+		              WHERE CODE = #{code})
 	</select>
 
 </mapper>

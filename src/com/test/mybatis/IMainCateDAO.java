@@ -10,4 +10,7 @@ public interface IMainCateDAO
 	// 대분류 카테고리 코드로 대분류 카테고리 조회
 	public MainCateDTO search(String code);
 	
+	// 소분류 카테고리 코드로 대분류 카테고리 조회
+	public MainCateDTO searchBySubCate(String code);
+	
 }

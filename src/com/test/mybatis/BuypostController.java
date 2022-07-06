@@ -161,12 +161,13 @@ public class BuypostController
 	}
 	
 	
-	@RequestMapping(value="/buypostcate.lion", method=RequestMethod.GET)
-	public String buypostCate(String code, Model model)
+	@RequestMapping(value="/buypostmaincate.lion", method=RequestMethod.GET)
+	public String buypostMainCate(String code, Model model)
 	{
 		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
 		ISubCateDAO subDao = sqlSession.getMapper(ISubCateDAO.class);
 		IMainCateDAO mainDao = sqlSession.getMapper(IMainCateDAO.class);
+		
 		
 		// 대분류 카테고리별 공동구매 게시물 리스트 
 		ArrayList<BuypostDTO> list = dao.mainCateList(code);
@@ -178,6 +179,7 @@ public class BuypostController
 		ArrayList<SubCateDTO> subList = subDao.searchByMainCateCode(code);
 		
 		MainCateDTO mainCate = mainDao.search(code);
+		
 		
 		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
 		for (BuypostDTO dto : list)
@@ -213,6 +215,66 @@ public class BuypostController
 		model.addAttribute("count", count);
 		model.addAttribute("subList", subList);
 		model.addAttribute("mainCate", mainCate);
+		model.addAttribute("code", code);
+		
+		return "/WEB-INF/view/user/user_buyPost_category.jsp";
+	}
+	
+	@RequestMapping(value="/buypostsubcate.lion", method=RequestMethod.GET)
+	public String buypostSubCate(String code, Model model)
+	{
+		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
+		ISubCateDAO subDao = sqlSession.getMapper(ISubCateDAO.class);
+		IMainCateDAO mainDao = sqlSession.getMapper(IMainCateDAO.class);
+		
+		
+		// 대분류 카테고리별 공동구매 게시물 리스트 
+		ArrayList<BuypostDTO> list = dao.subCateList(code);
+		
+		// 게시물 개수
+		String count = dao.subCateListNum(code);
+		
+		// 해당 대분류 카테고리의 소분류 카테고리 리스트
+		ArrayList<SubCateDTO> subList = subDao.searchBySubCateCode(code);
+		
+		MainCateDTO mainCate = mainDao.searchBySubCate(code);
+		
+		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
+		for (BuypostDTO dto : list)
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+			
+			Date deadDate = null;
+			Date sysDate = null;
+			String dead = dto.getDeadline();
+			
+			try
+			{
+				deadDate = format.parse(dead);
+				sysDate = new Date();
+				String sys = format.format(sysDate);
+				sysDate = format.parse(sys);
+				
+				long day = (deadDate.getTime() - sysDate.getTime()) / (1000*24*60*60); // 일
+				long hour = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) / 3600000; // 시
+				long minute = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) % 3600000 / 60000; // 분
+				
+				dto.setDay(Long.toString(day));
+				dto.setHour(Long.toString(hour));
+				dto.setMinute(Long.toString(minute));
+				
+			} catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}			
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		model.addAttribute("subList", subList);
+		model.addAttribute("mainCate", mainCate);
+		model.addAttribute("code", code);
 		
 		return "/WEB-INF/view/user/user_buyPost_category.jsp";
 	}

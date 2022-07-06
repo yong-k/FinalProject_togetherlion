@@ -65,9 +65,25 @@
 							<div class="col-lg-7 col-md-8">
 								<div class="category-box">
 									<span class="mainCate">${mainCate.name }</span>
-									<a href="#!"><span class="subCate" style="color:#fca652; -webkit-text-stroke:0.8px;">전체보기<i class="bi bi-chevron-right buypost-category" style="color:#fca652;"></i></span></a>
+									<a href="<%=cp %>/buypostmaincate.lion?code=${mainCate.code }">
+									<c:choose>									
+										<c:when test="${mainCate.code == code }">
+											<span class="subCate" style="color:#fca652; -webkit-text-stroke:0.8px;">전체보기<i class="bi bi-chevron-right buypost-category" style="color:#fca652;"></i></span>
+										</c:when>
+										<c:otherwise>
+											<span class="subCate">전체보기<i class="bi bi-chevron-right buypost-category"></i></span>
+										</c:otherwise>									
+									</c:choose>
+									</a>
 									<c:forEach var="subCate" items="${subList }">
-										<a href="#!"><span class="subCate">${subCate.name }<i class="bi bi-chevron-right buypost-category"></i></span></a>
+										<c:choose>
+											<c:when test="${subCate.code == code }">
+												<a href="<%=cp %>/buypostsubcate.lion?code=${subCate.code }"><span class="subCate" style="color:#fca652; -webkit-text-stroke:0.8px;">${subCate.name }<i class="bi bi-chevron-right buypost-category" style="color:#fca652;"></i></span></a>
+											</c:when>
+											<c:otherwise>
+												<a href="<%=cp %>/buypostsubcate.lion?code=${subCate.code }"><span class="subCate">${subCate.name }<i class="bi bi-chevron-right buypost-category"></i></span></a>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</div>
 							</div>

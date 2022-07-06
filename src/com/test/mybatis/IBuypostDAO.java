@@ -24,6 +24,12 @@ public interface IBuypostDAO
 	// 대분류 카테고리별 공동구매 게시물 개수 조회
 	public String mainCateListNum(String code);
 	
+	// 소분류 카테고리별 공동구매 게시물 조회
+	public ArrayList<BuypostDTO> subCateList(String code);
+	
+	// 소분류 카테고리별 공동구매 게시물 개수 조회
+	public String subCateListNum(String code);
+	
 	// 특정 공동구매 게시물 상세보기
 	public BuypostDTO search(String code);
 	
