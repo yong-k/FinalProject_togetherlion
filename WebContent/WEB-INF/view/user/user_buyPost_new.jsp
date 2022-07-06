@@ -66,7 +66,10 @@
 							<div class="col-lg-4 col-md-5">
 								<div class="filter__sort">
 									<span>카테고리 선택</span> <select>
-										<option value="0">전체</option>
+										<c:forEach var="mainCate" items="${mainList }">
+											<option value="${mainCate.code }">${mainCate.name }</option>
+										</c:forEach>
+										<!-- <option value="0">전체</option>
 										<option value="1">쌀/면/빵/떡</option>
 										<option value="2">과일/채소</option>
 										<option value="3">수산/정육/계란</option>
@@ -75,7 +78,7 @@
 										<option value="6">간식/과자</option>
 										<option value="7">우유/유제품</option>
 										<option value="8">물/음료/커피/차</option>
-										<option value="9">양념/소스</option>
+										<option value="9">양념/소스</option> -->
 									</select>
 								</div>
 							</div>
