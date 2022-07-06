@@ -2563,6 +2563,9 @@ i.fa.fa-heart-o.buypost-wish:hover {
 .product__details__text .primary-btn:hover {
     color: #fff;
 }
+button#notUploadImg {
+    cursor: unset;
+}
 
 /*---------------------
   Shop Details
@@ -4275,7 +4278,30 @@ a.ui-corner-all {
     margin-left: 20px;
     margin-top: 2%;
 }
-
+img#buypostInsert-previewImg {
+    height: 100%;
+}
+.buypostInsertFileBtn-box {
+    border-radius: 5px;
+    width: 518px;
+    height: 55px;
+    background-color: #fca652;
+    color: #474747;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.buypostInsertFileBtn-box:hover {
+    background-color: #fc9128;
+}
+.buypostInsertFileBtn-box>hr {
+    border: 1px solid #474747;
+    margin-top: -14px;
+    margin-left: 143px;
+    width: 285px;
+    display: none;
+}
 
 
 /* 마이페이지 */
@@ -4718,10 +4744,6 @@ input.withdrawPoint::placeholder {
     font-size: 16px;
 }
 
-
-
-
-
 /* 마이페이지>개인정보수정 */
 .myInfo-pwCheck-box {
     text-align: center;
@@ -4889,6 +4911,111 @@ span.main-cate {
     padding-left: 4px;
 }
 
+/* 공동구매취소신청팝업 */
+.cancel-content-box {
+    text-align: left;
+    padding: 8px;
+}
+.cancel-content-box p {
+    margin-bottom: 40px;
+}
+span.important {
+    font-weight: bold;
+    font-size: 17px;
+    color: #fc4e4e;
+}
+button.buypostPopupBtn {
+    width: 103.3% !important;
+    margin-left: -3.5%;
+    margin-top: 0 !important;
+}
+button.cancelBtn:disabled, button.cancelBtn:disabled:hover {
+    background-color: #6e6d6d !important;
+    cursor: unset;
+}
+/* 공동구매결제팝업 */
+.buypostPayTable {
+    margin-bottom: 2px;
+}
+.buypostPayTable tr td, .buypostPayTable tr th {
+    border: none;
+    text-align: left;
+    padding-left: 82px;
+}
+.buypostPayTable tr th {
+    color: #828282;
+    width: 177px;
+    vertical-align: middle;
+}
+.buypostPayTable td.number {
+    font-size: 20px;
+}
+.buypostPayTable td.notice {
+    padding-left: 60px;
+}
+.buypostPayTable h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+.buypostPayTable .payNotice {
+    display: inline-block;
+    margin-top: 4px;
+    color: #828282;
+}
+button.popupBtn {
+    width: 103.3%;
+    margin-left: -3.5%;
+}
+button.linkPayToChargeBtn {
+    height: 69px;
+}
+button.linkPayToChargeBtn:hover {
+    background-color: #ff9c3b !important;
+}
+/* 공동구매 구매완료 사진업로드 팝업 */
+.buypostImg-container {
+    width: 980px;
+    height: 600px;
+    text-align: center;
+    padding: 25px;
+}
+.buyCompleteImg-box {
+    border: 1px solid;
+    margin-left: -12px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 939px;
+    height: 300px;
+    overflow: overlay;
+}
+.fileBtn-box {
+    border: 1px solid #646465;
+    border-radius: 5px;
+    color: #646465;
+    margin-left: -13px;
+    width: 942px;
+    height: 50px;
+    padding-top: 7px;
+    cursor: pointer;
+}
+i.bi.bi-folder-plus {
+    margin-right: 18px;
+    font-size: 28px;
+    vertical-align: -webkit-baseline-middle;
+    -webkit-text-stroke: 0.3px;
+}
+button.buypostImgUploadBtn {
+    margin-left: -15px;
+    margin-top: 10px;
+    width: 943px;
+}
+/* 공동구매 구매완료 사진확인팝업 */
+button.buypostImgCheckBtn {
+    margin-left: -15px;
+    margin-top: 10px;
+    width: 943px;
+}
+
 
 /* jquery 달력 */
 .ui-widget-header { border: 0px solid #dddddd; background: #fff; } 
@@ -4963,6 +5090,24 @@ span.main-cate {
  .inp { padding: 10px 10px; background-color: #f1f1f1; border-radius: 4px; border: 0px; } 
 
  .inp:focus { outline: none; background-color: #eee; } 
+ 
+ 
+ 
+/* 시은 추가 */
+ .titlebuypost{
+    width:309.47px; 
+    height:46px;
+    opacity: 0;
+    position: absolute;
+}
+.titlereplybuypost{
+    width:309.47px; 
+    height:46px;
+    opacity: 0;
+    position: absolute;
+}
+ 
+ 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {

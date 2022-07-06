@@ -67,26 +67,14 @@ button.swal2-cancel.swal2-styled:focus {
 <script type="text/javascript">
 	$(function()
 	{
-		/*
-		// sweetalert 예시
-		$("a.empty-heart").click(function()
-		{
-			Swal.fire({
-  			  title: '찜 완료!',
-  			  icon: 'success',
-  			  showCancelButton: true,
-  			  confirmButtonText: '확인',
-  			  cancelButtonText: '확인',
-  				reverseButtons: true
-  			}).then((result) => {
-  			  if (result.isConfirmed) {
-  				  location.href='#!';
-  			  }
-  			})
-		});
-		*/
+		// <등록>
+		$(".saveBtn").click(function()
+    	{
+    		// 결제팝업
+			window.open("user_buypost_pay_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
+        });		
 
-
+		// DatePicker
 		$.datepicker.setDefaults({
 			  dateFormat: 'yy-mm-dd',
 			  prevText: '이전 달',
@@ -106,8 +94,7 @@ button.swal2-cancel.swal2-styled:focus {
 		});
 		
 		
-		/* timepicker */
-		/* https://timepicker.co/# */
+		// TimePicker (https://timepicker.co/#)
 		$('.timepicker').timepicker({
 		    timeFormat: 'h:mm p',
 		    interval: 30,
@@ -124,14 +111,39 @@ button.swal2-cancel.swal2-styled:focus {
 		{
 			 $('input.timepicker').timepicker({});
 		})
+		
+		$('.buypostInsertFileBtn-box').hover(function()
+		{
+			$('.buypostInsertFileBtn-box>hr').css('display', 'block');
+		}, function()
+		{
+			$('.buypostInsertFileBtn-box>hr').css('display', 'none');
+		});
 
 	});
-
+	
+	// 지도
 	function map()
 	{
 		window.open("user_map.jsp", "_blank",
 				"top=150,left=550,width=1000,height=600");
 	}
+	
+	// 사진 미리보기
+	$(function() {
+	    $("#buypostInsertImg-btn").on('change', function(){
+	    readURL(this);
+	    });
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	        $('#buypostInsert-previewImg').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}		
 </script>
 </head>
 <body>
@@ -152,11 +164,16 @@ button.swal2-cancel.swal2-styled:focus {
 					<div class="col-lg-6 col-md-6 pic-container">
 						<div class="product__details__pic">
 							<div class="product__details__pic__item buypost-form-img">
-								<label class="file-btn" for="goods_photo_path"> <i
-									class="bi bi-camera" title="사진첨부"></i>
-								</label> <input type="file" id="goods_photo_path" style="display: none;"
-									accept="image/*" onchange="setThumbnail(event);" />
+								<img style="width: auto;" id="buypostInsert-previewImg">
 							</div>
+							<label class="file-btn" for="buypostInsertImg-btn">
+								<div class="buypostInsertFileBtn-box">
+									<i class="bi bi-folder-plus"></i>
+									대표 사진을 선택해주세요 Click!
+									<hr />
+								</div>	
+							</label> 
+							<input type="file" id="buypostInsertImg-btn" style="display: none;"/>
 						</div>
 					</div>
 					<div class="col-lg-5 col-md-5 detail-container">

@@ -10,7 +10,7 @@ String cp = request.getContextPath();
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>같이사자 계좌관리</title>
+<title>같이사자 공동구매</title>
     <link rel="stylesheet" href="<%=cp %>/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="<%=cp %>/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="<%=cp %>/css/font-awesome.min.css" type="text/css">
@@ -36,124 +36,74 @@ h2#swal2-title {
     padding-top: 40px;
     padding-bottom: 10px;
 }
-input.swal2-input {
-    margin-bottom: 10px;
-}
-input.swal2-input:focus {
-    box-shadow: none;
-    border: 2px solid #fca652;
-}
 button.swal2-confirm.swal2-styled {
     background-color: #fca652;
     width: 100px;
-    margin-right: 20px;
-}
-button.swal2-cancel.swal2-styled {
-    width: 100px;
-    margin-right: 20px;
 }
 button.swal2-confirm.swal2-styled:focus {
-    box-shadow: none;
-}
-button.swal2-cancel.swal2-styled:focus {
     box-shadow: none;
 }
 </style>
 <script type="text/javascript">
 
-
 	$(document).ready(function()
     {
-		
-		// <충전> 버튼 클릭 시, 
-		$(".chargeBtn").click(function()
+		// <구매완료 스크린샷 올리기> 버튼 클릭 시, 
+		$(".buypostImgUploadBtn").click(function()
 	   	{
-			(async () => {
-			    const { value: password } = await Swal.fire({
-			        title: '비밀번호를 입력해주세요.',
-			        input: 'password',
-			        inputPlaceholder: '비밀번호 입력',
-			        showCancelButton: true,
-			        reverseButtons: true,
-			        confirmButtonText: '확인',
-			        cancelButtonText: '취소'
-			    })
-			    // 비밀번호가 맞다면, 등록진행
-			    if (password) {
-			    	if (password=='1234') {
-			    		
-			    		// 충전 처리 코드 작성! (지금은 그냥 충전되게)
-			    		
-			    		
-			    		// 충전 완료 후, 띄울 알림창
-			    		Swal.fire({
-			    			icon: 'success',
-			    			text: '충전이 완료되었습니다.',
-			    			confirmButtonText: '확인'
-			    		}).then(() => {
-	      			    	window.close();
-	      			    });
-			    	}else {
-			    		Swal.fire({
-			    			icon: 'error',
-			    			text: '비밀번호가 일치하지 않습니다.',
-			    			showConfirmButton: false,
-			    			showCancelButton: true,
-			    			cancelButtonText: '확인'
-			    		})
-			    	}
-			    }
-			})()
+    		// 사진 저장하는 처리 코드 작성!
+    		
+    		
+    		// 작업 완료 후, 띄울 알림창
+    		Swal.fire({
+    			icon: 'success',
+    			title: '사진 업로드 완료!',
+    			confirmButtonText: '확인'
+    		}).then(() => {
+    			opener.parent.location.reload();
+			    window.close();
+			});
 	    });
     });
-	
-	// <계좌등록> 버튼 클릭 시, 
-	function accountInsertForm() 
-	{
-		location.href="user_mypage_point_accountInsertForm_popup.jsp";
-	}	
 
+	// 사진 미리보기
+	$(function() {
+	    $("#inputImg").on('change', function(){
+	    readURL(this);
+	    });
+	});
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	        $('#previewImg').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}	
+	
 </script>
 </head>
 <body class="popup">
-	<div class="report-container">
+	<div class="buypostImg-container">
 		<div class="report-title">
-			<h2>포인트 충전</h2>
+			<h2>상품 구매 인증 사진 업로드</h2>
 			<hr class="report-line"/>
 		</div>
 		
-		<form action="">
-			<table class="table accountTable accountInsertTable">
-				<thead></thead>
-				<tbody>
-					<tr>
-						<th>충전 금액</th>
-						<td>
-							<input type="text" class="accountNum" placeholder="금액을 입력해주세요."/>
-							<div class="accountInsert-notice">충전가능금액: 200만원</div>
-						</td>
-					</tr>
-					<tr>
-						<th>출금 계좌</th>
-						<td>   
-							<select class="form-select bank-select chargeAccount-select" aria-label="Default select example">
-								<option value="0" selected>------- 계좌를 선택해주세요 -------</option>
-								<option value="1">KB국민 593***0396</option>
-								<option value="2">신한 392***5410</option>
-								<option value="3">하나 394***6665</option>
-							</select>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="buyCompleteImg-box">
+			 <img style="width: auto;" id="previewImg">
+		</div>
 			
-			<button type="button" class="btn accountManage-btn charge-accountInsertBtn"
-			onclick="javascript:accountInsertForm()">
-				<i class="bi bi-plus account-plus"></i>계좌 등록
-			</button>
-			<button type="button" class="btn btn-primary lion-primary-btn chargeBtn">충전하기</button>
-		</form>
+
 		<hr class="report-line"/>
+		<label for="inputImg">
+			<div class="fileBtn-box">
+				<i class="bi bi-folder-plus"></i>파일 선택
+			</div>	
+		</label>
+		<input type="file" id="inputImg" style="display: none;"/>
+		<button type="button" class="btn btn-primary lion-primary-btn popupBtn buypostImgUploadBtn">구매완료 스크린샷 올리기</button>
 	</div>
 
 

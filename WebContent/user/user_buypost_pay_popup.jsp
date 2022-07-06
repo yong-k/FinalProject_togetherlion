@@ -10,7 +10,7 @@ String cp = request.getContextPath();
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>같이사자 계좌관리</title>
+<title>같이사자 공동구매</title>
     <link rel="stylesheet" href="<%=cp %>/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="<%=cp %>/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="<%=cp %>/css/font-awesome.min.css" type="text/css">
@@ -61,12 +61,31 @@ button.swal2-cancel.swal2-styled:focus {
 </style>
 <script type="text/javascript">
 
+	let referrer = document.referrer;
+	// http://localhost:8090/togetherlion/user/user_buyPostArticle.jsp
+	// http://localhost:8090/togetherlion/user/user_buyPostInsertForm.jsp
+	
+	// 공동구매 게시물 쪽에서 넘어온 경우 (참여자)
+	if (referrer === 'http://localhost:8090/togetherlion/user/user_buyPostArticle.jsp')
+	{
+		$(function()
+		{
+			$('.hostMsg').css('display', 'none');
+		});
+	}
+	// 공동구매 입력폼에서 넘어온 경우 (진행자)
+	else if (referrer === 'http://localhost:8090/togetherlion/user/user_buyPostInsertForm.jsp')
+	{
+		$(function()
+		{
+			$('.participantMsg').css('display', 'none');
+		});
+	}
 
 	$(document).ready(function()
     {
-		
-		// <충전> 버튼 클릭 시, 
-		$(".chargeBtn").click(function()
+		// <결제하기> 버튼 클릭 시, 
+		$(".buypostPayBtn").click(function()
 	   	{
 			(async () => {
 			    const { value: password } = await Swal.fire({
@@ -78,19 +97,20 @@ button.swal2-cancel.swal2-styled:focus {
 			        confirmButtonText: '확인',
 			        cancelButtonText: '취소'
 			    })
-			    // 비밀번호가 맞다면, 등록진행
+			    // 비밀번호가 맞다면, 결제 진행
 			    if (password) {
 			    	if (password=='1234') {
 			    		
-			    		// 충전 처리 코드 작성! (지금은 그냥 충전되게)
+			    		// 결제 처리 코드 작성!
 			    		
 			    		
-			    		// 충전 완료 후, 띄울 알림창
+			    		// 결제 완료 후, 띄울 알림창
 			    		Swal.fire({
 			    			icon: 'success',
-			    			text: '충전이 완료되었습니다.',
+			    			text: '결제가 완료되었습니다.',
 			    			confirmButtonText: '확인'
 			    		}).then(() => {
+			    			opener.parent.location.reload();
 	      			    	window.close();
 	      			    });
 			    	}else {
@@ -107,51 +127,79 @@ button.swal2-cancel.swal2-styled:focus {
 	    });
     });
 	
-	// <계좌등록> 버튼 클릭 시, 
-	function accountInsertForm() 
-	{
-		location.href="user_mypage_point_accountInsertForm_popup.jsp";
-	}	
-
+	// <충전하러 가기> 버튼 클릭 시, 
+	function charge()
+	{	
+		location.href="user_mypage_point_charge_popup.jsp";
+	}
 </script>
 </head>
 <body class="popup">
+
+<!-- 
+	이 팝업창을 호출한 부모창이 buyPostInsertForm.jsp 인지, buyPostArticle.jsp를 이용해서 
+	아래에서 보여지는 내용 다르게 처리 
+-->
+ 
 	<div class="report-container">
 		<div class="report-title">
-			<h2>포인트 충전</h2>
+			<!-- buyPostInsertForm 인 경우 -->
+			<h2 class="hostMsg">공동구매 진행 결제창</h2>
+			<!-- buyPostArticle 인 경우 -->
+			<h2 class="participantMsg">공동구매 참여 결제창</h2>
 			<hr class="report-line"/>
 		</div>
 		
 		<form action="">
-			<table class="table accountTable accountInsertTable">
+			<table class="table buypostPayTable">
 				<thead></thead>
 				<tbody>
 					<tr>
-						<th>충전 금액</th>
-						<td>
-							<input type="text" class="accountNum" placeholder="금액을 입력해주세요."/>
-							<div class="accountInsert-notice">충전가능금액: 200만원</div>
-						</td>
+						<th colspan="2">
+							<!-- buyPostInsertForm 인 경우 -->
+							<h4 class="hostMsg">포인트 결제 후, 공동구매 진행이 시작됩니다.</h4>
+							<!-- buyPostArticle 인 경우 -->
+							<h4 class="participantMsg">포인트 결제 후, 공동구매 참여가 완료됩니다.</h4>
+						
+						</th>
 					</tr>
 					<tr>
-						<th>출금 계좌</th>
-						<td>   
-							<select class="form-select bank-select chargeAccount-select" aria-label="Default select example">
-								<option value="0" selected>------- 계좌를 선택해주세요 -------</option>
-								<option value="1">KB국민 593***0396</option>
-								<option value="2">신한 392***5410</option>
-								<option value="3">하나 394***6665</option>
-							</select>
+						<th>구매 수량</th>
+						<td class="number">2</td>
+					</tr>
+					<tr>
+						<th>잔여 포인트</th>
+						<td class="number">27,000</td>
+					</tr>
+					<tr>
+						<th>결제 포인트</th>
+						<td class="number">3,600</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="notice">
+							<!-- buyPostInsertForm 인 경우 -->
+							<span class="payNotice hostMsg">* 게시물 수정 시, 참여자들은 대기 상태로 전환됩니다.</span><br />
+							<span class="payNotice hostMsg">* 진행 취소 시, 포인트는 환불 처리됩니다.</span><br />
+							<span class="payNotice hostMsg">* 공동구매 마감 24시간 전에는 수정 및 취소 불가능합니다.</span>
+							<!-- buyPostArticle 인 경우 -->
+							<span class="payNotice participantMsg">* 참여 취소 시, 포인트는 환불 처리됩니다.</span><br />
+							<span class="payNotice participantMsg">* 공동구매 마감 24시간 전에는 취소 불가능합니다.</span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
-			<button type="button" class="btn accountManage-btn charge-accountInsertBtn"
-			onclick="javascript:accountInsertForm()">
-				<i class="bi bi-plus account-plus"></i>계좌 등록
+			
+			<!-- if, 잔여포인트 < 결제포인트 -->
+			<!-- 
+			<button type="button" class="btn btn-primary lion-primary-btn popupBtn buypostPayBtn">결제하기</button>
+			 -->
+			<!-- else, 잔여포인트 >= 결제포인트 -->
+			<button type="button" class="btn btn-primary lion-primary-btn popupBtn linkPayToChargeBtn"
+			onclick="javascript:charge()">
+				포인트가 부족합니다. <br />
+				포인트 충전하러 가기 Click!				
 			</button>
-			<button type="button" class="btn btn-primary lion-primary-btn chargeBtn">충전하기</button>
 		</form>
 		<hr class="report-line"/>
 	</div>
