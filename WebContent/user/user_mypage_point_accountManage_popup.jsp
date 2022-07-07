@@ -151,7 +151,6 @@ button.swal2-cancel.swal2-styled:focus {
 	// <계좌등록> 버튼 클릭 시, 
 	function accountInsertForm() 
 	{
-		//window.open("user_mypage_point_accountInsertForm_popup.jsp", "_self", "top=150,left=550,width=520,height=685");
 		location.href="user_mypage_point_accountInsertForm_popup.jsp";
 	}
 </script>

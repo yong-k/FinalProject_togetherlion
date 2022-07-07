@@ -65,8 +65,8 @@ button.swal2-cancel.swal2-styled:focus {
 	$(document).ready(function()
     {
 		
-		// <등록> 버튼 클릭 시, 
-		$(".accountInsertBtn").click(function()
+		// <충전> 버튼 클릭 시, 
+		$(".chargeBtn").click(function()
 	   	{
 			(async () => {
 			    const { value: password } = await Swal.fire({
@@ -82,13 +82,13 @@ button.swal2-cancel.swal2-styled:focus {
 			    if (password) {
 			    	if (password=='1234') {
 			    		
-			    		// 계좌등록 작업 처리 코드 작성!
+			    		// 충전 처리 코드 작성! (지금은 그냥 충전되게)
 			    		
 			    		
-			    		// 계좌등록 완료 후, 띄울 알림창
+			    		// 충전 완료 후, 띄울 알림창
 			    		Swal.fire({
 			    			icon: 'success',
-			    			text: '계좌가 등록되었습니다.',
+			    			text: '충전이 완료되었습니다.',
 			    			confirmButtonText: '확인'
 			    		}).then(() => {
 	      			    	window.close();
@@ -106,14 +106,19 @@ button.swal2-cancel.swal2-styled:focus {
 			})()
 	    });
     });
+	
+	// <계좌등록> 버튼 클릭 시, 
+	function accountInsertForm() 
+	{
+		location.href="user_mypage_point_accountInsertForm_popup.jsp";
+	}	
 
 </script>
 </head>
 <body class="popup">
 	<div class="report-container">
 		<div class="report-title">
-			<h2>계좌 등록</h2>
-			<p class="account-text">처음 계좌 등록 시, 자동으로 대표계좌로 등록됩니다. (대표계좌는 삭제 불가)</p> 
+			<h2>포인트 충전</h2>
 			<hr class="report-line"/>
 		</div>
 		
@@ -122,34 +127,31 @@ button.swal2-cancel.swal2-styled:focus {
 				<thead></thead>
 				<tbody>
 					<tr>
-						<th>은행 선택</th>
-						<td>   
-							<select class="form-select bank-select" aria-label="Default select example">
-								<option value="0" selected>--선택--</option>
-								<option value="1">KB국민</option>
-								<option value="2">NH농협</option>
-								<option value="3">한국씨티</option>
-								<option value="4">IBK기업</option>
-								<option value="5">신한</option>
-								<option value="6">하나</option>
-								<option value="7">우리</option>
-								<option value="8">카카오뱅크</option>
-								<option value="9">SC제일</option>
-								<option value="10">토스</option>
-							</select>
+						<th>충전 금액</th>
+						<td>
+							<input type="text" class="accountNum" placeholder="금액을 입력해주세요."/>
+							<div class="accountInsert-notice">충전가능금액: 200만원</div>
 						</td>
 					</tr>
 					<tr>
-						<th>계좌번호</th>
-						<td>
-							<input type="text" class="accountNum" placeholder="'-' 없이 입력하세요."/>
-							<div class="accountInsert-notice">본인 명의 계좌만 등록 가능합니다.</div>
+						<th>출금 계좌</th>
+						<td>   
+							<select class="form-select bank-select chargeAccount-select" aria-label="Default select example">
+								<option value="0" selected>------- 계좌를 선택해주세요 -------</option>
+								<option value="1">KB국민 593***0396</option>
+								<option value="2">신한 392***5410</option>
+								<option value="3">하나 394***6665</option>
+							</select>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
-			<button type="button" class="btn btn-primary lion-primary-btn accountInsertBtn">계좌 등록</button>
+			<button type="button" class="btn accountManage-btn charge-accountInsertBtn"
+			onclick="javascript:accountInsertForm()">
+				<i class="bi bi-plus account-plus"></i>계좌 등록
+			</button>
+			<button type="button" class="btn btn-primary lion-primary-btn chargeBtn">충전하기</button>
 		</form>
 		<hr class="report-line"/>
 	</div>

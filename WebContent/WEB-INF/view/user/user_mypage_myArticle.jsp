@@ -69,31 +69,116 @@ button.swal2-cancel.swal2-styled:focus {
 <script type="text/javascript">
 
 	$(document).ready(function()
-    {
-    	$(".article-deleteBtn").click(function()
+	{	
+		$(".titlebuypost").click(function()
 		{
-    		Swal.fire({
-    			  title: '댓글을 삭제하시겠습니까?',
-    			  icon: 'warning',
-    			  iconColor: '#f27474',
-    			  showCancelButton: true,
-    			  confirmButtonText: '삭제',
-    			  cancelButtonText: '취소',
-    			  reverseButtons: true
-    			}).then((result) => {
-    				if (result.isConfirmed) {
-      				  Swal.fire({
-        			    	title: '삭제 완료!',
-        			    	icon: 'success',
-        			    	confirmButtonText: '확인'
-        			    }).then(() => {
-        			    	location.href='#!';
-        			    });
-  		    	  }
-    			})
+			location.href = "buypostarticle.lion?code=" + $(this).val();
+		});
+		
+		$(".titlereplybuypost").click(function()
+		{
+			location.href = "buypostarticle.lion?code=" + $(this).val();
+		});
+	});
+
+	$(document).ready(function()
+	{	
+		var valueArr = new Array();
+		var list = $("input[name='article_check']");
+		
+		$(".buypost_deleteBtn").click(function()
+		{
+			if ($("input[name='article_check']:checked").length != 0)
+			{
+				Swal.fire
+				({
+				  title: '글을 삭제하시겠습니까?',
+				  icon: 'warning',
+				  iconColor: '#f27474',
+				  showCancelButton: true,
+				  confirmButtonText: '삭제',
+				  cancelButtonText: '취소',
+				  reverseButtons: true
+				}).then((result) => {
+					if (result.isConfirmed) 
+					{
+	                    // Delete 완료 후, 띄울 알림창
+	  				 	Swal.fire
+	  				 	({
+	  				 		title: '삭제 완료!',
+	    			    	icon: 'success',
+	    			    	confirmButtonText: '확인'
+	    			    }).then(() => {
+	    			    	// Delete 작업 처리 코드 작성하기!
+	
+	    			    	for(var i = 0; i < list.length; i++)
+							{
+								if(list[i].checked)
+								{
+									valueArr.push(list[i].value);
+								}
+							}
+								
+							//선택된 체크박스의 값을 콘솔에 출력
+							var str = '';
+							for(var i in valueArr)
+							{
+								str += valueArr[i] + ',';
+							}    
+							
+							str = str.replace(/,$/, '');
+			        		$(location).attr("href", "myarticledelete.lion?code=" + str);
+							
+		        			
+	    			    });
+		    	  }
+				});
+			}
+			
 		});
 
-    });	
+	});
+	
+	$(document).ready(function() 
+	{
+		$('#myArticleBuypost').show();
+	    $('#myArticleBuypostReply').hide();
+		
+		$('#myArticleSelectBox').change(function() 
+		{
+			var result = $('#myArticleSelectBox option:selected').val();
+		    if (result == '0') 
+		    {
+		      $('#myArticleBuypost').show();
+		      $('#myArticleBuypostReply').hide();
+		    } else 
+		    {
+		      $('#myArticleBuypost').hide();
+		      $('#myArticleBuypostReply').show();
+		    }
+		 }); 
+	});
+	
+	$(window).load(function(){
+	    // 글 전체 선택
+		$("input[name='article_checkAll']").click(function () {
+	        var chk_listArr = $("input[name='article_check']");
+	        for (var i=0; i < chk_listArr.length; i++) {
+	            chk_listArr[i].checked = this.checked;
+	        }
+	    });
+	    
+	    $("input[name='article_check']").click(function () { 
+	        if ($("input[name='article_check']:checked").length == 10) {
+	            $("input[name='article_checkAll']")[0].checked = true;
+	        } else  {                                                
+	            $("input[name='article_checkAll']")[0].checked = false; 
+	        }
+	    });
+
+	});
+	
+	
 </script>
 </head>
 <body>
@@ -113,14 +198,14 @@ button.swal2-cancel.swal2-styled:focus {
 				<c:import url="user_mypage_menubar.jsp"></c:import>
 
 				<div class="col-lg-9 col-md-7">
-					<div class="product__discount">
+					<div class="product__discount mypage-title-box">
 						<div class="section-title myBuypost-title">
 							<h2>게시물 관리</h2>
 						</div>
 						<div class="myBuypost-form-box">
 							<form action="#">
 								<div class="myBuypost-select myBuypost-select-one">
-									<select class="form-select myBuypost-selectBox" aria-label="Default select example">
+									<select id = "myArticleSelectBox"class="form-select myBuypost-selectBox" aria-label="Default select example">
 										<option value="0" selected>공동구매 게시물</option>
 										<option value="1">공동구매 댓글</option>
 									</select>
@@ -130,50 +215,69 @@ button.swal2-cancel.swal2-styled:focus {
 					</div>
 					
 					<!-- if, ① 공동구매 게시물 -->
-					<!-- 
-					<table class="table noticeTable mypage-buypostTable">
-						<thead>
-							<tr>
-								<th scope="col">번호</th>
-								<th scope="col">제목</th>
-								<th scope="col">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">3</th>
-								<td class="title"><a href="">도지마롤 1kg 같이사요~(10/15)</a></td>
-								<td>2022-05-15</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td class="title"><a href="">청경재 1kg 같이사영(8/9)</a></td>
-								<td>2022-04-04</td>
-							</tr>
-							<tr>
-								<th scope="row">1</th>
-								<td class="title"><a href="">장인약과 5kg 공구모집함(22/30)</a></td>
-								<td>2022-03-15</td>
-							</tr>
-						</tbody>
-					</table>
-					-->
+					<div id = "myArticleBuypost">
+						<table class="table noticeTable mypage-buypostTable">
+							<thead>
+								<tr>
+									<th scope="col">번호</th>
+									<th scope="col">내용</th>
+									<th scope="col">작성일</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="buypost" items="${buypost }">
+									<tr>
+										<th scope="row"> ${buypost.num }</th>
+										<td class="title"><input class="titlebuypost" type="button" value="${buypost.code }">${buypost.title}</td>
+										<td>${buypost.write_datetime }</td>
+									</tr>
+								</c:forEach>
+						<!-- 
+								<tr>
+									<th scope="row">3</th>
+									<td class="title"><a href="">도지마롤 1kg 같이사요~(10/15)</a></td>
+									<td>2022-05-15</td>
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td class="title"><a href="">청경재 1kg 같이사영(8/9)</a></td>
+									<td>2022-04-04</td>
+								</tr>
+								<tr>
+									<th scope="row">1</th>
+									<td class="title"><a href="">장인약과 5kg 공구모집함(22/30)</a></td>
+									<td>2022-03-15</td>
+								</tr>
+						-->
+							</tbody>
+						</table>
+					</div>
 					
 					<!-- if, ② 공동구매 댓글 -->
-					<button type="button" class="btn btn-primary inquiryBtn article-deleteBtn">선택삭제</button>
-					<form action="" class="myArticle-form">
+					
+					<form id = "myArticleBuypostReply" class="myArticle-form" >
+						<button type="button" class="btn btn-primary inquiryBtn article-deleteBtn buypost_deleteBtn">선택삭제</button>
 						<table class="table noticeTable mypage-buypostTable">
 							<thead>
 								<tr>
 									<th scope="col" class="myArticle-checkbox">
-										<input class="form-check-input allCheck" type="checkbox" name="article-check" value="">
+										<input class="form-check-input allCheck" type="checkbox" name="article_checkAll" id="article_checkAll">
 									</th>
 									<th scope="col">내용</th>
 									<th scope="col">작성일</th>
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach var="buypost_reply" items="${buypost_reply }">
 								<tr>
+									<td class="myArticle-checkbox">
+										<input class="form-check-input" type="checkbox" name="article_check" id="article_check" value="${buypost_reply.code }">
+									</td>
+									<td class="title"><input class="titlereplybuypost" type="button" value="${buypost_reply.buypost_code }">${buypost_reply.content }</td>
+									<td>${buypost_reply.write_datetime }</td>
+								</tr>
+								</c:forEach>
+								<!-- <tr>
 									<td class="myArticle-checkbox">
 										<input class="form-check-input" type="checkbox" name="article-check" value="">
 									</td>
@@ -207,7 +311,7 @@ button.swal2-cancel.swal2-styled:focus {
 									</td>
 									<td class="title"><a href="">물건 구매는 언제 하시나요?</a></td>
 									<td>2022-03-15</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</form>

@@ -17,13 +17,58 @@
 		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]>
 	</select>
 	
+	<select id="newListNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]>
+	</select>
+	
+	<select id="newListCate" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, WRITE_DATETIME
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
+	
+	<select id="newListCateNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(WRITE_DATETIME, 'YYYY-MM-DD HH24:MI:SS')) <= 7 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
+
+	
+	<select id="mainCateList" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, SUB_CATE_CODE, MAIN_CATE_CODE
+		FROM VIEW_BUYPOST_CATE
+		WHERE MAIN_CATE_CODE = #{code}
+	</select>
+	
+	<select id="mainCateListNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_CATE
+		WHERE MAIN_CATE_CODE = #{code}
+	</select>
+	
+	<select id="subCateList" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, SUB_CATE_CODE, MAIN_CATE_CODE
+		FROM VIEW_BUYPOST_CATE
+		WHERE SUB_CATE_CODE = #{code}
+	</select>
+	
+	<select id="subCateListNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_CATE
+		WHERE SUB_CATE_CODE = #{code}
+	</select>
+	
 	
 	<select id="search" resultType="com.test.mybatis.BuypostDTO">
-		SELECT CODE, GOODS_PHOTO_PATH, URL, MAIN_CATE, SUB_CATE, TITLE, WRITE_DATETIME
+		SELECT CODE, GOODS_PHOTO_PATH, URL, MAIN_CATE_CODE, MAIN_CATE_NAME, SUB_CATE_CODE, SUB_CATE_NAME, TITLE, WRITE_DATETIME
 		        , PERSON_PRICE, MEMBER_CODE, DEADLINE, COUNT, TRADE_DATETIME, EXPIRATION_DATETIME, CONTENT
 		FROM VIEW_BUYPOST_DETAILS
 		WHERE CODE = #{code}
 	</select>
+	
+	
 	
 	
 </mapper>

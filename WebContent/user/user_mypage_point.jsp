@@ -41,17 +41,17 @@
 	// ① 충전
 	function charge()
 	{	
-		window.open("user_mypage_point_charge_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+		window.open("user_mypage_point_charge_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
 	}
 	// ② 인출
 	function withdrawal()
 	{	
-		window.open("user_mypage_point_withdrawal_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+		window.open("user_mypage_point_withdrawal_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
 	}
 	// ③ 계좌관리
 	function accountManage()
 	{	
-		window.open("user_mypage_point_accountManage_popup.jsp", "_blank", "top=150,left=550,width=520,height=685");
+		window.open("user_mypage_point_accountManage_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
 	}
 </script>		 
 </head>
@@ -77,7 +77,7 @@
 					onclick="javascript:charge()">충전하기</button>
 					<button type="button" class="btn btn-primary pointBtn withdraw-btn"
 					onclick="javascript:withdrawal()">인출하기</button>
-					<button type="button" class="btn btn-primary pointBtn accountManage-btn"
+					<button type="button" class="btn btn-primary pointBtn manageAccount-btn"
 					onclick="javascript:accountManage()">계좌관리</button>
 				</div>
 			</div>
