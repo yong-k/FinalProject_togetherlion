@@ -1,6 +1,9 @@
 package com.test.mybatis;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,9 +148,24 @@ public class AdminController
         
         IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
         
-		 model.addAttribute("list", dao.listPointWithdrawal());  
+		model.addAttribute("list", dao.listPointWithdrawal());  
         
         result = "/WEB-INF/view/admin/admin_point_withdrawal.jsp";
+
+        return result;
+    }
+	
+	//완료포인트지급
+	@RequestMapping(value="/admin_point_complete.lion")
+    public String PointComplete(Model model)
+    {
+        String result=null;
+        
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+        
+		model.addAttribute("list", dao.listPointComplete());  
+        
+        result = "/WEB-INF/view/admin/admin_point_complete.jsp";
 
         return result;
     }
@@ -166,21 +184,26 @@ public class AdminController
 
         return result;
     }
-
-    //공지글보기
-    @RequestMapping(value= "/ad_noticeArticle.lion")
-    public String noticeArticle() 
+  
+    
+    //공지글조회
+    @RequestMapping(value= "/ad_notice_article.lion", method=RequestMethod.GET)
+    public String noticeArticle(String code, Model model) 
     {
         String result = null;
 
-
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class); 
+        ArrayList<AdNoticeListDTO> dto = dao.listNoticeArticle(code); 
+ 
+        
+        model.addAttribute("article", dto);
         result = "/WEB-INF/view/admin/admin_homepage_noticeArticle.jsp";
 
         return result;
     }
 
-    // 공지글쓰기
-    @RequestMapping(value="/ad_noticeInsertForm.lion")
+    // 공지글쓰기페이지로
+    @RequestMapping(value="/ad_notice_insertForm.lion")
     public String noticeInsertForm()
     {
         String result=null;
@@ -191,18 +214,25 @@ public class AdminController
     }
 
     // 공지글쓰기_ok
-    @RequestMapping(value="/ad_noticeInsertForm_ok.lion")
-    public String noticeInsertFormOk()
+    @RequestMapping(value="/ad_notice_insertForm_ok.lion", method=RequestMethod.GET)
+    public String noticeInsertFormOk(AdNoticeListDTO insertDTO)
     {
         String result=null;
 
-        result = "/WEB-INF/view/admin/admin_homepage_noticeInsertForm_ok.jsp";
 
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+        AdNoticeListDTO dto = dao.insertNoticeArticle(insertDTO);
+        
+        
+        //model.addAttribute("article", dto); 
+        //System.out.print();  // 테스트
+        
+        result = "/ad_notice_article.lion";
         return result;
     }
 
     //공지글수정
-    @RequestMapping(value="/ad_noticeUpdateForm.lion")
+    @RequestMapping(value="/ad_notice_updateForm.lion")
     public String noticeUpdateForm()
     {
         String result = null;
@@ -213,7 +243,7 @@ public class AdminController
     }
 
     //공지글수정_ok
-    @RequestMapping(value="/ad_noticeUpdateForm_ok.lion")
+    @RequestMapping(value="/ad_notice_updateForm_ok.lion")
     public String noticeUpdateFormOk()
     {
         String result = null;
@@ -222,4 +252,40 @@ public class AdminController
 
         return result;
     }
+    
+    // 신고접수내역
+    @RequestMapping(value = "/admin_report_receptionList.lion")
+    public String reportReceptionList(Model model) 
+    {
+        String result = null;
+
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+
+        model.addAttribute("list", dao.listReportReception());
+
+        result = "/WEB-INF/view/admin/admin_report_receptionList.jsp";
+
+        return result;
+    }
+    
+    //신고접수내역 상세
+    @RequestMapping(value = "/admin_report_receptionDetail.lion", method = RequestMethod.GET)
+    public String reportReceptionDetail(String buypost_code, Model model) 
+    {
+    	System.out.println(buypost_code);
+        String result = null;
+
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+
+        //model.addAttribute("list", dao.listReportReceptionDetail(buypost_code));
+
+        result = "/WEB-INF/view/admin/admin_report_receptionDetail.jsp";
+        
+        
+        return result;
+        
+        
+    }
+
+    
 }
