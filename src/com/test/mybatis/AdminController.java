@@ -170,6 +170,24 @@ public class AdminController
         return result;
     }
 	
+	// 카테고리
+	@RequestMapping(value="/admin_homepage_categoryList.lion")
+    public String listCategory(Model model)
+    {
+        String result=null;
+        
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+        
+		model.addAttribute("list", dao.listCategory());  
+		model.addAttribute("sub", dao.listSubCategory());  
+        
+        result = "/WEB-INF/view/admin/admin_homepage_categoryList.jsp";
+
+        return result;
+    }
+	
+
+	
 	// 공지사항 메인
     @RequestMapping(value = "/ad_notice_list.lion")
     public String noticeList(Model model) throws SQLException
