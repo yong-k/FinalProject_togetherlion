@@ -21,7 +21,7 @@
 | ----------- | ----------- |
 | 김정용(팀장) | cin03023@gmail.com |
 | 신시은 | 1031cory@naver.com |
-| 우수정 | wsj00332299@gmail.com |
+| 우수정 | carpediemwsj@naver.com|
 | 이시우 | siwooeel@gmail.com |
 | 이아린 | linavely99@gmail.com |
 | 정은정 | kreunjung.jung@gmail.com |
