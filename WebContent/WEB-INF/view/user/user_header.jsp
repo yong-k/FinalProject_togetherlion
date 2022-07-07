@@ -42,7 +42,7 @@
         <div class="header__top">
         	<div class="header__top__right">
         		<div class="header__top__right__social">
-        			<a href="<%=cp %>/user/user_joinInsertForm.jsp">회원가입</a>
+        			<a href="<%=cp %>/join.lion">회원가입</a>
                 </div>
                 <div class="header__top__right__auth">
                     <a href="<%=cp %>/loginform.lion">로그인</a>
