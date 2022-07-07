@@ -21,11 +21,33 @@
     <link rel="stylesheet" href="<%=cp %>/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<%=cp %>/css/userStyle.css" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"> 
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function()	
+	{	
+		// 해당 공동구매 게시물 상세보기
+		$(".buypost_go").click(function()		
+		{
+			location.href = "buypostarticle.lion?code=" + $(this).val();	
+		});
+		
+		
+		$("#mainCateCode").change(function()
+		{
+			location.href = "buypostfinalcate.lion?code=" + $(this).val();
+		});
+		
+	});
+	
+	
+</script>
 </head>
 <body>
 
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
 
 	<section class="breadcrumb-section set-bg finalBuyPost-banner"
 		data-setbg="<%=cp %>/img/hero/banner4.jpg">	
@@ -51,16 +73,34 @@
 								<div class="filter__sort">
 									<span>카테고리 선택</span>
 									<select id="mainCateCode" name="mainCateCode">
-										<c:forEach var="mainCate" items="${mainList }">
 										<c:choose>
-											<c:when test="${mainCate.code == code }">
-												<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${mainCate.code }">${mainCate.name }</option>
-											</c:otherwise>
-										</c:choose>											
-										</c:forEach>
+										<c:when test="${code == null || code == 'every' }">
+											<option value="every">전체보기</option>
+											<c:forEach var="mainCate" items="${mainList }">
+												<c:choose>
+												<c:when test="${mainCate.code == code }">
+													<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${mainCate.code }">${mainCate.name }</option>
+												</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<option value="every">전체보기</option>
+											<c:forEach var="mainCate" items="${mainList }">
+												<c:choose>
+												<c:when test="${mainCate.code == code }">
+													<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${mainCate.code }">${mainCate.name }</option>
+												</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:otherwise>
+										</c:choose>
 									</select>
 								</div>
 							</div>

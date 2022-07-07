@@ -39,12 +39,6 @@
 			location.href = "buypostnewcate.lion?code=" + $(this).val();
 		});
 		
-		// 나중에 해보기
-		/* $("#mainCateCode").change(function()
-		{
-			ajaxRequest();
-		}); */
-		
 	});
 	
 	

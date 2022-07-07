@@ -48,5 +48,11 @@ public interface IBuypostDAO
 	// 마감임박 게시물 개수 조회
 	public String finalListNum();
 	
+	// 마감임박 게시물 조회
+	public ArrayList<BuypostDTO> finalListCate(String code);
+	
+	// 마감임박 게시물 개수 조회
+	public String finalListCateNum(String code);
+	
 	
 }
