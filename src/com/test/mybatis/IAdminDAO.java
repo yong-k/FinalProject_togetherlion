@@ -30,18 +30,41 @@ public interface IAdminDAO
     public ArrayList<MemberDTO> listWithdrawalMember();
 
     //포인트충전(조회)
-    public ArrayList<MemberDTO> listPointCharge();
+    public ArrayList<PointDTO> listPointCharge();
 
     //포인트결제(조회)
-    public ArrayList<MemberDTO> listPointPayment();
+    public ArrayList<PointDTO> listPointPayment();
 
     //포인트환불(조회)
-    public ArrayList<MemberDTO> listPointRefund();
+    public ArrayList<PointDTO> listPointRefund();
 
     //포인트인출(조회)
-    public ArrayList<MemberDTO> listPointWithdrawal();
+    public ArrayList<PointDTO> listPointWithdrawal();
+    
+    //완료포인트지급(조회)
+    public ArrayList<PointDTO> listPointComplete();
 	
-	// 공지글 목록
+    // 공지글 목록
     public ArrayList<AdNoticeListDTO> listNotice() throws SQLException;
+
+    // 공지사항 게시물조회 
+    public ArrayList<AdNoticeListDTO> listNoticeArticle(String code);
+
+    // 공지사항 게시물작성
+    public AdNoticeListDTO insertNoticeArticle(AdNoticeListDTO dto);
+
+    // 공지사항 게시물수정
+    public ArrayList<AdNoticeListDTO> modifyNoticeArticle();
+    
+    // 메인카테고리 목록
+    public ArrayList<MainCateDTO> listCategory();
 	
+    // 서브카테고리 목록
+    public ArrayList<SubCateDTO> listSubCategory();
+    
+    // 신고접수내역
+    public ArrayList<ReportDTO> listReportReception();
+    
+    // 신고접수내역 상세
+    public ArrayList<ReportDTO> listReportReceptionDetail(String buypost_code);
 }

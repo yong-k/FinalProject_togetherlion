@@ -198,6 +198,7 @@
 									</tr>
 								</thead>
 								<tbody>
+								<!-- 
 									<tr>
 										<td>211</td>
 										<td>abc111@naver.com</td>
@@ -205,119 +206,18 @@
 										<td>해피</td>
 										<td>2022-05-21</td> 
 										<td>9</td>
-									</tr>
+									</tr> -->
+									<c:forEach var="member" items="${list }">
 									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
+										<td>${member.num }</td>
+										<td>${member.id }</td>
+										<td>${member.name }</td>
+										<td>${member.nickname }</td>
+										<td>${member.change_sleep }</td>
+										<td>${member.sleep_date }</td>
 									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
+									</c:forEach> 
+									
 								</tbody>
 							</table>
 						</div>

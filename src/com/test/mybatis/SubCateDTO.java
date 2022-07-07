@@ -2,7 +2,19 @@ package com.test.mybatis;
 
 public class SubCateDTO
 {
-	String code, name;
+	String code, name, main_cate_code;
+	
+	
+
+	public String getMain_cate_code()
+	{
+		return main_cate_code;
+	}
+
+	public void setMain_cate_code(String main_cate_code)
+	{
+		this.main_cate_code = main_cate_code;
+	}
 
 	public String getCode()
 	{
