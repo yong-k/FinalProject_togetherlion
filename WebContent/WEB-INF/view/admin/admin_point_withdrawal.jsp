@@ -23,7 +23,6 @@
     color: #fca652 !important;
 }
 </style>	
-
 </head>
 <body class="sb-nav-fixed">
 
@@ -49,13 +48,13 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse show" id="member" aria-labelledby="headingOne"
+						<div class="collapse" id="member" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
 								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
 								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
-								<a class="nav-link current-menu" href="admin_member_withdrawal.jsp">탈퇴회원</a>
+								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -68,13 +67,13 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="point" aria-labelledby="headingTwo"
+						<div class="collapse show" id="point" aria-labelledby="headingTwo"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_point_charge.jsp">포인트충전</a> 
 								<a class="nav-link" href="admin_point_payment.jsp">포인트결제</a> 
 								<a class="nav-link" href="admin_point_refund.jsp">포인트환불</a> 
-								<a class="nav-link" href="admin_point_withdrawal.jsp">포인트인출</a> 
+								<a class="nav-link current-menu" href="admin_point_withdrawal.jsp">포인트인출</a> 
 								<a class="nav-link" href="admin_point_complete.jsp">완료포인트지급</a>
 							</nav>
 						</div>
@@ -167,9 +166,9 @@
 						<!--  Breadcrumb -->
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">회원조회</li>
+								<li class="breadcrumb-item">포인트조회</li>
 								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">탈퇴회원</a></li>
+									href="#">포인트인출</a></li>
 							</ol>
 						</nav>
 
@@ -191,131 +190,25 @@
 									<tr>
 										<th>번호</th>
 										<th>이메일(ID)</th>
-										<th>이름</th>
-										<th>전화번호</th>
-										<th>탈퇴일</th>
+										<th>이름 </th>				
+										<th>닉네임</th>
+										<th>인출포인트</th> 
+										<th>인출계좌정보</th>
+						 				<th>인출일</th>
 									</tr>
+									<c:forEach var="point" items="${list }">
+									<tr>
+										<td>${point.num }</td>
+										<td>${point.id }</td>
+										<td>${point.name }</td>
+										<td>${point.nickname }</td>
+										<td>${point.amount }</td>
+										<td>${point.withdrawal_account_info }</td>
+										<td>${point.datetime }</td>
+									</tr>
+									</c:forEach>
 								</thead>
 								<tbody>
-									<tr>
-										<td>189</td>
-										<td>zzz123123@naver.com</td>
-										<td>김재희</td>
-										<td>010-1111-1111</td>
-										<td>2022-05-29</td> 
-									</tr>
-									
-									<tr>
-										<td>188</td>
-										<td>zzz12121@naver.com</td>
-										<td>신미나</td>
-										<td>010-2222-2222</td>
-										<td>2022-05-20</td> 
-									</tr>
-									
-									<tr>
-										<td>187</td>			
-										<td>aaa1010@naver.com</td>
-										<td>이지혜</td>
-										<td>010-3333-3333</td>
-										<td>2022-05-12</td> 
-									</tr>
-						
-									<tr>
-										<td>189</td>
-										<td>zzz123123@naver.com</td>
-										<td>김재희</td>
-										<td>010-4444-4444</td>
-										<td>2022-05-29</td> 
-									</tr>
-									
-									<tr>
-										<td>188</td>
-										<td>zzz12121@naver.com</td>
-										<td>신미나</td>
-										<td>010-5555-5555</td>
-										<td>2022-05-20</td> 
-									</tr>
-									
-									<tr>
-										<td>187</td>			
-										<td>aaa1010@naver.com</td>
-										<td>이지혜</td>
-										<td>010-6666-6666</td>
-										<td>2022-05-12</td> 
-									</tr>
-									
-									<tr>
-										<td>189</td>
-										<td>zzz123123@naver.com</td>
-										<td>김재희</td>
-										<td>010-7777-7777</td>
-										<td>2022-05-29</td> 
-									</tr>
-									
-									<tr>
-										<td>188</td>
-										<td>zzz12121@naver.com</td>
-										<td>신미나</td>
-										<td>010-8888-8888</td>
-										<td>2022-05-20</td> 
-									</tr>
-									
-									<tr>
-										<td>187</td>			
-										<td>aaa1010@naver.com</td>
-										<td>이지혜</td>
-										<td>010-9999-9999</td>
-										<td>2022-05-12</td> 
-									</tr>
-									
-									<tr>
-										<td>189</td>
-										<td>zzz123123@naver.com</td>
-										<td>김재희</td>
-										<td>010-7777-7777</td>
-										<td>2022-05-29</td> 
-									</tr>
-									
-									<tr>
-										<td>188</td>
-										<td>zzz12121@naver.com</td>
-										<td>신미나</td>
-										<td>010-9999-9999</td>
-										<td>2022-05-20</td> 
-									</tr>
-									
-									<tr>
-										<td>187</td>			
-										<td>aaa1010@naver.com</td>
-										<td>이지혜</td>
-										<td>010-7777-7777</td>
-										<td>2022-05-12</td> 
-									</tr>
-									
-									<tr>
-										<td>189</td>
-										<td>zzz123123@naver.com</td>
-										<td>김재희</td>
-										<td>010-9999-9999</td>
-										<td>2022-05-29</td> 
-									</tr>
-									
-									<tr>
-										<td>188</td>
-										<td>zzz12121@naver.com</td>
-										<td>신미나</td>
-										<td>010-4444-4444</td>
-										<td>2022-05-20</td> 
-									</tr>
-									
-									<tr>
-										<td>187</td>			
-										<td>aaa1010@naver.com</td>
-										<td>이지혜</td>
-										<td>010-4444-4444</td>
-										<td>2022-05-12</td> 
-									</tr>
 								</tbody>
 							</table>
 						</div>

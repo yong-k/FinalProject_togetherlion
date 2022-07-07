@@ -13,17 +13,112 @@
 <title>admin같이사자</title>
 
 <link href="<%=cp %>/css/adminStyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
-	
+
 <style type="text/css">
 .sb-sidenav-menu a.current-menu {
     background-color: #f5f4f2;
     color: #fca652 !important;
 }
-</style>	
 
+/* sweetalert */
+h2#swal2-title {
+    font-size: 23px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+input.swal2-input {
+    margin-bottom: 10px;
+}
+input.swal2-input:focus {
+    box-shadow: none;
+    border: 2px solid #fca652;
+}
+button.swal2-confirm.swal2-styled {
+    background-color: #fca652;
+    width: 100px;
+    margin-right: 20px;
+}
+button.swal2-cancel.swal2-styled {
+    width: 100px;
+    margin-right: 20px;
+}
+button.swal2-confirm.swal2-styled:focus {
+    box-shadow: none;
+}
+button.swal2-cancel.swal2-styled:focus {
+    box-shadow: none;
+}
+</style>	
+<script>
+	
+	$(document).ready(function()
+    {
+		$(".saveBtn").click(function()
+    	{
+    		Swal.fire({
+    			  title: '승인 처리하시겠습니까?',
+    			  icon: 'warning',
+    			  iconColor: '#f27474',
+    			  showCancelButton: true,
+    			  confirmButtonText: '승인',
+    			  cancelButtonText: '취소',
+    			  reverseButtons: true
+    			}).then((result) => {
+    			  if (result.isConfirmed) {
+    				  
+     				  // 승인처리 작업 처리 코드 작성하기!
+     					
+     					
+     				  // 승인처리 완료 후, 띄울 알림창
+    				  Swal.fire({
+      			    	title: '승인 처리 완료!',
+      			    	icon: 'success',
+      			    	confirmButtonText: '확인'
+      			    }).then(() => {
+      			    	location.href='admin_report_receptionList.jsp';
+      			    });
+		    	  }
+    			})
+        });
+		
+    	$(".cancelBtn").click(function()
+		{
+    		Swal.fire({
+    			  title: '반려 처리하시겠습니까?',
+    			  icon: 'warning',
+    			  iconColor: '#f27474',
+    			  showCancelButton: true,
+    			  confirmButtonText: '반려',
+    			  cancelButtonText: '취소',
+    			  reverseButtons: true
+    			}).then((result) => {
+    				if (result.isConfirmed) {
+      				  
+       				  // 반려처리 작업 처리 코드 작성하기!
+       					
+       					
+       				  // 반려처리 완료 후, 띄울 알림창
+      				  Swal.fire({
+        			    	title: '반려 처리 완료!',
+        			    	icon: 'success',
+        			    	confirmButtonText: '확인'
+        			    }).then(() => {
+        			    	location.href='admin_report_receptionList.jsp';
+        			    });
+  		    	  }
+    			})
+		});
+
+    });
+	
+</script>
 </head>
 <body class="sb-nav-fixed">
 
@@ -49,10 +144,10 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse show" id="member" aria-labelledby="headingOne"
+						<div class="collapse" id="member" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link current-menu" href="admin_member_all.jsp">전체회원</a> 
+								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
 								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
 								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
 								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>
@@ -123,10 +218,10 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="report" aria-labelledby="headingFive"
+						<div class="collapse show" id="report" aria-labelledby="headingFive"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin_report_receptionList.jsp">접수내역</a> 
+								<a class="nav-link current-menu" href="admin_report_receptionList.jsp">접수내역</a> 
 								<a class="nav-link" href="admin_report_handlingList.jsp">처리내역</a> 
 								<a class="nav-link" href="admin_report_reasonList.jsp">사유관리</a>
 							</nav>
@@ -145,7 +240,7 @@
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_inquiry_inquiryList.jsp">1:1문의</a> 
-								<a class="nav-link" href="admin_inquiry_faqList.jsp">FAQ</a>
+								<a class="nav-link current-menu" href="admin_inquiry_faqList.jsp">FAQ</a>
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">ADMIN ACCOUNT</div>
@@ -162,221 +257,71 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<div class="card mb-4 admin-table-body">
+					<div class="card mb-4">
 
 						<!--  Breadcrumb -->
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">회원조회</li>
+								<li class="breadcrumb-item">신고관리</li>
 								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">전체회원</a></li>
+									href="#">접수내역</a></li>
 							</ol>
 						</nav>
 
-						<div>
-							<!-- searchBar -->
-							<form class="search-form" action="#">
-								<select class="form-select" aria-label="Default select example">
-									<option value="1" selected>이메일(ID)</option>
-									<option value="2">이름</option>
-								</select> 
-								<input class="form-control" type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-							</form>
-						</div>
-
 						<div class="card-body">
-							<table class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>이메일(ID)</th>
-										<th>이름</th>
-										<th>닉네임</th>
-										<th>전화번호</th>
-										<th>신고횟수</th>
-										<th>휴면여부</th>
-										<th>가입일</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>754</td>
-										<td>abc1240@naver.com</td>
-										<td>홍길동</td>
-										<td>가나다</td>
-										<td>010-1111-1111</td>
-										<td>3</td>
-										<td>x</td>
-										<td>2022-02-03</td>
-									</tr>
-									<tr>
-										<td>753</td>
-										<td>abc1239@naver.com</td>
-										<td>홍길서</td>
-										<td>123412</td>
-										<td>010-1111-1112</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-01</td>
-									</tr>
-									<tr>
-										<td>752</td>
-										<td>abc1237@naver.com</td>
-										<td>홍길남</td>
-										<td>재형짱123</td>
-										<td>010-1111-1113</td>
-										<td>3</td>
-										<td>x</td>
-										<td>2022-02-23</td>
-									</tr>
-									<tr>
-										<td>751</td>
-										<td>abc1236@naver.com</td>
-										<td>홍길북</td>
-										<td>포도맛하마</td>
-										<td>010-1111-1114</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-11</td>
-									</tr>
-									<tr>
-										<td>750</td>
-										<td>abc1235@naver.com</td>
-										<td>박길동</td>
-										<td>yousay</td>
-										<td>010-1111-1115</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2021-12-03</td>
-									</tr>
-									<tr>
-										<td>749</td>
-										<td>abc1234@naver.com</td>
-										<td>박길서</td>
-										<td>백화진</td>
-										<td>010-1111-1116</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2021-12-04</td>
-									</tr>
-									<tr>
-										<td>748</td>
-										<td>abc1233@naver.com</td>
-										<td>박길남</td>
-										<td>대전토마토</td>
-										<td>010-1111-1117</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-03-03</td>
-									</tr>
-									<tr>
-										<td>747</td>
-										<td>abc1232@naver.com</td>
-										<td>박길북</td>
-										<td>가람06</td>
-										<td>010-1111-1118</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-05-03</td>
-									</tr>
-									<tr>
-										<td>746</td>
-										<td>abc1231@naver.com</td>
-										<td>최길동</td>
-										<td>토마토00</td>
-										<td>010-1111-1119</td>
-										<td>0</td>
-										<td>x</td>
-										<td>2022-02-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-									<tr>
-										<td>745</td>
-										<td>abc1230@naver.com</td>
-										<td>최길서</td>
-										<td>건포도포도</td>
-										<td>010-1111-1120</td>
-										<td>7</td>
-										<td>x</td>
-										<td>2022-03-09</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="receptionDetail-container">
+								<h2 class="head">신고 접수 내용</h2>
+								<div class="mb-3 row">
+									<label for="id1" class="col-sm-1 col-form-label">신고자</label>
+									<div class="col-sm-6">
+										<input type="email" readonly class="form-control-plaintext"
+											id="id1" value="${report.reporter}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="id2" class="col-sm-1 col-form-label">피신고자</label>
+									<div class="col-sm-6">
+										<input type="email" readonly class="form-control-plaintext"
+											id="id2" value="${report.member_code}">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<span class="url-label">게시물</span>
+									<button type="button" class="adminBtn reportUrl-btn"
+									onclick="window.open('<%=cp %>/user/user_buyPostArticle.jsp')">해당 게시물 내용보기</button>
+								</div>
+								<div class="mb-3 row">
+									<label for="mainCate" class="col-sm-1 col-form-label">신고사유</label>
+									<div class="col-sm-6">
+										<input type="text" readonly class="form-control-plaintext"
+											id="mainCate" value="${report.main_name} ">
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<span class="receptionDetail-label col-sm-2 col-form-label">상세내용</span>
+									<div class="receptionDetail col-sm-6">
+										<c:forEach var="subCate" items="${list }">
+										<c:if test="${report.main_name == subCate.cate_name}">
+											<tr>
+												<td></td>
+												<td>- ${subCate.cate_name }</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+									</div>
+								</div>
+							</div>
+							<div class="btn-container notice-btn">
+								<button type="button" class="adminBtn cancelBtn answerCancelBtn">반려</button>
+								<button type="button" class="adminBtn saveBtn answerInsertBtn">승인</button>
+							</div>
+							<div>
+								<div class="reportDetail-helper"></div>
+								<button type="button" class="adminBtn listBtn"
+								onclick="location.href='admin_report_receptionList.lion'">목록</button>
+							</div>
 						</div>
 
-						<!-- page navigation -->
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">1</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">2</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">3</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">4</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);">5</a></li>
-								<li class="page-item"><a class="page-link"
-									href="javascript:void(0);" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
-							</ul>
-						</nav>
 					</div>
 				</div>
 			</main>

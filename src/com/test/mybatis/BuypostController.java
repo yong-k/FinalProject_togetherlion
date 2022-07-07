@@ -210,7 +210,112 @@ public class BuypostController
 		model.addAttribute("mainList", mainList);
 		model.addAttribute("code", code);
 		
+		if (code.equals("every"))
+			return "/buypostnew.lion";
+		
 		return "/WEB-INF/view/user/user_buyPost_new.jsp";
+	}
+	
+	
+	@RequestMapping(value="/buypostfinal.lion")
+	public String buypostFinal(Model model)
+	{
+		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
+		IMainCateDAO mainDao = sqlSession.getMapper(IMainCateDAO.class);	
+		
+		ArrayList<BuypostDTO> list = dao.finalList();
+		ArrayList<MainCateDTO> mainList = mainDao.list();
+		String count = dao.finalListNum();
+		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
+		for (BuypostDTO dto : list)
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+			
+			Date deadDate = null;
+			Date sysDate = null;
+			String dead = dto.getDeadline();
+			
+			try
+			{
+				deadDate = format.parse(dead);
+				sysDate = new Date();
+				String sys = format.format(sysDate);
+				sysDate = format.parse(sys);
+				
+				long day = (deadDate.getTime() - sysDate.getTime()) / (1000*24*60*60); // 일
+				long hour = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) / 3600000; // 시
+				long minute = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) % 3600000 / 60000; // 분
+				
+				dto.setDay(Long.toString(day));
+				dto.setHour(Long.toString(hour));
+				dto.setMinute(Long.toString(minute));
+				
+			} catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}
+			
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		model.addAttribute("mainList", mainList);
+		
+		return "/WEB-INF/view/user/user_buyPost_final.jsp";
+	}
+	
+	
+	@RequestMapping(value="/buypostfinalcate.lion")
+	public String buypostFinalCate(String code, Model model)
+	{
+		IBuypostDAO dao = sqlSession.getMapper(IBuypostDAO.class);
+		IMainCateDAO mainDao = sqlSession.getMapper(IMainCateDAO.class);	
+		
+		ArrayList<BuypostDTO> list = dao.finalListCate(code);
+		ArrayList<MainCateDTO> mainList = mainDao.list();
+		String count = dao.finalListCateNum(code);
+		
+		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------
+		for (BuypostDTO dto : list)
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+			
+			Date deadDate = null;
+			Date sysDate = null;
+			String dead = dto.getDeadline();
+			
+			try
+			{
+				deadDate = format.parse(dead);
+				sysDate = new Date();
+				String sys = format.format(sysDate);
+				sysDate = format.parse(sys);
+				
+				long day = (deadDate.getTime() - sysDate.getTime()) / (1000*24*60*60); // 일
+				long hour = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) / 3600000; // 시
+				long minute = (deadDate.getTime() - sysDate.getTime()) % (1000*24*60*60) % 3600000 / 60000; // 분
+				
+				dto.setDay(Long.toString(day));
+				dto.setHour(Long.toString(hour));
+				dto.setMinute(Long.toString(minute));
+				
+			} catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}
+			
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		model.addAttribute("mainList", mainList);
+		model.addAttribute("code", code);
+		
+		if (code.equals("every"))
+			return "/buypostfinal.lion";
+		
+		return "/WEB-INF/view/user/user_buyPost_final.jsp";
 	}
 	
 	
@@ -273,6 +378,7 @@ public class BuypostController
 		return "/WEB-INF/view/user/user_buyPost_category.jsp";
 	}
 	
+	
 	@RequestMapping(value="/buypostsubcate.lion", method=RequestMethod.GET)
 	public String buypostSubCate(String code, Model model)
 	{
@@ -330,6 +436,21 @@ public class BuypostController
 		model.addAttribute("code", code);
 		
 		return "/WEB-INF/view/user/user_buyPost_category.jsp";
+	}
+	
+	// 공동구매 글쓰기
+	@RequestMapping(value="/buypostinsertform.lion")
+	public String InsertFormBuypost()
+	{
+		
+		return "/WEB-INF/view/user/user_buyPostInsertForm.jsp";
+	}
+	
+	// 지도
+	@RequestMapping(value="/map.lion")
+	public String openMap()
+	{
+		return "/WEB-INF/view/user/user_map.jsp";
 	}
 	
 }

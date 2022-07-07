@@ -68,6 +68,31 @@
 		WHERE CODE = #{code}
 	</select>
 	
+	<select id="finalList" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, WRITE_DATETIME
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(DEADLINEDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')) < 1 ]]>
+	</select>
+	
+	<select id="finalListNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(DEADLINEDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')) < 1 ]]>
+	</select>
+	
+	<select id="finalListCate" resultType="com.test.mybatis.BuypostDTO">
+		SELECT CODE, GOODS_PHOTO_PATH, TITLE, DEADLINE, PERSON_PRICE, COUNT, REGION, LOCATION_X, LOCATION_Y, WRITE_DATETIME
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(DEADLINEDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')) < 1 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
+	
+	<select id="finalListCateNum" resultType="java.lang.String">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_BUYPOST_MAIN
+		WHERE <![CDATA[(TO_DATE(DEADLINEDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')) < 1 ]]> AND MAIN_CATE_CODE = #{code}
+	</select>
+	
+	
 	
 	
 	

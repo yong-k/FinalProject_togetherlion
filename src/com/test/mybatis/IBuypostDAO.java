@@ -42,5 +42,17 @@ public interface IBuypostDAO
 	// 특정 공동구매 게시물 상태
 	public BuypostDTO checkState(String code);
 	
+	// 마감임박 게시물 조회
+	public ArrayList<BuypostDTO> finalList();
+	
+	// 마감임박 게시물 개수 조회
+	public String finalListNum();
+	
+	// 마감임박 게시물 조회
+	public ArrayList<BuypostDTO> finalListCate(String code);
+	
+	// 마감임박 게시물 개수 조회
+	public String finalListCateNum(String code);
+	
 	
 }

@@ -39,12 +39,6 @@
 			location.href = "buypostnewcate.lion?code=" + $(this).val();
 		});
 		
-		// 나중에 해보기
-		/* $("#mainCateCode").change(function()
-		{
-			ajaxRequest();
-		}); */
-		
 	});
 	
 	
@@ -80,16 +74,34 @@
 								<div class="filter__sort">
 									<span>카테고리 선택</span> 
 									<select id="mainCateCode" name="mainCateCode">
-										<c:forEach var="mainCate" items="${mainList }">
 										<c:choose>
-											<c:when test="${mainCate.code == code }">
-												<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${mainCate.code }">${mainCate.name }</option>
-											</c:otherwise>
-										</c:choose>											
-										</c:forEach>
+										<c:when test="${code == null || code == 'every' }">
+											<option value="every">전체보기</option>
+											<c:forEach var="mainCate" items="${mainList }">
+												<c:choose>
+												<c:when test="${mainCate.code == code }">
+													<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${mainCate.code }">${mainCate.name }</option>
+												</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<option value="every">전체보기</option>
+											<c:forEach var="mainCate" items="${mainList }">
+												<c:choose>
+												<c:when test="${mainCate.code == code }">
+													<option value="${mainCate.code }" selected="selected">${mainCate.name }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${mainCate.code }">${mainCate.name }</option>
+												</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</c:otherwise>
+										</c:choose>
 									</select>
 								</div>
 							</div>

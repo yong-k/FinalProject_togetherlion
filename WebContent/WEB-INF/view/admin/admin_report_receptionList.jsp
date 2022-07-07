@@ -1,8 +1,14 @@
+<%@page import="com.test.util.DBConn"%>
+<%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+%>
+<%
+		
+
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>admin같이사자</title>
 
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="<%=cp %>/css/adminStyle.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -23,7 +30,6 @@
     color: #fca652 !important;
 }
 </style>	
-
 </head>
 <body class="sb-nav-fixed">
 
@@ -49,12 +55,12 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse show" id="member" aria-labelledby="headingOne"
+						<div class="collapse" id="member" aria-labelledby="headingOne"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="admin_member_all.jsp">전체회원</a> 
 								<a class="nav-link" href="admin_member_permanentBan.jsp">영구정지회원</a> 
-								<a class="nav-link current-menu" href="admin_member_sleep.jsp">휴면회원</a> 
+								<a class="nav-link" href="admin_member_sleep.jsp">휴면회원</a> 
 								<a class="nav-link" href="admin_member_withdrawal.jsp">탈퇴회원</a>
 							</nav>
 						</div>
@@ -123,10 +129,10 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="report" aria-labelledby="headingFive"
+						<div class="collapse show" id="report" aria-labelledby="headingFive"
 							data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="admin_report_receptionList.jsp">접수내역</a> 
+								<a class="nav-link current-menu" href="admin_report_receptionList.jsp">접수내역</a> 
 								<a class="nav-link" href="admin_report_handlingList.jsp">처리내역</a> 
 								<a class="nav-link" href="admin_report_reasonList.jsp">사유관리</a>
 							</nav>
@@ -167,157 +173,49 @@
 						<!--  Breadcrumb -->
 						<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">회원조회</li>
+								<li class="breadcrumb-item">신고관리</li>
 								<li class="breadcrumb-item active" aria-current="page"><a
-									href="#">휴면회원</a></li>
+									href="#">접수내역</a></li>
 							</ol>
 						</nav>
 
-						<div>
-							<!-- searchBar -->
-							<form class="search-form" action="#">
-								<select class="form-select" aria-label="Default select example">
-									<option value="1" selected>이메일(ID)</option>
-									<option value="2">이름</option>
-								</select> 
-								<input class="form-control" type="text" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-							</form>
-						</div>
+						<!-- searchBar -->
+						<form action="#">
+							<select class="form-select" aria-label="Default select example">
+								<option value="1" selected>이메일(ID)</option>
+							</select> <input class="form-control" type="text"
+								aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+							<button class="btn btn-primary" id="btnNavbarSearch"
+								type="button">
+								<i class="fas fa-search"></i>
+							</button>
+						</form>
 
 						<div class="card-body">
 							<table class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th>번호</th>
-										<th>이메일(ID)</th>
-										<th>이름</th>
-										<th>닉네임</th>
-										<th>휴면전환일</th>
-										<th>휴면경과일</th>
+										<th>피신고자ID</th>
+										<th>게시물종류</th>
+										<th>게시물번호</th>
+										<th>신고자ID</th>
+										<th>신고사유</th>
+										<th>신고접수일</th>									
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="report" items="${list }">
 									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
+										<td>${report.num }</td>
+										<td>${report.member_code }</td>
+										<td>${report.type }</td>
+										<td><a href="<%=cp %>/admin_report_receptionDetail.lion?buypost_code=${report.buypost_code}">${report.buypost_code }</a></td>
+										<td>${report.reporter }</td>
+										<td>${report.main_name }</td>
+										<td>${report.datetime }</td>
 									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>211</td>
-										<td>abc111@naver.com</td>
-										<td>박다희</td>
-										<td>해피</td>
-										<td>2022-05-21</td> 
-										<td>9</td>
-									</tr>
-									<tr>
-										<td>220</td>
-										<td>rf0192@naver.com</td>
-										<td>이수민</td>
-										<td>타요나라</td>
-										<td>2022-05-20</td> 
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>219</td>			
-										<td>lclair@naver.com</td>
-										<td>강서림</td>
-										<td>묭묭</td>
-										<td>2022-05-18</td> 
-										<td>12</td>
-									</tr>
+									</c:forEach> 
 								</tbody>
 							</table>
 						</div>

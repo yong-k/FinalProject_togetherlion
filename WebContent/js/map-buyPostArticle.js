@@ -67,7 +67,7 @@ function getAddr(lat,lng){
             /*
             0:
 				address:
-				address_name: "서울 마포구 서교동 445-7"	// 이거 buyPostArticle에 활용
+				address_name: "서울 마포구 서교동 445-7"	// 이거 buyPostArticle, insertform에 활용
 				main_address_no: "445"
 				mountain_yn: "N"
 				region_1depth_name: "서울"

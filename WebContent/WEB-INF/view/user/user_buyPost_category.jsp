@@ -32,6 +32,8 @@
 			location.href = "buypostarticle.lion?code=" + $(this).val();	
 		});
 		
+		
+		
 	});
 	
 </script>

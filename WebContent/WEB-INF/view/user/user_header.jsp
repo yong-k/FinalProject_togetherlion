@@ -42,7 +42,7 @@
         <div class="header__top">
         	<div class="header__top__right">
         		<div class="header__top__right__social">
-        			<a href="<%=cp %>/user/user_joinInsertForm.jsp">회원가입</a>
+        			<a href="<%=cp %>/join.lion">회원가입</a>
                 </div>
                 <div class="header__top__right__auth">
                     <a href="<%=cp %>/loginform.lion">로그인</a>
@@ -121,8 +121,7 @@
 					<nav class="header__menu">
 						<ul>
 							<li class="active recent"><a href="<%=cp %>/buypostnew.lion">최근공구</a></li>
-							<li class="final"><a href="<%=cp %>/user/user_buyPost_final.jsp">마감임박</a></li>
-							<%-- <li><a href="<%=cp %>/user/user_communityMain.jsp">커뮤니티</a></li> --%>
+							<li class="final"><a href="<%=cp %>/buypostfinal.lion">마감임박</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -139,8 +138,8 @@
 						<div class="header__cart">
 							<ul>
 								<li><a href="#"><i class="bi bi-bell"></i> <span>8</span></a></li>
-								<li><a href="#"><i class="fa fa-heart-o" aria-hidden="true" title="사진첨부"></i></a></li>
-								<li><a href="<%=cp %>/user/user_buyPostInsertFrom.jsp"><i class="bi bi-pencil-square"></i></a></li>
+								<li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+								<li><a href="<%=cp %>/buypostinsertform.lion"><i class="bi bi-pencil-square"></i></a></li>
 							</ul>
 						</div>
 					</div>
