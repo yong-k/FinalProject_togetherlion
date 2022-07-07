@@ -39,7 +39,6 @@
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <style type="text/css">
-
 /* sweetalert */
 h2#swal2-title {
     font-size: 23px;

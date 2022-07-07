@@ -4302,7 +4302,35 @@ img#buypostInsert-previewImg {
     width: 285px;
     display: none;
 }
-
+/* 지도 팝업 */
+.map-container {
+    width: 1000px;
+    height: 650px;
+    text-align: center;
+    padding: 25px;
+}
+hr.map-line {
+    border-top: 2px solid #fca652;
+    width: 959px;
+    margin-left: -4px;
+}
+.selectLocation #detailAddr {
+    display: block;
+    width: 800px;
+    height: 50px;
+    text-align: center;
+    margin-top: 17px;
+    margin-left: 78px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #525050;
+}
+button.locationBtn {
+    width: 101% !important;
+    margin-left: -4px;
+    margin-top: 19px;
+}
 
 /* 마이페이지 */
 .mypage-header {
@@ -5016,6 +5044,24 @@ button.buypostImgCheckBtn {
     width: 943px;
 }
 
+/* ID 찾기 */
+.findIdPw-box {
+    display: inline-block;
+    width: 35%;
+}
+.findIdPw-box h3.title {
+    font-size: 24px;
+    font-weight: 800;
+    padding-bottom: 6%;
+}
+label.findForm-label {
+    width: 50px;
+}
+input.findForm {
+    width: 82% !important;
+    margin-left: 15px;
+}
+
 
 /* jquery 달력 */
 .ui-widget-header { border: 0px solid #dddddd; background: #fff; } 
@@ -5094,15 +5140,15 @@ button.buypostImgCheckBtn {
  
  
 /* 시은 추가 */
- .titlebuypost{
-    width:309.47px; 
-    height:46px;
+input.titlebuypost {
+    width: 309.47px;
+    height: 46px;
     opacity: 0;
     position: absolute;
 }
-.titlereplybuypost{
-    width:309.47px; 
-    height:46px;
+input.titlereplybuypost {
+    width: 309.47px;
+    height: 46px;
     opacity: 0;
     position: absolute;
 }

@@ -438,4 +438,19 @@ public class BuypostController
 		return "/WEB-INF/view/user/user_buyPost_category.jsp";
 	}
 	
+	// 공동구매 글쓰기
+	@RequestMapping(value="/buypostinsertform.lion")
+	public String InsertFormBuypost()
+	{
+		
+		return "/WEB-INF/view/user/user_buyPostInsertForm.jsp";
+	}
+	
+	// 지도
+	@RequestMapping(value="/map.lion")
+	public String openMap()
+	{
+		return "/WEB-INF/view/user/user_map.jsp";
+	}
+	
 }

@@ -20,23 +20,20 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 // 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 	
-	map.setCenter(new kakao.maps.LatLng(37.5436063473129, 126.95119605287933));
-	//추가 -------------------------------------------------------
-    var latlng = mouseEvent.latLng;
-    document.getElementById("lat").value = latlng.getLat();
-    document.getElementById("lng").value = latlng.getLng();
-    //------------------------------------------------------------
+	//map.setCenter(new kakao.maps.LatLng(37.5436063473129, 126.95119605287933));
+
 	
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-            
+            /*
             var content = '<div class="bAddr">' +
                             '<span class="title">법정동 주소정보</span>' + 
                             detailAddr + 
                         '</div>';
-            
+            */
+				            
             
             // 마커를 클릭한 위치에 표시합니다 
             marker.setPosition(mouseEvent.latLng);
@@ -44,15 +41,26 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             
 
             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-            infowindow.setContent(content);
-            infowindow.open(map, marker);
+            //infowindow.setContent(content);
+            //infowindow.open(map, marker);
             
             
-            //추가 -----------------------------------------------------------------------
-            document.getElementById("addr").value = result[0].road_address.address_name;
+            
+            var latlng = mouseEvent.latLng;
+            // 위도
+            document.getElementById("lat").value = latlng.getLat();
+            // 경도
+            document.getElementById("lng").value = latlng.getLng();
+            // 지번주소
             document.getElementById("detailAddr").value = result[0].address.address_name;
-            document.getElementById("coords").value = map.getCenter();       
-            //----------------------------------------------------------------------------
+            // 지역구
+            document.getElementById("region").value = result[0].address.region_2depth_name;
+            
+            
+            opener.document.getElementById("location").value = document.getElementById("detailAddr").value;
+    		opener.document.getElementById("location-x").value = document.getElementById("lat").value;
+    		opener.document.getElementById("location-y").value = document.getElementById("lng").value;
+    		opener.document.getElementById("region").value = document.getElementById("region").value;
             
         }   
     });

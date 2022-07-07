@@ -41,43 +41,195 @@
 <style type="text/css">
 /* sweetalert */
 h2#swal2-title {
-	font-size: 23px;
-	padding-top: 40px;
-	padding-bottom: 10px;
+    font-size: 23px;
+    padding-top: 40px;
+    padding-bottom: 10px;
 }
 input.swal2-input {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 input.swal2-input:focus {
-	box-shadow: none;
-	border: 2px solid #fca652;
+    box-shadow: none;
+    border: 2px solid #fca652;
 }
 button.swal2-confirm.swal2-styled {
     background-color: #fca652;
-    width: 460px;
-    font-size: 18px;
+    width: 100px;
+    margin-right: 20px;
 }
 button.swal2-cancel.swal2-styled {
-	width: 100px;
-	margin-right: 20px;
+    width: 100px;
+    margin-right: 20px;
 }
 button.swal2-confirm.swal2-styled:focus {
-	box-shadow: none;
+    box-shadow: none;
 }
 button.swal2-cancel.swal2-styled:focus {
-	box-shadow: none;
-}
-div#swal2-html-container {
-    text-align: left;
-    margin: 30px;
-}
-button.swal2-close:focus {
     box-shadow: none;
 }
 </style>
 <script type="text/javascript">
+
+	//sweetalert
 	$(function()
 	{
+		// <참여하기> 
+		$(".participateBtn").click(function()
+    	{
+			// 회원/비회원 분기처리
+			if (true) 
+			{
+	    		// 결제팝업
+				window.open("user_buypost_pay_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
+			}
+			else 
+			{
+	    		Swal.fire({
+	    			  title: '로그인 후 이용가능한 서비스입니다.',
+	    			  icon: 'warning',
+	    			  iconColor: '#f27474',
+	    			  confirmButtonText: '확인'
+	    			}).then(() => {
+	    				// 로그인폼으로 이동
+    			    	location.href="<%=cp%>/user/user_loginForm.jsp";
+    			    });				
+			}
+        });		
+			
+		
+		// <참여취소> 
+		$(".cancelParticipateBtn").click(function()
+    	{
+			// 남은 시간이 > 24시간
+			if (true) 
+			{
+	    		Swal.fire({
+	    			  title: '정말 참여 취소하겠습니까?',
+	    			  html: '취소 이후에 모집 상품개수가 채워질 경우,<br> 다시 참여하지 못할 수도 있습니다.',
+	    			  icon: 'warning',
+	    			  iconColor: '#f27474',
+	    			  showCancelButton: true,
+	    			  confirmButtonText: '취소',
+	    			  cancelButtonText: '나가기',
+	    			  reverseButtons: true
+	    			}).then((result) => {
+	    			  if (result.isConfirmed) {
+	    				  
+	     				  // 참여취소 작업 처리 코드 작성하기!
+	     					
+	     					
+	     				  // 참여취소 완료 후, 띄울 알림창
+	    				  Swal.fire({
+	      			    	title: '참여가 취소되었습니다.',
+	      			    	text: '결제 포인트는 환불 처리됩니다.',
+	      			    	icon: 'success',
+	      			    	confirmButtonText: '확인'
+	      			    }).then(() => {
+	      			    	location.href="#";
+	      			    });
+	  		    	  }
+	    			})
+			}
+			else
+			{
+	    		Swal.fire({
+	    			  title: '마감까지 남은기간이 24시간 이하인 게시물은 참여 취소 불가능합니다.',
+	    			  icon: 'warning',
+	    			  iconColor: '#f27474',
+	    			  confirmButtonText: '확인'
+	    			})				
+			}  			
+
+        });		
+		
+		
+		// 대기상태회원 → <참여하기> 
+		$(".reparticipateBtn").click(function()
+    	{
+			// 대기→재참여 작업 처리 코드 작성하기!
+				
+				
+			// 대기→재참여 후, 띄울 알림창 
+    		Swal.fire({
+  			  title: '참여 완료!',
+  			  icon: 'success',
+  			  confirmButtonText: '확인',
+  			}).then(() => {
+  				location.href="#!";
+			});
+        });
+		
+		
+		// <수정> 
+		$(".buypostUpdateBtn").click(function()
+    	{
+			// 남은 시간이 > 24시간
+			if (false) 
+			{
+	    		Swal.fire({
+	    			  title: '정말 공동구매 진행을 취소하겠습니까?',
+	    			  text: '수정 시, 참여자들이 모두 대기상태로 전환됩니다.',
+	    			  icon: 'warning',
+	    			  iconColor: '#f27474',
+	    			  showCancelButton: true,
+	    			  confirmButtonText: '수정',
+	    			  cancelButtonText: '취소',
+	    			  reverseButtons: true
+	    			}).then((result) => {
+	    			  if (result.isConfirmed) {
+	     				  // 수정폼으로 이동
+	     				  location.href="<%=cp%>/user/user_buyPostUpdateForm.jsp";
+			    	  }
+	    			})
+			}
+			else
+			{
+	    		Swal.fire({
+	    			  title: '마감까지 남은기간이 24시간 이하인 게시물은 수정이 불가능합니다.',
+	    			  icon: 'warning',
+	    			  iconColor: '#f27474',
+	    			  confirmButtonText: '확인'
+	    			})				
+			}
+        });
+		
+		
+		// <진행취소> 
+		$(".buypostCancelBtn").click(function()
+    	{
+    		Swal.fire({
+    			  title: '정말 공동구매 진행을 취소하겠습니까?',
+    			  icon: 'warning',
+    			  iconColor: '#f27474',
+    			  showCancelButton: true,
+    			  confirmButtonText: '취소',
+    			  cancelButtonText: '나가기',
+    			  reverseButtons: true
+    			}).then((result) => {
+    			  if (result.isConfirmed) {
+    				  
+     				  // 공동구매 진행취소 작업 처리 코드 작성하기!
+     					
+     					
+     				  // 진행취소 완료 후, 띄울 알림창
+    				  Swal.fire({
+      			    	title: '진행이 취소되었습니다.',
+      			    	text: '결제 포인트는 환불 처리됩니다.',
+      			    	icon: 'success',
+      			    	confirmButtonText: '확인'
+      			    }).then(() => {
+      			    	// 메인으로 이동
+      			    	location.href="<%=cp%>/user/user_main.jsp";
+      			    });
+		    	  }
+    			})
+        });
+		
+	});
+
+	$(function()
+	{
+		// 찜
 		$("a.heart-icon").click(function()
 		{
 			if ($("a>i.buypost-wish").hasClass("fa-heart-o"))
@@ -93,7 +245,7 @@ button.swal2-close:focus {
 				
 		});
 		
-		/* 댓글 */
+		// 댓글
 		$(".reply-update").click(function()
 		{
 			$(".reply-content-box").css("display", "none");
@@ -105,27 +257,36 @@ button.swal2-close:focus {
 			$(".reply-content-update-box").css("display", "none");
 		});
 		
-		/* 공동구매 취소 신청 */
-		$(".buypost-cancel-apply-btn").click(function()
-		{
-			Swal.fire({
-  			  title: '공동구매 취소 신청',
-  			  html: '참여자는 아래와 같은 상황에서 공동구매 취소 신청을 할 수 있으며, 신청 후에는 철회가 불가능합니다.<br><br><br><span style="color: #fc4e4e; font-weight: bold;">① 진행자가 공동구매 진행 이후, 4일 내로 상품 구매 인증사진을 업로드 하지 않았을 경우</span><br>→ 공동구매가 바로 취소 처리됩니다.<br><br><br><span style="color: #fc4e4e; font-weight: bold;">② 진행자가 거래날에 나오지 않았을 경우</span><br>→ 거래희망일 기준 5일 이내에 거래가 재개되지 않을 시, 공동구매가 취소 처리됩니다.',
-  			  confirmButtonText: '취소 신청하기',
-  			  showCloseButton: true
-  			}).then((result) => {
-  			  if (result.isConfirmed) {
-  				  // 취소 신청했을 때 처리
-  			  }
-  			})
-		});
 	});
 	
-	/* 신고 */
+	
+	// 팝업창
+	// 결제
+	function pay()
+	{	
+		window.open("user_buypost_pay_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
+	}
+	// 신고
 	function report()
 	{	
-		window.open("user_report_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
+		window.open("user_buypost_report_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
 	}
+	// 취소신청
+	function cancel()
+	{
+		window.open("user_buypost_cancel_popup.jsp", "_blank", "top=150,left=550,width=505,height=685");
+	}
+	// 구매완료 스크린샷 업로드
+	function imgUpload()
+	{
+		window.open("user_buypost_buyImgInsertForm_popup.jsp", "_blank", "top=150,left=550,width=970,height=600");
+	}
+	// 구매완료 스크린샷 확인
+	function imgCheck()
+	{
+		window.open("user_buypost_buyImgCheck_popup.jsp", "_blank", "top=150,left=550,width=970,height=600");
+	}
+	
 </script>
 </head>
 <body>
@@ -226,46 +387,46 @@ button.swal2-close:focus {
 						<!-- ① 모집중 -->
 						<!-- 1-1) 비회원: 로그인 후, 이용가능합니다. (loginform.lion 으로 이동)	
                         <!-- 1-2) 회원(참여X): 포인트 결제 후, 참여가능 -->
-
-						<button type="button" class="primary-btn">참여하기</button>
-
+						<button type="button" class="primary-btn participateBtn">참여하기</button>
+						<!-- 
+ 						-->
 						<!-- 1-3) 참여자(참여상태) -->
 						<!--   
-                        <button type="button" class="primary-btn two-btn">추가참여</button>
-                        <button type="button" class="primary-btn two-btn">참여취소</button>
+                        <button type="button" class="primary-btn two-btn moreParticipateBtn"
+						onclick="javascript:pay()">추가참여</button>
+                        <button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
                         -->
 						<!-- 1-4) 참여자(대기상태) -->
 						<!--  
-                        <button type="button" class="primary-btn two-btn">참여하기</button>
-                        <button type="button" class="primary-btn two-btn">참여취소</button>
+                        <button type="button" class="primary-btn two-btn reparticipateBtn">참여하기</button>
+                        <button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
                         -->
-                        
-                        
 						<!-- 1-5) 진행자 -->
 						<!-- 
-                        <button type="button" class="primary-btn two-btn">수정</button>
-                        <button type="button" class="primary-btn two-btn">진행취소</button>
+                        <button type="button" class="primary-btn two-btn buypostUpdateBtn">수정</button>
+                        <button type="button" class="primary-btn two-btn buypostCancelBtn">진행취소</button>
                         -->
 
 						<!-- ②진행중 -->
 						<!-- 2-1) 진행자: 진행자가 상품구매완료하기 전 -->
 						<!--  
-                        <button type="button" class="primary-btn">구매완료 스크린샷 업로드하기</button>
+                        <button type="button" class="primary-btn uploadBuypostImgBtn"
+                        onclick="javascript:imgUpload()">구매완료 스크린샷 업로드하기</button>
                         -->
 						<!-- 2-2) 참여자: 진행자가 상품구매완료하기 전 -->
 						<!-- 
-                        <button type="button" class="primary-btn">진행자가 상품을 구매하기 전이에요</button>
+                        <button type="button" class="primary-btn" id="notUploadImg">진행자가 상품을 구매하기 전이에요</button>
                         -->
 						<!-- 2-3) 진행자가 상품구매완료 후 -->
 						<!-- 
-                        <button type="button" class="primary-btn">구매완료 스크린샷 확인하기</button>
+                        <button type="button" class="primary-btn checkBuypostImgBtn"
+                        onclick="javascript:imgCheck()">구매완료 스크린샷 확인하기</button>
                         -->
 
 						<!-- ③완료/마감/취소 -->
 						<!-- 
                         <button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
-                        -->
-
+ 						-->
 						<!-- 찜 → 모집중인 게시물에만 띄움 -->
 						<!-- 1) 찜 하기 전, 비어있는 하트 -->
 						<a href="#!" class="heart-icon"><i class="fa fa-heart-o buypost-wish" aria-hidden="true"></i></a>
