@@ -39,25 +39,13 @@ button.swal2-confirm.swal2-styled:focus {
 }
 </style>
 <script type="text/javascript">
-
+	
 	$(function()
 	{
 		$('.findBtn').click(function()
 		{	
-			// 이름-핸드폰번호-인증번호 일치하면, user_findId_success.jsp로 연결
-			// 일단 지금은 true로 그냥 처리해놓음
-			if (true)
-			{
-				location.href = "user_findId_success.jsp";
-			}
-	    	else 
-	    	{
-	    		Swal.fire({
-	    			icon: 'error',
-	    			text: '인증번호가 일치하지 않습니다.',
-	    			confirmButtonText: '확인'
-	    		});
-		    }
+			// 조건 확인 및 변경 완료 후 로그인 폼으로 이동
+			location.href="<%=cp%>/loginform.lion";
 		});	
 	});
 
@@ -70,7 +58,7 @@ button.swal2-confirm.swal2-styled:focus {
     <section class="featured spad">
 
 		<div class="join-title-container">
-			<h2 class="findForm-title">아이디 찾기</h2>
+			<h2 class="findForm-title">비밀번호 재설정</h2>
 			<hr class="findForm-hr"/>
 		</div>
 
@@ -81,25 +69,15 @@ button.swal2-confirm.swal2-styled:focus {
 					</thead>
 					<tbody>
 						<tr>
-							<th>이름</th>
+							<th>새 비밀번호</th>
 							<td>
-								<input type="text" name="name" id="name" placeholder="이름 입력" required="required"/>
+								<input type="password" name="pw" id="pw" placeholder="비밀번호 입력" required="required"/>
 							</td>
 						</tr>
 						<tr>
-							<th>휴대폰</th>
+							<th>새 비밀번호 확인</th>
 							<td>
-								<input type="text" name="tel" id="tel" placeholder="숫자만 입력" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 받기</button>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td>
-								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 확인</button>
+								<input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 입력" required="required"/>
 							</td>
 						</tr>
 						<tr>

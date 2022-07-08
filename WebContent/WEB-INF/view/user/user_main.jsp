@@ -46,7 +46,7 @@
 	
 	function map()
 	{
-		window.open("user_map.jsp", "_blank", "top=150,left=550,width=1000,height=600");
+		window.open("map.lion", "_blank", "top=150,left=550,width=1000,height=650");
 	}
 	
 	

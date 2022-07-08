@@ -73,7 +73,7 @@ $(document).ready(function()
 					</div>
 					<div class="login-search-box">
 						<div class="login-search">
-							<a href="#!">아이디/비밀번호 찾기</a>
+							<a href="<%=cp %>/user/user_findIdForm.jsp">아이디 찾기</a> | <a href="<%=cp %>/user/user_findPwForm.jsp">비밀번호 찾기</a>
 						</div>
 					</div>
 					<button type="button" class="btn btn-primary login-form-btn" id="loginBtn">로그인</button>
