@@ -92,6 +92,17 @@
 		WHERE <![CDATA[(TO_DATE(DEADLINEDATE, 'YYYY-MM-DD HH24:MI:SS') - TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:MI:SS')) < 1 ]]> AND MAIN_CATE_CODE = #{code}
 	</select>
 	
+	<select id="buypostState" resultType="java.lang.String">
+		SELECT STATE
+		FROM VIEW_BUYPOST_STATE
+		WHERE CODE = #{code}
+	</select>
+	
+	<select id="memberState" resultType="java.lang.String">
+		SELECT POSITION
+		FROM VIEW_PARTI_POSITION
+		WHERE MEMBER_CODE = #{member_code} AND BUYPOST_CODE = #{code}
+	</select>
 	
 	
 	

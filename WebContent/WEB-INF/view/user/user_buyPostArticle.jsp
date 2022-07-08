@@ -332,7 +332,7 @@ button.swal2-cancel.swal2-styled:focus {
 							<div class="product-price">${buypost.person_price }</div>
 						</div>
 						<div class="product__details__box">
-							<div class="product__details__label">유통기한</div>
+							<div class="product__details__label">유통기한 ${memberState }</div>
 							<div class="product__details__value">${buypost.expiration_datetime }</div>
 						</div>
 						<div class="product__details__box">
@@ -383,11 +383,18 @@ button.swal2-cancel.swal2-styled:focus {
 						</div>
 
 						<!-- 버튼종류 -->
-
+						<c:choose>
+							<c:when test="${state == '취소' }">
+								<button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="primary-btn participateBtn">참여하기</button>
+							</c:otherwise>
+						</c:choose>
 						<!-- ① 모집중 -->
 						<!-- 1-1) 비회원: 로그인 후, 이용가능합니다. (loginform.lion 으로 이동)	
                         <!-- 1-2) 회원(참여X): 포인트 결제 후, 참여가능 -->
-						<button type="button" class="primary-btn participateBtn">참여하기</button>
+						
 						<!-- 
  						-->
 						<!-- 1-3) 참여자(참여상태) -->
