@@ -1,5 +1,6 @@
 package com.test.mybatis;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,11 +23,12 @@ public class LoginController
    }
    
    @RequestMapping(value="/loginmember.lion", method=RequestMethod.POST)
-   public String loginMember(MemberDTO member, HttpSession session)
+   public String loginMember(MemberDTO member, HttpServletRequest request)
    {
       String result = null;
       
       IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+      HttpSession session = request.getSession();
       
       String member_code = null;
       String nickName = null;
@@ -61,11 +63,12 @@ public class LoginController
    }
    
    @RequestMapping(value="/loginadmin.lion", method=RequestMethod.POST)
-   public String loginAdmin(AdminDTO admin, Model model, HttpSession session)
+   public String loginAdmin(AdminDTO admin, Model model, HttpServletRequest request)
    {
       String result = null;
       
       IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+      HttpSession session = request.getSession();
       String member_code = null;
       member_code = dao.loginAdmin(admin);
       
@@ -94,8 +97,10 @@ public class LoginController
 	
 	
 	@RequestMapping(value="/logout.lion")
-	public String logOut(HttpSession session)
+	public String logOut(HttpServletRequest request)
 	{
+		
+		HttpSession session = request.getSession();
 		session.invalidate();
 		
 		return "redirect:main.lion"; 
