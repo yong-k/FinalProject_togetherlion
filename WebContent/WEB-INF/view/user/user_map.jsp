@@ -37,7 +37,8 @@
 <body class="popup">
 	<div class="map-container">
 		<div class="report-title">
-			<h2>지도를 움직여서 거래 위치를 마우스로 클릭해주세요.</h2>
+			<h2 id="mainMap">지도를 움직여서 </h2>
+			<h2 id="buypostMap">지도를 움직여서 거래 위치를 마우스로 클릭해주세요.</h2>
 			<hr class="map-line"/>
 		</div>
 		<div id="map" style="width:950px;height:400px;"></div>

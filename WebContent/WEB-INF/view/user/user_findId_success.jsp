@@ -22,30 +22,7 @@
     <link rel="stylesheet" href="<%=cp %>/css/userStyle.css" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<style type="text/css">
-/* sweetalert */
-h2#swal2-title {
-    font-size: 23px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
-button.swal2-confirm.swal2-styled {
-    background-color: #fca652;
-    width: 200px;
-    height: 50px;
-    font-size: 19px;
-}
-button.swal2-confirm.swal2-styled:focus {
-    box-shadow: none;
-}
-div#swal2-html-container {
-    text-align: inherit;
-    font-size: 16px;
-}
-</style>
 <script type="text/javascript">
 
 </script>
@@ -57,46 +34,38 @@ div#swal2-html-container {
     <section class="featured spad">
 
 		<div class="join-title-container">
-			<h2 class="join-title">아이디 찾기</h2>
-			<hr class="join-hr"/>
+			<h2 class="findForm-title">아이디 찾기</h2>
+			<hr class="findForm-hr"/>
 		</div>
 
 		<div class="join-container">
-			<form action="" class="join-form">
-				<table class="join-table">
-					<thead>
-					</thead>
-					<tbody>
-						<tr>
-							<th>이름</th>
-							<td>
-								<input type="text" name="name" id="name" placeholder="이름 입력" required="required"/>
-							</td>
-						</tr>
-						<tr>
-							<th>휴대폰</th>
-							<td>
-								<input type="text" name="tel" id="tel" placeholder="숫자만 입력" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 받기</button>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td>
-								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 확인</button>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<button type="button" class="btn btn-primary lion-primary-btn">확인</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
+			<table class="join-table findSuccess-table">
+				<thead>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<span id="findMent1">고객님의 같이사자 계정을 찾았습니다.</span>
+							<span id="findMent2">아이디 확인 후 로그인해 주세요.</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<i class="bi bi-person-circle"></i>
+							<span id="findId">lsj1@test.com</span>
+							<span id="findRegDate">가입일 2022.05.24</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" class="btn btn-outline-primary lion-outline-btn successBtn"
+							onclick="location.href='<%=cp %>/user/user_findPwForm.jsp'">비밀번호 찾기</button>
+							<button type="button" class="btn btn-primary lion-primary-btn successBtn"
+							onclick="location.href='<%=cp %>/loginform.lion'">로그인</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</section>
