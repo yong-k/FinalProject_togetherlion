@@ -6,10 +6,31 @@ public class BuypostDTO
 		, content, total_price, min_goods, max_goods, deadline, trade_datetime
 		, location_x, location_y, write_datetime, buy_datetime, buy_photo_path
 		, member_code, sub_cate_code, day, hour, minute, count, person_price
-		, main_cate_code, main_cate_name, sub_cate_name, state, region;
+		, main_cate_code, main_cate_name, sub_cate_name, state, region
+		, goods_photo_name, buy_photo_name;
 
 	
 	
+	public String getGoods_photo_name()
+	{
+		return goods_photo_name;
+	}
+
+	public void setGoods_photo_name(String goods_photo_name)
+	{
+		this.goods_photo_name = goods_photo_name;
+	}
+
+	public String getBuy_photo_name()
+	{
+		return buy_photo_name;
+	}
+
+	public void setBuy_photo_name(String buy_photo_name)
+	{
+		this.buy_photo_name = buy_photo_name;
+	}
+
 	public String getMain_cate_name()
 	{
 		return main_cate_name;

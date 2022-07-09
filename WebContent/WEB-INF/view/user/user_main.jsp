@@ -116,7 +116,7 @@
 								value="${member.mid }">삭제</button>
                      -->
                     	<%-- <input type="hidden" class="featured__item__pic set-bg" value="${buypost.code }" name="buypost"> --%>
-                        <div class="featured__item__pic set-bg" data-setbg="<%=cp %>/img/featured/feature-8.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="img/buypost/${buypost.goods_photo_name }">
                         	<button class="buypost_go" style="width:209.99px; height:270px; cursor:pointer; opacity:0;" value="${buypost.code }"></button>
                         	
                         	<span class="timeLeft">
