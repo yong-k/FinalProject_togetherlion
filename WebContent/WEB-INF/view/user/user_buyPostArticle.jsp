@@ -324,7 +324,7 @@ button.swal2-cancel.swal2-styled:focus {
 									<!-- 회원 매너지수 계산해서 매너지수사진테이블에서 해당 점수대의 사진 가져와야 합니다. -->
 									<img src="<%=cp%>/img/mannerLevel/manner_3.png" />
 								</div>
-								<div class="buypost_profile_nickname">${member.nickname }</div>
+								<div class="buypost_profile_nickname">${writer.nickname }</div>
 							</div>
 						</a>
 						<div class="product__details__box">
@@ -332,7 +332,7 @@ button.swal2-cancel.swal2-styled:focus {
 							<div class="product-price">${buypost.person_price }</div>
 						</div>
 						<div class="product__details__box">
-							<div class="product__details__label">유통기한 ${memberState }</div>
+							<div class="product__details__label">유통기한</div>
 							<div class="product__details__value">${buypost.expiration_datetime }</div>
 						</div>
 						<div class="product__details__box">
@@ -354,23 +354,37 @@ button.swal2-cancel.swal2-styled:focus {
 							<div class="product__details__value">${buypost.trade_datetime }</div>
 						</div>
 						<div class="product__details__box">
+							<c:choose>
+							<c:when test="${state == '모집' }">
 							<div class="product__details__label">마감까지 남은 시간</div>
+							</c:when>
+							<c:otherwise>
+							<div class="product__details__label"></div>
+							</c:otherwise>
+							</c:choose>
 							<div class="product__details__value">
-	                        	<c:choose>
-	                        		<c:when test="${buypost.day != '0' }">
-	                        			${buypost.day }일 
-	                        		</c:when>
-	                        	</c:choose>
-	                        	<c:choose>
-	                        		<c:when test="${buypost.hour != '0' }">
-	                        			${buypost.hour }시간 
-	                        		</c:when>
-	                        	</c:choose>
-	                        	<c:choose>
-	                        		<c:when test="${buypost.minute != '0' }">
-	                        			${buypost.minute }분                   
-	                        		</c:when>
-	                        	</c:choose>
+								<c:choose>
+								<c:when test="${state == '모집' }">
+									<c:choose>
+		                        	<c:when test="${buypost.day != '0' }">
+		                        		${buypost.day }일 
+		                        	</c:when>
+		                        	</c:choose>
+		                        	<c:choose>
+		                        	<c:when test="${buypost.hour != '0' }">
+		                        		${buypost.hour }시간 
+		                        	</c:when>
+		                        	</c:choose>
+		                        	<c:choose>
+		                        	<c:when test="${buypost.minute != '0' }">
+		                        		${buypost.minute }분                   
+		                        	</c:when>
+		                        	</c:choose>
+								</c:when>
+								<c:otherwise>
+									<br>
+								</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 
@@ -384,12 +398,54 @@ button.swal2-cancel.swal2-styled:focus {
 
 						<!-- 버튼종류 -->
 						<c:choose>
-							<c:when test="${state == '취소' }">
-								<button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
+						<c:when test="${state == '취소' or state == '완료' }">
+							<button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+							<c:when test="${state == '모집' }">
+								<c:choose>
+								<c:when test="${memberState == '진행자' }">
+									<button type="button" class="primary-btn two-btn buypostUpdateBtn">수정</button>
+                        			<button type="button" class="primary-btn two-btn buypostCancelBtn">진행취소</button>
+								</c:when>
+								<c:when test="${memberState == '참여자' }">
+									<c:choose>
+									<c:when test="${waitState != null }">	<!-- 대기상태 -->
+										<button type="button" class="primary-btn two-btn reparticipateBtn">참여하기</button>
+                        				<button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="primary-btn two-btn moreParticipateBtn"
+										onclick="javascript:pay()">추가참여</button>
+	                        			<button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
+									</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:when test="${memberState == '이용자' }">
+									<button type="button" class="primary-btn participateBtn">참여하기</button>
+								</c:when>
+								<c:otherwise>	<!-- 비회원인 경우 -->
+									<button type="button" class="primary-btn participateBtn">참여하기</button>
+								</c:otherwise>
+								</c:choose>
 							</c:when>
-							<c:otherwise>
-								<button type="button" class="primary-btn participateBtn">참여하기</button>
-							</c:otherwise>
+							<c:when test="${state == '진행' }">
+								<c:choose>
+								<c:when test="${memberState == '진행자' }">		<!-- 상품구매여부 추가확인 필요 -->
+									<button type="button" class="primary-btn uploadBuypostImgBtn"
+                        			onclick="javascript:imgUpload()">구매완료 스크린샷 업로드하기</button>
+								</c:when>
+								<c:when test="${memberState == '참여자' }">		<!-- 상품구매여부 추가확인 필요 -->
+									<button type="button" class="primary-btn" id="notUploadImg">진행자가 상품을 구매하기 전이에요</button>
+								</c:when>
+								<c:otherwise>	<!-- 이용자 || 비회원 -->
+									<button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
+								</c:otherwise>
+								</c:choose>
+							</c:when>
+							</c:choose>
+						</c:otherwise>
 						</c:choose>
 						<!-- ① 모집중 -->
 						<!-- 1-1) 비회원: 로그인 후, 이용가능합니다. (loginform.lion 으로 이동)	

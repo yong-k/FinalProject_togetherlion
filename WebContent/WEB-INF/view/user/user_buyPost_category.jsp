@@ -103,7 +103,7 @@
 				<div class="col-lg-3 col-md-4 col-sm-6">
 					<div class="featured__item">
 						<div class="featured__item__pic set-bg"
-							data-setbg="<%=cp%>/img/featured/feature-1.jpg">
+							data-setbg="img/buypost/${buypost.goods_photo_name }">
 							<button class="buypost_go" style="width:209.99px; height:270px; cursor:pointer; opacity:0;" value="${buypost.code }"></button>
 							<span class="timeLeft">
 							<c:choose>

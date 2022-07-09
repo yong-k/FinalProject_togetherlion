@@ -62,5 +62,8 @@ public interface IBuypostDAO
 	// 해당 회원의 공동구매 참여 상태 조회
 	public String memberState(@Param("member_code") String member_code, @Param("code") String code);
 	
+	// 해당 회원의 대기여부 조회
+	public String memberWait(@Param("member_code") String member_code, @Param("code") String code);
+	
 	
 }

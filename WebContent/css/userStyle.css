@@ -136,7 +136,7 @@ ol {
 
 .set-bg {
 	background-repeat: no-repeat;
-	/* background-size: cover; */
+	background-size: cover;
 	background-position: top center;
 }
 
@@ -4115,6 +4115,9 @@ i.bi.bi-chevron-right.join-arrow {
 span.see-detail {
     font-size: 15px;
     color: #666666;
+}
+button#telCheckBtn:disabled, button#telCheckBtn:disabled:hover {
+    color: #ff6600 !important;
 }
 
 /* 커뮤니티 */
