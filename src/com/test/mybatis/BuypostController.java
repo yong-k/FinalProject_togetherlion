@@ -85,11 +85,14 @@ public class BuypostController
 		String state = buypost.buypostState(code);			// 공동구매 상태 (모집, 진행, 완료, 취소)
 		String memberState = null;							// 현재 회원의 상태(진행자, 참여자, 이용자, 비회원)
 		String user_code = null;							// 현재 로그인한 회원의 멤버코드
+		String waitState = null;
 		
 		// 로그인 정보 얻어오기
 		HttpSession session = request.getSession();
 		
 		
+		// 공동구매 게시물 내 회원 상태 구하기
+		// -- 취소 && 완료 상태 공동구매 게시물은 회원 상태 구할 필요 X 
 		
 		if (!state.equals("취소") || !state.equals("완료"))
 		{
@@ -101,6 +104,7 @@ public class BuypostController
 			{				
 				user_code = (String)session.getAttribute("member_code");
 				memberState = buypost.memberState(user_code, code);			// 현재 회원의 상태(진행자, 참여자, 이용자)
+				waitState = buypost.memberWait(user_code, user_code);
 			}
 			
 		}
@@ -134,9 +138,10 @@ public class BuypostController
 		// --------------------------------------------------------------------------------------- 남은 일, 시, 분 구하기 
 		
 		model.addAttribute("buypost", dto); 
-		model.addAttribute("member",member.search(member_code));
+		model.addAttribute("writer",member.search(member_code));
 		model.addAttribute("state", state);
 		model.addAttribute("memberState", memberState);
+		model.addAttribute("waitState", waitState);
 		
 		return "/WEB-INF/view/user/user_buyPostArticle.jsp";
 	}
