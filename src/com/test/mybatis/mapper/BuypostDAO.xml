@@ -104,7 +104,11 @@
 		WHERE MEMBER_CODE = #{member_code} AND BUYPOST_CODE = #{code}
 	</select>
 	
-	
+	<select id="memberWait" resultType="java.lang.String">
+      	SELECT REPARTICIPATE_DATETIME
+      	FROM VIEW_PARTICIPANT_WAIT
+      	WHERE MEMBER_CODE = #{member_code} AND BUYPOST_CODE = #{code}
+    </select>
 	
 	
 </mapper>
