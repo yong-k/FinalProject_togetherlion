@@ -186,8 +186,6 @@ public class AdminController
         return result;
     }
 	
-
-	
 	// 공지사항 메인
     @RequestMapping(value = "/ad_notice_list.lion")
     public String noticeList(Model model) throws SQLException
@@ -202,10 +200,11 @@ public class AdminController
 
         return result;
     }
-  
-    
+
+
+
     //공지글조회
-    @RequestMapping(value= "/ad_notice_article.lion", method=RequestMethod.GET)
+    @RequestMapping(value= "/ad_notice_article.lion")
     public String noticeArticle(String code, Model model) 
     {
         String result = null;
@@ -213,7 +212,7 @@ public class AdminController
         IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class); 
         ArrayList<AdNoticeListDTO> dto = dao.listNoticeArticle(code); 
  
-        
+
         model.addAttribute("article", dto);
         result = "/WEB-INF/view/admin/admin_homepage_noticeArticle.jsp";
 
@@ -231,45 +230,25 @@ public class AdminController
         return result;
     }
 
-    // 공지글쓰기_ok
-    @RequestMapping(value="/ad_notice_insertForm_ok.lion", method=RequestMethod.GET)
-    public String noticeInsertFormOk(AdNoticeListDTO insertDTO)
-    {
-        String result=null;
 
 
-        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
-        AdNoticeListDTO dto = dao.insertNoticeArticle(insertDTO);
-        
-        
-        //model.addAttribute("article", dto); 
-        //System.out.print();  // 테스트
-        
-        result = "/ad_notice_article.lion";
-        return result;
-    }
-
-    //공지글수정
-    @RequestMapping(value="/ad_notice_updateForm.lion")
-    public String noticeUpdateForm()
+    //공지글수정페이지
+    @RequestMapping(value="/ad_notice_updateForm.lion", method=RequestMethod.GET)
+    public String noticeUpdateForm(String code, Model model)
     {
         String result = null;
+
+        IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class); 
+        ArrayList<AdNoticeListDTO> dto = dao.modifyNoticeArticleForm(code); 
+ 
+
+        model.addAttribute("article", dto);
 
         result = "/WEB-INF/view/admin/admin_homepage_noticeUpdateForm.jsp";
 
         return result;
     }
-
-    //공지글수정_ok
-    @RequestMapping(value="/ad_notice_updateForm_ok.lion")
-    public String noticeUpdateFormOk()
-    {
-        String result = null;
-
-        result = "/WEB-INF/view/admin/admin_homepage_noticeUpdateForm_ok.jsp";
-
-        return result;
-    }
+	
     
     // 신고접수내역
     @RequestMapping(value = "/admin_report_receptionList.lion")
@@ -288,15 +267,17 @@ public class AdminController
     
     //신고접수내역 상세
     @RequestMapping(value = "/admin_report_receptionDetail.lion", method = RequestMethod.GET)
-    public String reportReceptionDetail(String buypost_code, Model model) 
+    public String reportReceptionDetail(String code, Model model) 
     {
-    	System.out.println(buypost_code);
         String result = null;
 
         IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
-
-        //model.addAttribute("list", dao.listReportReceptionDetail(buypost_code));
-
+        ArrayList<ReportDTO> dto = dao.listReportReceptionDetail(code);
+        
+        model.addAttribute("list", dto);
+        
+        //model.addAttribute("list", dao.listReportReceptionDetail(code));
+        
         result = "/WEB-INF/view/admin/admin_report_receptionDetail.jsp";
         
         
