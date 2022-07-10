@@ -57,15 +57,26 @@ button.swal2-confirm.swal2-styled:focus {
 				}).then((result) => {
 					location.href='main.lion';
 				})
-
 		}
+		else if (code == 3)
+		{
+			Swal.fire({
+				  title: '정보 불일치',
+				  text: '입력하신 정보와 일치하는 아이디가 없습니다.',
+				  icon: 'warning',
+				  iconColor: '#f27474',
+				  confirmButtonText: '확인',
+				}).then((result) => {
+					location.href='idfind.lion';
+				})
+		}
+
 	});
 </script>
-	
+
 
 </head>
 <body>
-
 
 
 

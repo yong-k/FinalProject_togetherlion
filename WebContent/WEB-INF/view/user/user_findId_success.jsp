@@ -29,7 +29,7 @@
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
 
@@ -52,14 +52,14 @@
 					<tr>
 						<td>
 							<i class="bi bi-person-circle"></i>
-							<span id="findId">lsj1@test.com</span>
-							<span id="findRegDate">가입일 2022.05.24</span>
+							<span id="findId">${id }</span>
+							<span id="findRegDate">가입일 ${regist_datetime }</span>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<button type="button" class="btn btn-outline-primary lion-outline-btn successBtn"
-							onclick="location.href='<%=cp %>/user/user_findPwForm.jsp'">비밀번호 찾기</button>
+							onclick="location.href='<%=cp %>/pwfind.lion'">비밀번호 찾기</button>
 							<button type="button" class="btn btn-primary lion-primary-btn successBtn"
 							onclick="location.href='<%=cp %>/loginform.lion'">로그인</button>
 						</td>

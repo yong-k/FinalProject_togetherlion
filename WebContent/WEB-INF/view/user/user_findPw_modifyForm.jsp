@@ -44,16 +44,51 @@ button.swal2-confirm.swal2-styled:focus {
 	{
 		$('.findBtn').click(function()
 		{	
-			// 조건 확인 및 변경 완료 후 로그인 폼으로 이동
-			location.href="<%=cp%>/loginform.lion";
+			if ($("#pw").val() == "")
+			{
+				alert("비밀번호를 입력해주세요.");
+			}
+			else if ($("#pwCheck").val() == "")
+			{
+				alert("비밀번호를 재입력해주세요.");
+			}
+    		else 
+    		{
+    		  if (!isValidPw($("#pw").val()))
+  	          {
+    			 alert("올바른 비밀번호 형식을 입력하세요. \n(6~15자의 영문, 숫자, 특수기호 조합)");
+  	          }
+    		  else if ($("#pw").val() != $("#pwCheck").val())
+    		  {
+    			 alert("비밀번호가 일치하지 않습니다.");  			  
+    		  }
+    		  else if ($("#pw").val() == $("#pwCheck").val())
+    	      {
+    			  alert("비밀번호가 변경되었습니다.");
+    			  
+    			  $("form").submit();  
+    	      }
+    		}
 		});	
 	});
+	
+	
+	function isValidPw(pw)
+	{		
+		var reg_pw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/;		
+		if(!reg_pw.test(pw))
+		{
+			return false;
+		}
+		
+		return true;	
+	}
 
 </script>
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
 
@@ -63,7 +98,7 @@ button.swal2-confirm.swal2-styled:focus {
 		</div>
 
 		<div class="join-container">
-			<form action="" class="join-form">
+			<form action="<%=cp %>/pwmodifyok.lion" class="join-form" method="post">
 				<table class="join-table">
 					<thead>
 					</thead>
@@ -71,18 +106,19 @@ button.swal2-confirm.swal2-styled:focus {
 						<tr>
 							<th>새 비밀번호</th>
 							<td>
-								<input type="password" name="pw" id="pw" placeholder="비밀번호 입력" required="required"/>
+								<input type="password" name="pw" id="pw" placeholder="6~15자의 영문, 숫자, 특수기호 조합" required="required"/>
 							</td>
 						</tr>
 						<tr>
 							<th>새 비밀번호 확인</th>
 							<td>
-								<input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 입력" required="required"/>
+								<input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 다시 입력" required="required"/>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<button type="button" class="btn btn-primary lion-primary-btn findBtn">확인</button>
+								<input type="hidden" name="id" value="${id }">
 							</td>
 						</tr>
 					</tbody>
