@@ -20,9 +20,6 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 // 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 	
-	//map.setCenter(new kakao.maps.LatLng(37.5436063473129, 126.95119605287933));
-
-	
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';

@@ -4334,6 +4334,18 @@ button.locationBtn {
     margin-left: -4px;
     margin-top: 19px;
 }
+button.calculateBtn {
+    width: 57px !important;
+    margin-right: 0 !important;
+    margin-top: -1px !important;
+    margin-left: 10px;
+    height: 40px !important;
+    font-weight: normal !important;
+}
+button.calculateBtn:hover {
+    color: #ff6600 !important;
+    text-decoration: underline;
+}
 
 /* 마이페이지 */
 .mypage-header {
