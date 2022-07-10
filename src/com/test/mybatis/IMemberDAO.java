@@ -26,4 +26,16 @@ public interface IMemberDAO
 	
 	// 회원 데이터 추가
 	public void addMember(MemberDTO member);
+	
+	// 아이디 찾기
+	public String idFind(MemberDTO member);
+	
+	// 가입일 찾기
+	public String regFind(String tel);
+	
+	// 아이디, 전화번호로 회원 존재 여부 조회
+	public int checkIdTel(MemberDTO member);
+	
+	// 비밀번호 수정
+	public void modifyPw(MemberDTO member);
 }

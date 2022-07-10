@@ -21,14 +21,14 @@ public class Naver_Sens_V2
 	@SuppressWarnings("unchecked")
 	public void send_msg(String tel, String rand) 
 	{
-		String hostNameUrl = "https://sens.apigw.ntruss.com";     		// 호스트 URL
-		String requestUrl= "/sms/v2/services/";                   		// 요청 URL
-		String requestUrlType = "/messages";                      		// 요청 URL
-		String accessKey = "qMNnxWUXAOL0JcWaO1Es";                     						// 네이버 클라우드 플랫폼 회원에게 발급되는 개인 인증키
-		String secretKey = "Ojd7ba67JMBicJuIBAUV3y443fjHkR0C4ZnteItL";  					// 2차 인증을 위해 서비스마다 할당되는 service secret
-		String serviceId = "ncp:sms:kr:288705593839:sms_auth";        									// 프로젝트에 할당된 SMS 서비스 ID
-		String method = "POST";											// 요청 method
-		String timestamp = Long.toString(System.currentTimeMillis()); 	// current timestamp (epoch)
+		String hostNameUrl = "https://sens.apigw.ntruss.com";     			// 호스트 URL
+		String requestUrl= "/sms/v2/services/";                   			// 요청 URL
+		String requestUrlType = "/messages";                      			// 요청 URL
+		String accessKey = "qMNnxWUXAOL0JcWaO1Es";                    	 	// 네이버 클라우드 플랫폼 회원에게 발급되는 개인 인증키
+		String secretKey = "Ojd7ba67JMBicJuIBAUV3y443fjHkR0C4ZnteItL"; 	 	// 2차 인증을 위해 서비스마다 할당되는 service secret
+		String serviceId = "ncp:sms:kr:288705593839:sms_auth";        		// 프로젝트에 할당된 SMS 서비스 ID
+		String method = "POST";												// 요청 method
+		String timestamp = Long.toString(System.currentTimeMillis()); 		// current timestamp (epoch)
 		requestUrl += serviceId + requestUrlType;
 		String apiUrl = hostNameUrl + requestUrl;
 		
@@ -38,17 +38,17 @@ public class Naver_Sens_V2
 		JSONObject toJson = new JSONObject();
 	    JSONArray  toArr = new JSONArray();
 
-	    toJson.put("subject","hi");				// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
+	    toJson.put("subject","hi");											// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
 	    toJson.put("content","같이사자 본인인증 ["+rand+"]");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
-	    toJson.put("to",tel);					// 수신번호 목록  * 최대 50개까지 한번에 전송할 수 있습니다.
+	    toJson.put("to",tel);												// 수신번호 목록  * 최대 50개까지 한번에 전송할 수 있습니다.
 	    toArr.add(toJson);
 	    
-	    bodyJson.put("type","sms");				// 메시지 Type (sms | lms)
-	    bodyJson.put("contentType","COMM");			// 메시지 내용 Type (AD | COMM) * AD: 광고용, COMM: 일반용 (default: COMM) * 광고용 메시지 발송 시 불법 스팸 방지를 위한 정보통신망법 (제 50조)가 적용됩니다.
-	    bodyJson.put("countryCode","82");		// 국가 전화번호
-	    bodyJson.put("from","01044289420");				// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
-	    bodyJson.put("subject","");				// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
-	    bodyJson.put("content","hello");				// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
+	    bodyJson.put("type","sms");											// 메시지 Type (sms | lms)
+	    bodyJson.put("contentType","COMM");									// 메시지 내용 Type (AD | COMM) * AD: 광고용, COMM: 일반용 (default: COMM) * 광고용 메시지 발송 시 불법 스팸 방지를 위한 정보통신망법 (제 50조)가 적용됩니다.
+	    bodyJson.put("countryCode","82");									// 국가 전화번호
+	    bodyJson.put("from","01044289420");									// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
+	    bodyJson.put("subject","");											// 메시지 제목 * LMS Type에서만 사용할 수 있습니다.
+	    bodyJson.put("content","hello");									// 메시지 내용 * Type별로 최대 byte 제한이 다릅니다.* SMS: 80byte / LMS: 2000byte
 	    bodyJson.put("messages", toArr);		
 	    
 
@@ -107,8 +107,8 @@ public class Naver_Sens_V2
 	
 	public static String makeSignature(String url, String timestamp, String method, String accessKey, String secretKey) throws NoSuchAlgorithmException, InvalidKeyException 
 	{
-	    String space = " ";                    // one space
-	    String newLine = "\n";                 // new line
+	    String space = " ";                   										 // one space
+	    String newLine = "\n";                										 // new line
 	    
 
 	    String message = new StringBuilder()
