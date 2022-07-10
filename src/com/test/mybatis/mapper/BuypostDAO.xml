@@ -105,10 +105,16 @@
 	</select>
 	
 	<select id="memberWait" resultType="java.lang.String">
-      	SELECT REPARTICIPATE_DATETIME
-      	FROM VIEW_PARTICIPANT_WAIT
-      	WHERE MEMBER_CODE = #{member_code} AND BUYPOST_CODE = #{code}
-    </select>
+		SELECT REPARTICIPATE_DATETIME
+		FROM VIEW_PARTICIPANT_WAIT
+		WHERE MEMBER_CODE = #{member_code} AND BUYPOST_CODE = #{code}
+	</select>
+	
+	<select id="buyScreenshot" resultType="java.lang.String">
+		SELECT BUY_DATETIME
+		FROM BUYPOST
+		WHERE CODE = #{CODE}
+	</select>
 	
 	
 </mapper>

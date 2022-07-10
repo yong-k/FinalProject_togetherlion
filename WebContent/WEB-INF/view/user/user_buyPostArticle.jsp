@@ -301,7 +301,7 @@ button.swal2-cancel.swal2-styled:focus {
 					<div class="product__details__pic">
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
-								src="<%=cp%>/img/product/details/product-details-1.jpg" alt="">
+								src="img/buypost/${buypost.goods_photo_name }" alt="">
 							<div class="product__url">
 								<a href="${buypost.url }"
                             	target="_blank"><i
@@ -346,7 +346,7 @@ button.swal2-cancel.swal2-styled:focus {
 							</div>
 						</div>
 						<div class="product__details__box">
-							<div class="product__details__label">거래 위치</div>
+							<div class="product__details__label">거래 위치 ${waitState }</div>
 							<div class="product__details__value">서울 마포구 서교동 445-7</div>
 						</div>
 						<div class="product__details__box">
@@ -412,32 +412,48 @@ button.swal2-cancel.swal2-styled:focus {
 								<c:when test="${memberState == '참여자' }">
 									<c:choose>
 									<c:when test="${waitState != null }">	<!-- 대기상태 -->
-										<button type="button" class="primary-btn two-btn reparticipateBtn">참여하기</button>
-                        				<button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
-									</c:when>
-									<c:otherwise>
 										<button type="button" class="primary-btn two-btn moreParticipateBtn"
 										onclick="javascript:pay()">추가참여</button>
 	                        			<button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
+									</c:when>
+									<c:otherwise>
+	                        			<button type="button" class="primary-btn two-btn reparticipateBtn">참여하기</button>
+                        				<button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
 									</c:otherwise>
 									</c:choose>
 								</c:when>
 								<c:when test="${memberState == '이용자' }">
 									<button type="button" class="primary-btn participateBtn">참여하기</button>
 								</c:when>
-								<c:otherwise>	<!-- 비회원인 경우 -->
+								<c:otherwise>	<!-- 비회원인 경우 --> 
 									<button type="button" class="primary-btn participateBtn">참여하기</button>
 								</c:otherwise>
 								</c:choose>
 							</c:when>
 							<c:when test="${state == '진행' }">
 								<c:choose>
-								<c:when test="${memberState == '진행자' }">		<!-- 상품구매여부 추가확인 필요 -->
-									<button type="button" class="primary-btn uploadBuypostImgBtn"
-                        			onclick="javascript:imgUpload()">구매완료 스크린샷 업로드하기</button>
+								<c:when test="${memberState == '진행자' }">		<!-- 상품구매여부 -->
+									<c:choose>
+									<c:when test="${buyScreenshot == null }">
+										<button type="button" class="primary-btn uploadBuypostImgBtn"
+                        				onclick="javascript:imgUpload()">구매완료 스크린샷 업로드하기</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="primary-btn checkBuypostImgBtn"
+                        				onclick="javascript:imgCheck()">구매완료 스크린샷 확인하기</button>
+									</c:otherwise>
+									</c:choose>									
 								</c:when>
-								<c:when test="${memberState == '참여자' }">		<!-- 상품구매여부 추가확인 필요 -->
-									<button type="button" class="primary-btn" id="notUploadImg">진행자가 상품을 구매하기 전이에요</button>
+								<c:when test="${memberState == '참여자' }">		<!-- 상품구매여부 -->
+									<c:choose>
+									<c:when test="${buyScreenshot == null }">
+										<button type="button" class="primary-btn" id="notUploadImg">진행자가 상품을 구매하기 전이에요</button>								
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="primary-btn checkBuypostImgBtn"
+                        				onclick="javascript:imgCheck()">구매완료 스크린샷 확인하기</button>
+									</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>	<!-- 이용자 || 비회원 -->
 									<button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
@@ -447,49 +463,7 @@ button.swal2-cancel.swal2-styled:focus {
 							</c:choose>
 						</c:otherwise>
 						</c:choose>
-						<!-- ① 모집중 -->
-						<!-- 1-1) 비회원: 로그인 후, 이용가능합니다. (loginform.lion 으로 이동)	
-                        <!-- 1-2) 회원(참여X): 포인트 결제 후, 참여가능 -->
 						
-						<!-- 
- 						-->
-						<!-- 1-3) 참여자(참여상태) -->
-						<!--   
-                        <button type="button" class="primary-btn two-btn moreParticipateBtn"
-						onclick="javascript:pay()">추가참여</button>
-                        <button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
-                        -->
-						<!-- 1-4) 참여자(대기상태) -->
-						<!--  
-                        <button type="button" class="primary-btn two-btn reparticipateBtn">참여하기</button>
-                        <button type="button" class="primary-btn two-btn cancelParticipateBtn">참여취소</button>
-                        -->
-						<!-- 1-5) 진행자 -->
-						<!-- 
-                        <button type="button" class="primary-btn two-btn buypostUpdateBtn">수정</button>
-                        <button type="button" class="primary-btn two-btn buypostCancelBtn">진행취소</button>
-                        -->
-
-						<!-- ②진행중 -->
-						<!-- 2-1) 진행자: 진행자가 상품구매완료하기 전 -->
-						<!--  
-                        <button type="button" class="primary-btn uploadBuypostImgBtn"
-                        onclick="javascript:imgUpload()">구매완료 스크린샷 업로드하기</button>
-                        -->
-						<!-- 2-2) 참여자: 진행자가 상품구매완료하기 전 -->
-						<!-- 
-                        <button type="button" class="primary-btn" id="notUploadImg">진행자가 상품을 구매하기 전이에요</button>
-                        -->
-						<!-- 2-3) 진행자가 상품구매완료 후 -->
-						<!-- 
-                        <button type="button" class="primary-btn checkBuypostImgBtn"
-                        onclick="javascript:imgCheck()">구매완료 스크린샷 확인하기</button>
-                        -->
-
-						<!-- ③완료/마감/취소 -->
-						<!-- 
-                        <button type="button" class="primary-btn buypost-end-btn" disabled="disabled">공동구매가 마감되었습니다.</button>
- 						-->
 						<!-- 찜 → 모집중인 게시물에만 띄움 -->
 						<!-- 1) 찜 하기 전, 비어있는 하트 -->
 						<a href="#!" class="heart-icon"><i class="fa fa-heart-o buypost-wish" aria-hidden="true"></i></a>
@@ -533,54 +507,17 @@ button.swal2-cancel.swal2-styled:focus {
 
 									<!-- 참여자목록 -->
 									<!-- 회원 매너지수 계산해서 매너지수사진테이블에서 해당 점수대의 사진 가져와야 합니다. -->
-									<a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_3.png" />
+									<c:forEach var="parti" items="${partiList }">
+										<a href="#!">
+											<div class="product__details__profile participate-profile">
+												<div class="buypost_profile_photo participate-profile-photo">
+													<img src="<%=cp%>/img/mannerLevel/manner_3.png" />
+												</div>
+												<div
+													class="buypost_profile_nickname participate-profile-nickname">${parti.nickname }</div>
 											</div>
-											<div
-												class="buypost_profile_nickname participate-profile-nickname">알니니</div>
-										</div>
-									</a> <a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_1.png" />
-											</div>
-											<div
-												class="buypost_profile_nickname participate-profile-nickname">거꾸로해도정은정</div>
-										</div>
-									</a> <a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_2.png" />
-											</div>
-											<div
-												class="buypost_profile_nickname participate-profile-nickname">수정이가수정함</div>
-										</div>
-									</a> <a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_4.png" />
-											</div>
-											<div
-												class="buypost_profile_nickname participate-profile-nickname">신토끼</div>
-										</div>
-									</a> <a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_5.png" />
-											</div>
-											<div class="buypost_profile_nickname participate-profile-nickname">yong__go_og</div>
-										</div>
-									</a> <a href="#!">
-										<div class="product__details__profile participate-profile">
-											<div class="buypost_profile_photo participate-profile-photo">
-												<img src="<%=cp%>/img/mannerLevel/manner_6.png" />
-											</div>
-											<div
-												class="buypost_profile_nickname participate-profile-nickname">타코야끼</div>
-										</div>
-									</a>
+										</a>
+									</c:forEach>
 								</div>
 							</div>
 						</div>

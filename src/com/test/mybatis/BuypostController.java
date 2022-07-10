@@ -79,13 +79,18 @@ public class BuypostController
 	{	
 		IBuypostDAO buypost = sqlSession.getMapper(IBuypostDAO.class); 
 		IMemberDAO member = sqlSession.getMapper(IMemberDAO.class);
+		IParticipantDAO parti = sqlSession.getMapper(IParticipantDAO.class);
 		 
 		BuypostDTO dto = buypost.search(code);
 		String member_code = dto.getMember_code();			// 공동구매 게시물 작성자 멤버코드
 		String state = buypost.buypostState(code);			// 공동구매 상태 (모집, 진행, 완료, 취소)
 		String memberState = null;							// 현재 회원의 상태(진행자, 참여자, 이용자, 비회원)
 		String user_code = null;							// 현재 로그인한 회원의 멤버코드
-		String waitState = null;
+		String waitState = null;							// 현재 로그인한 회원의 대기여부
+		String buyScreenshot = null;						// 현재 공동구매 게시물의 스크린샷 업로드여부 
+		
+		// 현재 공동구매 참여자 목록
+		ArrayList<ParticipantDTO> partiList = parti.buypostPeople(code);
 		
 		// 로그인 정보 얻어오기
 		HttpSession session = request.getSession();
@@ -104,7 +109,8 @@ public class BuypostController
 			{				
 				user_code = (String)session.getAttribute("member_code");
 				memberState = buypost.memberState(user_code, code);			// 현재 회원의 상태(진행자, 참여자, 이용자)
-				waitState = buypost.memberWait(user_code, user_code);
+				waitState = buypost.memberWait(user_code, code);
+				buyScreenshot = buypost.buyScreenshot(code);
 			}
 			
 		}
@@ -142,6 +148,8 @@ public class BuypostController
 		model.addAttribute("state", state);
 		model.addAttribute("memberState", memberState);
 		model.addAttribute("waitState", waitState);
+		model.addAttribute("buyScreenshot", buyScreenshot);
+		model.addAttribute("partiList", partiList);
 		
 		return "/WEB-INF/view/user/user_buyPostArticle.jsp";
 	}

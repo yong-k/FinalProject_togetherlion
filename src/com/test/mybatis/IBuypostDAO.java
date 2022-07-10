@@ -65,5 +65,8 @@ public interface IBuypostDAO
 	// 해당 회원의 대기여부 조회
 	public String memberWait(@Param("member_code") String member_code, @Param("code") String code);
 	
+	// 해당 공동구매 게시물의 구매완료 스크린샷 업로드 여부 조회
+	public String buyScreenshot(String code);
+	
 	
 }
