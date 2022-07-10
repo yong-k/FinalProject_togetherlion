@@ -38,34 +38,50 @@ button.swal2-confirm.swal2-styled:focus {
     box-shadow: none;
 }
 </style>
+<script type="text/javascript" src="<%=cp%>/js/loginFn.js"></script>
 <script type="text/javascript">
 
 	$(function()
 	{
 		$('.findBtn').click(function()
 		{	
-			// 이름-핸드폰번호-인증번호 일치하면, user_findId_success.jsp로 연결
-			// 일단 지금은 true로 그냥 처리해놓음
-			if (true)
+			if ($("#name").val() == "")
 			{
-				location.href = "user_findId_success.jsp";
+				alert("이름을 입력해주세요.");
+				return;
 			}
-	    	else 
-	    	{
-	    		Swal.fire({
-	    			icon: 'error',
-	    			text: '인증번호가 일치하지 않습니다.',
-	    			confirmButtonText: '확인'
-	    		});
-		    }
+			
+			if ($("#tel").val() == "")
+			{
+				alert("휴대폰 번호를 입력해주세요.");
+			}
+			else
+			{
+				$("#idFindForm").attr("action", "idsearch.lion");
+				$("#idFindForm").submit();
+			}
+			
 		});	
+		
+		
+		$("#tel").keyup(function()
+		{
+			var reg_tel = /^[0-9]+$/; 
+			
+			if (!reg_tel.test($("#tel").val()))
+			{
+				alert("휴대폰 번호는 숫자만 입력해주세요.");
+				$("#tel").val('');
+			}
+		});
+		
 	});
 
 </script>
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
 
@@ -75,7 +91,7 @@ button.swal2-confirm.swal2-styled:focus {
 		</div>
 
 		<div class="join-container">
-			<form action="" class="join-form">
+			<form action="" class="join-form" id="idFindForm" method="post">
 				<table class="join-table">
 					<thead>
 					</thead>
@@ -89,22 +105,12 @@ button.swal2-confirm.swal2-styled:focus {
 						<tr>
 							<th>휴대폰</th>
 							<td>
-								<input type="text" name="tel" id="tel" placeholder="숫자만 입력" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 받기</button>
-							</td>
-						</tr>
-						<tr>
-							<th></th>
-							<td>
-								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 확인</button>
+								<input type="text" name="tel" id="tel" placeholder="예) 01012345678" required="required" value pattern="[0-9]*"/>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<button type="button" class="btn btn-primary lion-primary-btn findBtn">확인</button>
+								<button type="button" class="btn btn-primary lion-primary-btn findBtn" >확인</button>
 							</td>
 						</tr>
 					</tbody>

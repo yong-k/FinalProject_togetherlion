@@ -39,25 +39,33 @@ button.swal2-confirm.swal2-styled:focus {
 }
 </style>
 <script type="text/javascript">
+	var telAuth = false;
+</script>
+<script type="text/javascript" src="<%=cp%>/js/findFn.js"></script>
+<script type="text/javascript">
 
 	$(function()
 	{
 		$('.findBtn').click(function()
 		{	
-			// 아이디-핸드폰번호-인증번호 일치하면, user_findPw_modifyForm.jsp 로 연결
-			// 일단 지금은 true로 그냥 처리해놓음
-			if (true)
+			if ($("#id").val() == "")
 			{
-				location.href = "user_findPw_modifyForm.jsp";
+				alert("아이디를 입력해주세요.");
+				return;
+			}
+
+			if (telAuth == true)
+			{
+				$("form").submit(); 
 			}
 	    	else 
 	    	{
 	    		Swal.fire({
-	    			icon: 'error',
-	    			text: '인증번호가 일치하지 않습니다.',
+	    			icon: 'warning',
+	    			text: '휴대폰 인증이 필요합니다.',
 	    			confirmButtonText: '확인'
 	    		});
-		    }
+  			 }
 		});	
 	});
 
@@ -65,7 +73,7 @@ button.swal2-confirm.swal2-styled:focus {
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
 
@@ -75,7 +83,7 @@ button.swal2-confirm.swal2-styled:focus {
 		</div>
 
 		<div class="join-container">
-			<form action="" class="join-form">
+			<form action="<%=cp %>/pwmodify.lion" class="join-form" method="post">
 				<table class="join-table">
 					<thead>
 					</thead>
@@ -89,17 +97,17 @@ button.swal2-confirm.swal2-styled:focus {
 						<tr>
 							<th>휴대폰</th>
 							<td>
-								<input type="text" name="tel" id="tel" placeholder="숫자만 입력" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 받기</button>
+								<input type="text" name="tel" id="tel" placeholder="예) 01012345678" required="required" value pattern="[0-9]*"/>
+								<button type="button" class="btn btn-outline-primary join-form-btn" id="telBtn"
+								onclick="telAuth();">인증번호 전송</button>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
-								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 확인</button>
+								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*" placeholder="인증번호 입력"/>
+								<button type="button" class="btn btn-outline-primary join-form-btn" id="telCheckBtn" disabled="disabled" 
+								onclick="authCheck();">인증번호 확인</button>
 							</td>
 						</tr>
 						<tr>

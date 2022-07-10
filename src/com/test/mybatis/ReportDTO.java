@@ -2,10 +2,12 @@ package com.test.mybatis;
 
 public class ReportDTO
 {
-	//행번호, 피신고자, 게시물종류, 게시물번호, 신고자, 신고사유, 일자 
-	private String num, member_code, type, buypost_code, reporter, main_name, datetime, sub_name;
+	//행번호, 접수코드, 피신고자, 게시물종류, 게시물번호, 신고자, 신고사유, 일자 
+	private String num, code, member_id, type, buypost_code, reporter_id
+				, main_name, datetime, sub_name;
 
 	// getter/ setter
+
 	public String getNum()
 	{
 		return num;
@@ -16,14 +18,24 @@ public class ReportDTO
 		this.num = num;
 	}
 
-	public String getMember_code()
+	public String getCode()
 	{
-		return member_code;
+		return code;
 	}
 
-	public void setMember_code(String member_code)
+	public void setCode(String code)
 	{
-		this.member_code = member_code;
+		this.code = code;
+	}
+
+	public String getMember_id()
+	{
+		return member_id;
+	}
+
+	public void setMember_id(String member_id)
+	{
+		this.member_id = member_id;
 	}
 
 	public String getType()
@@ -46,14 +58,14 @@ public class ReportDTO
 		this.buypost_code = buypost_code;
 	}
 
-	public String getReporter()
+	public String getReporter_id()
 	{
-		return reporter;
+		return reporter_id;
 	}
 
-	public void setReporter(String reporter)
+	public void setReporter_id(String reporter_id)
 	{
-		this.reporter = reporter;
+		this.reporter_id = reporter_id;
 	}
 
 	public String getMain_name()
@@ -85,7 +97,7 @@ public class ReportDTO
 	{
 		this.sub_name = sub_name;
 	}
-	
+
 
 	
 	

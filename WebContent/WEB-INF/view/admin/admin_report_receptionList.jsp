@@ -208,11 +208,11 @@
 									<c:forEach var="report" items="${list }">
 									<tr>
 										<td>${report.num }</td>
-										<td>${report.member_code }</td>
+										<td>${report.member_id}</td>
 										<td>${report.type }</td>
-										<td><a href="<%=cp %>/admin_report_receptionDetail.lion?buypost_code=${report.buypost_code}">${report.buypost_code }</a></td>
-										<td>${report.reporter }</td>
-										<td>${report.main_name }</td>
+										<td><a href="<%=cp%>/admin_report_receptionDetail.lion?code=${report.code}">${report.buypost_code }</a></td>
+										<td>${report.reporter_id}</td>
+										<td>${report.main_name}</td>
 										<td>${report.datetime }</td>
 									</tr>
 									</c:forEach> 

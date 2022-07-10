@@ -50,11 +50,8 @@ public interface IAdminDAO
     // 공지사항 게시물조회 
     public ArrayList<AdNoticeListDTO> listNoticeArticle(String code);
 
-    // 공지사항 게시물작성
-    public AdNoticeListDTO insertNoticeArticle(AdNoticeListDTO dto);
-
-    // 공지사항 게시물수정
-    public ArrayList<AdNoticeListDTO> modifyNoticeArticle();
+    // 공지사항 게시물수정폼조회
+    public ArrayList<AdNoticeListDTO> modifyNoticeArticleForm(String code);
     
     // 메인카테고리 목록
     public ArrayList<MainCateDTO> listCategory();
@@ -66,5 +63,5 @@ public interface IAdminDAO
     public ArrayList<ReportDTO> listReportReception();
     
     // 신고접수내역 상세
-    public ArrayList<ReportDTO> listReportReceptionDetail(String buypost_code);
+    public ArrayList<ReportDTO> listReportReceptionDetail(String code);
 }
