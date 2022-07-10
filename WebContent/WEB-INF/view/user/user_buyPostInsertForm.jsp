@@ -3,6 +3,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+	String member_code = (String)session.getAttribute("member_code");
 %>
 <!DOCTYPE html>
 <html>
@@ -100,27 +102,11 @@ button.swal2-cancel.swal2-styled:focus {
 		// 모집마감일 (현재 ~ +21일)
 		$("#deadline").datepicker({
 			minDate: 0,
-			maxDate: "+21D",
-			/*
-			$('#deadlineTime').timepicker({
-				
-				
-			}),
-		*/
-			onClose: function(selectedDate)
-			{
-				// 거래희망일 (모집마감일 ~ +14일)
-				let year = new Date(selectedDate).getFullYear();
-				let month = new Date(selectedDate).getMonth();
-				let day = new Date(selectedDate).getDate()+14;
-				
-				$("#trade_date").datepicker("option", "minDate", selectedDate);
-				$("#trade_date").datepicker("option", "maxDate", new Date(year, month, day));
-			}
+			maxDate: "+21D"
 		});
 		
 		
-		// TimePicker (https://timepicker.co/#)
+		// TimePicker
 		$('.timepicker').timepicker({
 		    timeFormat: 'h:mm p',
 		    interval: 30,
@@ -151,7 +137,14 @@ button.swal2-cancel.swal2-styled:focus {
 		{
 			$('.buypostInsertFileBtn-box>hr').css('display', 'none');
 		});
-
+		
+		
+		// 1인 가격 계산
+		$('.calculateBtn').click(function()
+		{	
+			let eachPrice = Number($('input#total_price').val()) / Number($('input#goods_num').val());
+			$('span.price').text(Math.ceil(eachPrice));
+		});
 	});
 	
 	// 지도
@@ -166,6 +159,7 @@ button.swal2-cancel.swal2-styled:focus {
 	    readURL(this);
 	    });
 	});
+	
 	function readURL(input) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
@@ -175,40 +169,6 @@ button.swal2-cancel.swal2-styled:focus {
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}		
-	/*
-	function()
-	{
-		
-		ajaxForm : function (id, func)
-		{
-			$('#'+id).ajaxForm({
-				contentType: false,
-				processData: false,
-				enctype: "multipart/form-data",
-				type: "POST",
-				dataType: 'json',
-				beforeSubmit: function(data, form, option)
-				{	
-					console.log('beforeSubmit');
-					console.log(data);
-					console.log(form);
-					console.log(option);
-				},
-				success: function(returnData)
-				{
-					func(returnData);
-				},
-				error: function(x, e)
-				{
-					console.log("ajax status : " + x.status);
-					console.log(e);
-				}
-			});
-		};
-		
-		$('#buypostInsertForm').submit();
-	}
-	*/
 </script>
 </head>
 <body>
@@ -299,10 +259,10 @@ button.swal2-cancel.swal2-styled:focus {
 									placeholder="모집상품개수 입력 (진행자 구매 수량 포함)" />
 							</div>
 							<div class="buypostForm-text">
-								<!-- 총금액, 모집상품개수 입력하면, 그걸로 계산해서 보여지는 가격 -->
-								<i class="bi bi-calculator"></i>
+ 								<i class="bi bi-calculator"></i>
 								<span class="buypost-label">1인가격 (총금액/모집상품개수)</span> 
-								<span class="price">25400</span>원
+								<span class="price">???</span>원
+								<button type="button" class="btn btn-outline-primary lion-outline-btn calculateBtn">계산</button>
 							</div>
 							<div class="buypostForm-text">
 								<input type="text" id="deadline" name="deadline"
@@ -322,11 +282,6 @@ button.swal2-cancel.swal2-styled:focus {
 									<i class="bi bi-geo-alt-fill buypost-icon"></i>
 									<input type="text" id="location" class="buypost-text buypost-location" required
 										placeholder="거래위치를 선택해주세요." readonly/>
-										
-									<br />값 넘겨받는거 테스트중<br />
-									<input type="text" id="location-x" style="width:400px; height:40px"/><br />
-									<input type="text" id="location-y" style="width:400px; height:40px"/><br />
-									<input type="text" id="region" style="width:400px; height:40px"/><br />
 								</a>
 							</div>
 	
@@ -349,23 +304,8 @@ button.swal2-cancel.swal2-styled:focus {
 							<input multiple="multiple" name="files[]" type="file" class="buypost-file" style="width: 500px;"/>
 						</div>
 						<div class="btn-box">
-							<button type="button" class="btn btn-primary lion-primary-btn insertTestBtn"
-							style="background-color: #9371a3;">테스트중</button>
-							<!-- 
 							<button type="button" class="btn btn-primary lion-primary-btn saveBtn">등록</button>
-							 -->
 						</div>
-						
-						<!--  
-							글 등록 → 포인트 결제창 (아래에 따라서 뜨는 멘트가 다름)
-							> [결제]  if 상품금액 <= 잔여포인트 
-									 → 비밀번호입력창 → 결제완료창 → 공동구매상세보기페이지(user_buyPostArticle.jsp)로 이동
-									 else 상품금액 > 잔여포인트
-							> [충전] 마이페이지>포인트충전에서도 쓸 충전창 뜸
-							
-							포인트 쪽 뷰,팝업 먼저 작업하고 다시하기,,						
-						-->
-						
 					</div>
 				</div>
 			</form>

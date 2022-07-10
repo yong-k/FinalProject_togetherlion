@@ -82,7 +82,7 @@ button.swal2-cancel.swal2-styled:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	location.href = 'ad_noticeArticle.lion';
+      			    	location.href = 'ad_notice_article.lion';
       			    });
       			  }
     			})
@@ -261,24 +261,19 @@ button.swal2-cancel.swal2-styled:focus {
 								
 								<div class="admin-textarea-box">
 									<form method="post">
+										<c:forEach var="noticeArticle" items="${article }">
 										<label for="title" class="col-form-label">제목</label>
 										<input type="text" class="form-control-plaintext faq-title" id="title"
-										value="시스템 점검 안내">
+										value="${noticeArticle.title }">
 									
 										<label for="content" class="col-form-label">내용</label>
 										<textarea class="form-control admin-textarea" id="content" rows="15">
-안녕하세요 고객님, 가치사자입니다. 
-보다 안정적인 서비스 제공을 위해 서버 점검을 시행할 예정입니다.
-점검 시간 동안은 서비스 이용이 중단되오니,
-고객님의 양해 부탁드립니다.
-점검 일시 : 5월 15일 일요일 02시 ~ 05시 (약3시간)
-*점검 시간은 공지보다 다소 길어질 수 있습니다.
-
-감사합니다.
-가치사자 드림							
+<c:forTokens items="${noticeArticle.content }" delims="." var="content">
+	<c:out value="${content}"/>
+</c:forTokens>					
 										</textarea>
 										<input type="file" class="admin-textarea-file"/>
-										
+										</c:forEach>
 										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
 										<button type="button" class="adminBtn saveBtn answerInsertBtn">수정</button>
 									</form>

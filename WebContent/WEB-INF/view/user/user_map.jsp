@@ -22,22 +22,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
 			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
-			<!-- 
-<script type="text/javascript">
-	function passMapInfo()
-	{
-		opener.document.getElementById("location").value = document.getElementById("detailAddr");
-		opener.document.getElementById("location-x").value = document.getElementById("lat");
-		opener.document.getElementById("location-y").value = document.getElementById("lng");
-		opener.document.getElementById("region").value = document.getElementById("region");
-	}
-</script>	
-	 -->
+
 </head>
 <body class="popup">
 	<div class="map-container">
 		<div class="report-title">
-			<h2>지도를 움직여서 거래 위치를 마우스로 클릭해주세요.</h2>
+			<h2 id="buypostMap">지도를 움직여서 거래 위치를 마우스로 클릭해주세요.</h2>
 			<hr class="map-line"/>
 		</div>
 		<div id="map" style="width:950px;height:400px;"></div>

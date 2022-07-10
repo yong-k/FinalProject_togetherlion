@@ -27,78 +27,98 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style type="text/css">
 /* sweetalert */
-h2#swal2-title {
-    font-size: 23px;
-    padding-top: 40px;
-    padding-bottom: 10px;
-}
 button.swal2-confirm.swal2-styled {
     background-color: #fca652;
-    width: 200px;
-    height: 50px;
-    font-size: 19px;
+    width: 100px;
+}
+button.swal2-cancel.swal2-styled {
+    width: 100px;
 }
 button.swal2-confirm.swal2-styled:focus {
     box-shadow: none;
 }
-div#swal2-html-container {
-    text-align: inherit;
-    font-size: 16px;
-}
 </style>
 <script type="text/javascript">
+	var telAuth = false;
+</script>
+<script type="text/javascript" src="<%=cp%>/js/findFn.js"></script>
+<script type="text/javascript">
+
+	$(function()
+	{
+		$('.findBtn').click(function()
+		{	
+			if ($("#id").val() == "")
+			{
+				alert("아이디를 입력해주세요.");
+				return;
+			}
+
+			if (telAuth == true)
+			{
+				$("form").submit(); 
+			}
+	    	else 
+	    	{
+	    		Swal.fire({
+	    			icon: 'warning',
+	    			text: '휴대폰 인증이 필요합니다.',
+	    			confirmButtonText: '확인'
+	    		});
+  			 }
+		});	
+	});
 
 </script>
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
 
 		<div class="join-title-container">
-			<h2 class="join-title">아이디 찾기</h2>
-			<hr class="join-hr"/>
+			<h2 class="findForm-title">비밀번호 찾기</h2>
+			<hr class="findForm-hr"/>
 		</div>
 
 		<div class="join-container">
-			<form action="" class="join-form">
+			<form action="<%=cp %>/pwmodify.lion" class="join-form" method="post">
 				<table class="join-table">
 					<thead>
 					</thead>
 					<tbody>
 						<tr>
-							<th>이름</th>
+							<th>아이디</th>
 							<td>
-								<input type="text" name="name" id="name" placeholder="이름 입력" required="required"/>
+								<input type="text" name="id" id="id" placeholder="예) togetherlion@lion.com" required="required"/>
 							</td>
 						</tr>
 						<tr>
 							<th>휴대폰</th>
 							<td>
-								<input type="text" name="tel" id="tel" placeholder="숫자만 입력" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 받기</button>
+								<input type="text" name="tel" id="tel" placeholder="예) 01012345678" required="required" value pattern="[0-9]*"/>
+								<button type="button" class="btn btn-outline-primary join-form-btn" id="telBtn"
+								onclick="telAuth();">인증번호 전송</button>
 							</td>
 						</tr>
 						<tr>
 							<th></th>
 							<td>
-								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*"/>
-								<button type="button" class="btn btn-outline-primary join-form-btn"
-								onclick="">인증번호 확인</button>
+								<input type="text" name="telCheckNum" id="telCheckNum" required="required" value pattern="[0-9]*" placeholder="인증번호 입력"/>
+								<button type="button" class="btn btn-outline-primary join-form-btn" id="telCheckBtn" disabled="disabled" 
+								onclick="authCheck();">인증번호 확인</button>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<button type="button" class="btn btn-primary lion-primary-btn">확인</button>
+								<button type="button" class="btn btn-primary lion-primary-btn findBtn">확인</button>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
 		</div>
-
 	</section>
 
 	<!-- import FOOTER -->

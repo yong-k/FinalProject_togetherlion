@@ -20,6 +20,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
+ 
+
 
 <style type="text/css">
 .sb-sidenav-menu a.current-menu {
@@ -74,7 +76,7 @@ button.swal2-cancel.swal2-styled:focus {
     			  if (result.isConfirmed) {
     				  
       				// Insert 작업 처리 코드 작성하기!
-    		    		
+    		    	
     		    		
     		    	// Insert 완료 후, 띄울 알림창
       			    Swal.fire({
@@ -82,8 +84,9 @@ button.swal2-cancel.swal2-styled:focus {
       			    	icon: 'success',
       			    	confirmButtonText: '확인'
       			    }).then(() => {
-      			    	/* 해당게시물 상세보기로 이동 */
-      			    	location.href='ad_noticeArticle.lion';
+      			    	/* 해당게시물 상세보기로 이동 */ 
+      			    	$("form").submit();	 
+      			    	location.href='ad_notice_insertForm_ok.lion';
       			    });
       			  }
     			})
@@ -260,12 +263,14 @@ button.swal2-cancel.swal2-styled:focus {
 						<div class="card-body">
 							<div class="inquiry-container">
 								<div class="admin-textarea-box">
-									<form method="post">
+									<form  id="noticeInsertForm" name="noticeInsertForm" method="post">
 										<label for="title" class="col-form-label">제목</label>
 										<input type="text" class="form-control-plaintext faq-title" id="title">
 										<label for="content" class="col-form-label">내용</label>
 										<textarea class="form-control admin-textarea" id="content" rows="15"></textarea>
-										<input type="file" class="admin-textarea-file" multiple="multiple"/>
+										<input type="file" class="admin-textarea-file" multiple="multiple"  name="uploadFile1" id="path"/>
+										
+										<!-- <input type="text" id="name"> -->
 										
 										<button type="button" class="adminBtn cancelBtn answerCancelBtn">취소</button>
 										<button type="button" class="adminBtn saveBtn answerInsertBtn">등록</button>

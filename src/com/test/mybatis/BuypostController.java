@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,13 +75,45 @@ public class BuypostController
 	
 	// 공동구매 상세보기
 	@RequestMapping(value="/buypostarticle.lion", method=RequestMethod.GET)
-	public String buypost(String code, Model model)
+	public String buypost(String code, Model model, HttpServletRequest request)
 	{	
 		IBuypostDAO buypost = sqlSession.getMapper(IBuypostDAO.class); 
 		IMemberDAO member = sqlSession.getMapper(IMemberDAO.class);
+		IParticipantDAO parti = sqlSession.getMapper(IParticipantDAO.class);
 		 
-		BuypostDTO dto = buypost.search(code); 
-		String member_code = dto.getMember_code();
+		BuypostDTO dto = buypost.search(code);
+		String member_code = dto.getMember_code();			// 공동구매 게시물 작성자 멤버코드
+		String state = buypost.buypostState(code);			// 공동구매 상태 (모집, 진행, 완료, 취소)
+		String memberState = null;							// 현재 회원의 상태(진행자, 참여자, 이용자, 비회원)
+		String user_code = null;							// 현재 로그인한 회원의 멤버코드
+		String waitState = null;							// 현재 로그인한 회원의 대기여부
+		String buyScreenshot = null;						// 현재 공동구매 게시물의 스크린샷 업로드여부 
+		
+		// 현재 공동구매 참여자 목록
+		ArrayList<ParticipantDTO> partiList = parti.buypostPeople(code);
+		
+		// 로그인 정보 얻어오기
+		HttpSession session = request.getSession();
+		
+		
+		// 공동구매 게시물 내 회원 상태 구하기
+		// -- 취소 && 완료 상태 공동구매 게시물은 회원 상태 구할 필요 X 
+		
+		if (!state.equals("취소") || !state.equals("완료"))
+		{
+			if (session.getAttribute("member_code") == null)				// 비로그인 상태
+			{
+				memberState = "비회원";
+			}
+			else															// 로그인 상태
+			{				
+				user_code = (String)session.getAttribute("member_code");
+				memberState = buypost.memberState(user_code, code);			// 현재 회원의 상태(진행자, 참여자, 이용자)
+				waitState = buypost.memberWait(user_code, code);
+				buyScreenshot = buypost.buyScreenshot(code);
+			}
+			
+		}
 		
 		// 남은 일, 시, 분 구하기 ---------------------------------------------------------------------------------------		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
@@ -109,8 +144,13 @@ public class BuypostController
 		// --------------------------------------------------------------------------------------- 남은 일, 시, 분 구하기 
 		
 		model.addAttribute("buypost", dto); 
-		model.addAttribute("member",member.search(member_code));		
-				
+		model.addAttribute("writer",member.search(member_code));
+		model.addAttribute("state", state);
+		model.addAttribute("memberState", memberState);
+		model.addAttribute("waitState", waitState);
+		model.addAttribute("buyScreenshot", buyScreenshot);
+		model.addAttribute("partiList", partiList);
+		
 		return "/WEB-INF/view/user/user_buyPostArticle.jsp";
 	}
 	
@@ -452,5 +492,6 @@ public class BuypostController
 	{
 		return "/WEB-INF/view/user/user_map.jsp";
 	}
+	
 	
 }

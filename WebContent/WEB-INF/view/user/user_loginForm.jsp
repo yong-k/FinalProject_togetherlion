@@ -57,7 +57,7 @@ $(document).ready(function()
 </head>
 <body>
 	<!-- import HEADER -->
-	<c:import url="user_header.jsp"></c:import>
+	<c:import url="/header.lion"></c:import>
     
     <section class="featured spad">
         <div class="container login-container">
@@ -73,13 +73,13 @@ $(document).ready(function()
 					</div>
 					<div class="login-search-box">
 						<div class="login-search">
-							<a href="#!">아이디/비밀번호 찾기</a>
+							<a href="<%=cp %>/idfind.lion">아이디 찾기</a> | <a href="<%=cp %>/pwfind.lion">비밀번호 찾기</a>
 						</div>
 					</div>
 					<button type="button" class="btn btn-primary login-form-btn" id="loginBtn">로그인</button>
 				</form>
 				<button type="button" class="btn btn-outline-primary login-form-btn"
-				onclick="location.href='<%=cp %>/user/user_joinInsertForm.jsp'">회원가입</button>
+				onclick="location.href='<%=cp %>/join.lion'">회원가입</button>
 			</div>
         </div>
     </section>

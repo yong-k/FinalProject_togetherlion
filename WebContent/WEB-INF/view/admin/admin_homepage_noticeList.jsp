@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -17,7 +16,11 @@
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<%=cp %>/js/scripts.js"></script>
-	
+
+<script type="text/javascript">
+ 
+</script>	
+
 <style type="text/css">
 .sb-sidenav-menu a.current-menu {
     background-color: #f5f4f2;
@@ -185,7 +188,7 @@
 								<button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
 							</form>
 							
-							<button type="button" class="btn btn-secondary writeBtn" onclick="location.href='ad_noticeInsertForm.lion'">글쓰기</button>
+							<button type="button" class="btn btn-secondary writeBtn" onclick="location.href='ad_notice_insertForm.lion'">글쓰기</button>
 						</div>
 
 						<div class="card-body">
@@ -201,8 +204,14 @@
 								<tbody>
 									<c:forEach var="noticeList" items="${list }">
 									<tr>
-										<td>${noticeList.code }</td>
-										<td><a href="ad_noticeArticle.lion">${noticeList.title }</a></td>
+										<td>${noticeList.num }</td>
+										
+										<%-- <td><a href="ad_notice_article.lion" onclick="takeCode(${noticeList.code})">${noticeList.title }</a></td> --%>
+										<%-- <td><a onclick="takeCode(${noticeList.code})"); href="ad_notice_article.lion&code=${noticeList.code }"  >${noticeList.title }</a></td> --%>
+										<%-- <td><a onclick="takeCode(${noticeList.code})"); href="ad_notice_article.lion&code=${noticeList.code }"  >${noticeList.title }</a></td> --%>
+										
+										<td><a href="ad_notice_article.lion?code=${noticeList.code }">${noticeList.title }</a></td>
+										
 										<td>${noticeList.admin_code }</td>
 										<td>${noticeList.write_datetime }</td> 
 									</tr>

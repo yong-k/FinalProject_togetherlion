@@ -30,11 +30,7 @@
   
     <header class="header">
         <div class="header__top lion_header_top"></div>
-        
         <%
-        /* MemberDTO dto = null;
-        dto = (MemberDTO)request.getAttribute("result");
-        if (dto == null) */
         if (member_code == null)
         {
         %>

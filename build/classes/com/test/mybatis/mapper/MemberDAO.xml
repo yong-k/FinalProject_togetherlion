@@ -22,4 +22,59 @@
 		WHERE MEMBER_CODE=#{member_code}
 	</select>
 	
+	<select id="checkDuplicateId" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM MEMBER_INFO
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="checkWithdrawalId" resultType="java.lang.Integer">
+		SELECT COUNT(*) 
+		FROM WITHDRAWAL_MEMBER 
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="checkDuplicateNickName" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER_INFO
+		WHERE NICKNAME = #{nickname}
+	</select>
+	
+	<select id="checkDuplicateTel" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER_INFO
+		WHERE TEL = #{tel}
+	</select>
+	
+	<select id="addMember" statementType="CALLABLE">
+		{CALL PRC_MEMBER_INFO_INSERT(#{id}, #{pw}, #{name}, #{nickname, jdbcType=VARCHAR}, #{tel})}
+	</select>
+	
+	<select id="idFind" resultType="java.lang.String">
+		SELECT ID
+		FROM MEMBER_INFO
+		WHERE NAME=#{name} AND TEL=#{tel}
+	</select>	
+	
+	<select id="regFind" resultType="java.lang.String">
+		SELECT TO_CHAR(REGIST_DATETIME, 'YYYY-MM-DD')
+		FROM MEMBER
+		WHERE CODE = (SELECT MEMBER_CODE
+		              FROM MEMBER_INFO
+		              WHERE TEL = #{tel})
+	</select>	
+	
+	<select id="checkIdTel" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER_INFO
+		WHERE ID = #{id} AND TEL = #{tel}
+	</select>
+	
+	<update id="modifyPw" >
+		UPDATE MEMBER_INFO
+		SET PW = #{pw}
+		WHERE ID = #{id}
+	</update>
+
+	
 </mapper>

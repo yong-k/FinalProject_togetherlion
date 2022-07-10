@@ -1,5 +1,9 @@
 package com.test.mybatis;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 public class LoginController
@@ -22,11 +27,12 @@ public class LoginController
    }
    
    @RequestMapping(value="/loginmember.lion", method=RequestMethod.POST)
-   public String loginMember(MemberDTO member, HttpSession session)
+   public String loginMember(MemberDTO member, HttpServletRequest request)
    {
       String result = null;
       
       IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+      HttpSession session = request.getSession();
       
       String member_code = null;
       String nickName = null;
@@ -61,11 +67,12 @@ public class LoginController
    }
    
    @RequestMapping(value="/loginadmin.lion", method=RequestMethod.POST)
-   public String loginAdmin(AdminDTO admin, Model model, HttpSession session)
+   public String loginAdmin(AdminDTO admin, Model model, HttpServletRequest request)
    {
       String result = null;
       
       IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+      HttpSession session = request.getSession();
       String member_code = null;
       member_code = dao.loginAdmin(admin);
       
@@ -94,15 +101,99 @@ public class LoginController
 	
 	
 	@RequestMapping(value="/logout.lion")
-	public String logOut(HttpSession session)
+	public String logOut(HttpServletRequest request)
 	{
+		
+		HttpSession session = request.getSession();
 		session.invalidate();
 		
 		return "redirect:main.lion"; 
 		
 	}
 	
-   
+	
+	@RequestMapping(value="/idfind.lion")
+	public String idFind()
+	{
+		return "/WEB-INF/view/user/user_findIdForm.jsp"; 
+		
+	}
+	
+
+	@RequestMapping(value="/idsearch.lion")
+	public String idSearch(MemberDTO member, Model model)
+	{
+	    IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+	    String result = null;
+	    String id = null;
+	    String regist_datetime;
+	    
+	
+	    id = dao.idFind(member);
+	    
+		if (id == null)												// 회원 아이디가 없을 경우
+		{
+			result = "redirect:loginalert.lion?code=3";
+		}
+		else														// 회원 아이디가 존재할 경우
+		{
+		   regist_datetime = dao.regFind(member.getTel());
+		   
+		   model.addAttribute("id", id);
+		   model.addAttribute("regist_datetime", regist_datetime);
+		   result = "/WEB-INF/view/user/user_findId_success.jsp";
+		}
+	    
+		return result; 
+	}
+	
+	
+	@RequestMapping(value="/pwfind.lion")
+	public String pwFind()
+	{
+		return "/WEB-INF/view/user/user_findPwForm.jsp"; 
+	}
+	
+	
+	@RequestMapping(value="/pwmodify.lion")
+	public String pwModify(MemberDTO member, Model model)
+	{
+		model.addAttribute("id", member.getId());
+		return "/WEB-INF/view/user/user_findPw_modifyForm.jsp"; 
+	}
+	
+	
+	@RequestMapping(value="/telcheck2.lion")
+	public String telcheck2(MemberDTO member, Model model)
+	{
+	   IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+	   
+	   int resultNum;
+	   int checkIdTelCount = 0;
+	   
+	   checkIdTelCount = dao.checkIdTel(member);
+	   
+	   if (checkIdTelCount >= 1)
+		   resultNum = 0;
+	   else
+		   resultNum = 1;
+	   
+	   model.addAttribute("resultNum", resultNum);
+	   
+	   return "/WEB-INF/view/user/user_checkOk.jsp";
+	}
+	
+	
+	@RequestMapping(value="/pwmodifyok.lion")
+	public String pwModifyOk(MemberDTO member, Model model)
+	{
+		IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+		
+		dao.modifyPw(member);
+		
+		return "redirect:loginform.lion"; 
+	}
+	
 }
 
 
