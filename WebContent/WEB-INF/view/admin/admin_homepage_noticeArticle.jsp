@@ -242,7 +242,7 @@ button.swal2-cancel.swal2-styled:focus {
 
 						<div class="card-body">
 							<div class="inquiry-container notice-container">
-								<h2 class="title">시스템 점검 안내</h2>
+								 <!-- <h2 class="title">시스템 점검 안내</h2>
 								
 								<div class="helper"></div><div class="info-container">
 									<h5>등록일: 2022-05-04</h5>
@@ -258,18 +258,33 @@ button.swal2-cancel.swal2-styled:focus {
 								
 								감사합니다. <br />
 								가치사자 드림. <br />
-								</p>
+								</p>   -->
+								
+								<c:forEach var="noticeArticle" items="${article }">
+								<h2 class="title">${noticeArticle.title }</h2>
+								
+								<div class="helper"></div><div class="info-container">
+									<h5>등록일: ${noticeArticle.write_datetime }</h5>
+									<h5>작성자: ${noticeArticle.admin_code }</h5>
+								</div>  
+									<p>
+									<c:forTokens items="${noticeArticle.content }" delims="." var="content" >  
+										<c:out value="${content}"/> 
+									</c:forTokens>   
+									</p>
+								
 							</div>
 							<div class="btn-container notice-btn">
 								<button type="button" class="adminBtn cancelBtn answerCancelBtn">삭제</button>
 								<button type="button" class="adminBtn saveBtn answerInsertBtn"
-								onclick="location.href='ad_noticeUpdateForm.lion'">수정</button>
+								onclick="location.href='ad_notice_updateForm.lion?code=${noticeArticle.code}'">수정</button>
 							</div>
 							<div>
 								<div class="noticeArticle-helper"></div>
 								<button type="button" class="adminBtn listBtn"
 								onclick="location.href='ad_notice_list.lion'">목록</button>
 							</div>
+							</c:forEach>
 						</div>
 
 					</div>
